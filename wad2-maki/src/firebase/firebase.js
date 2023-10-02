@@ -15,6 +15,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+/* eslint-disable no-unused-vars */
 const app = initializeApp(firebaseConfig);
-
-export { app };
+/* eslint-enable no-unused-vars */
