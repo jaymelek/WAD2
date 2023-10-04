@@ -2,18 +2,18 @@
 
 <!-- Template -->
 <template>
-  <Navbar />
+  <navBar />
   <router-view></router-view>
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
+import navBar from "./components/navBar.vue";
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    navBar
   },
   // methods: {
   // },
