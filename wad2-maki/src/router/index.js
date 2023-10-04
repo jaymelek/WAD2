@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import testPage from '../views/testPage.vue';
 import borrowPage from '../views/borrowPage.vue';
-import demo from '../views/demo.vue';
-import feedback from '../views/feedback.vue';
-import pay from '../views/pay.vue';
-import review from '../views/review.vue';
+import demoPage from '../views/demoPage.vue';
+import feedbackPage from '../views/feedbackPage.vue';
+import payPage from '../views/payPage.vue';
+import reviewPage from '../views/reviewPage.vue';
 
 const routes = [
     // Other routes
@@ -23,22 +23,22 @@ const routes = [
 
     {
         path: '/',
-        name: 'demo',
-        component: demo,
+        name: 'demoPage',
+        component: demoPage,
     },
     {
         path: '/',
-        name: 'feedback',
-        component: feedback,
+        name: 'feedbackPage',
+        component: feedbackPage,
     },{
         path: '/',
-        name: 'pay',
-        component: pay,
+        name: 'payPage',
+        component: payPage,
     },
     {
         path: '/',
-        name: 'review',
-        component: review,
+        name: 'reviewPage',
+        component: reviewPage,
     },
 
 ];
