@@ -46,9 +46,7 @@
 </template>
 
 <script>
-export default {
-  name: "nav-bar"
-}
+export default {}
 </script>
 
 <style>
