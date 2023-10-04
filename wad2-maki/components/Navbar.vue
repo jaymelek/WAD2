@@ -15,22 +15,22 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="router-link" :to="{ name: 'demo' }">
+                            <router-link class="router-link" :to="{ name: 'demoPage' }">
                                 <a class="nav-link active" aria-current="page" href="#">Demo</a>
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="router-link" :to="{ name: 'feedback' }">
+                            <router-link class="router-link" :to="{ name: 'feedbackPage' }">
                                 <a class="nav-link active" aria-current="page" href="#">Feedback</a>
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="router-link" :to="{ name: 'pay' }">
+                            <router-link class="router-link" :to="{ name: 'payPage' }">
                                 <a class="nav-link active" aria-current="page" href="#">Pay</a>
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="router-link" :to="{ name: 'review' }">
+                            <router-link class="router-link" :to="{ name: 'reviewPage' }">
                                 <a class="nav-link active" aria-current="page" href="#">Reviews</a>
                             </router-link>
                         </li>
