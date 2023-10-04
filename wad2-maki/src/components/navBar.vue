@@ -1,14 +1,10 @@
-<!-- Import All Needed Components -->
 
-<!-- Template -->
 <template>
-
-<!-- Navigation Bar content-->
-<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <router-link :to="{ name: 'testPage' }">
     <a class="navbar-brand" href="#">
-      <img src="./assets/logo.png" style="width: 100px; height: auto;">
+      <img src="../assets/logo.png" style="width: 100px; height: auto;">
       </a>
     </router-link>
 
@@ -43,63 +39,5 @@
       </form>
     </div>
   </div>
-</nav> -->
-
-
-
-<main>
-    <!-- Contains the main content of the webpage-->
-  <div>
-    <!-- Router View to display components based on routes -->
-    <router-view></router-view>
-  </div>
-
-</main>
-
-
-
+    </nav>
 </template>
-
-
-
-<script>
-import { createRouter, createWebHistory } from 'vue-router';
-import testPage from './views/testPage.vue';
-import borrowPage from './views/borrowPage.vue';
-import 'bootstrap/dist/css/bootstrap.css';
-
-export default {
-  name: 'App',
-  methods: {
-  },
-
-  // Configure the Vue Router instance
-  router: createRouter({
-      history: createWebHistory(process.env.BASE_URL),
-      routes: [
-        // Define your routes here
-        {
-          path: '/',
-          name: 'testPage',
-          component: testPage, // Example: Import your Home component
-        },
-
-        {
-          path: '/',
-          name: 'borrowPage',
-          component: borrowPage, // Example: Import your Home component
-        },
-      ],
-    }),
-  }
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>

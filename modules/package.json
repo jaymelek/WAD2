@@ -1,5 +1,5 @@
 {
-  "name": "wad2-maki",
+  "name": "modules",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,14 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^1.5.1",
-    "bootstrap": "^5.3.2",
     "core-js": "^3.8.3",
-    "firebase": "^10.4.0",
-    "javascript": "^1.0.0",
-    "jquery": "^3.7.1",
-    "vue": "^3.2.13",
-    "vue-router": "^4.2.5"
+    "vue": "^3.2.13"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
