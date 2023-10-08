@@ -5,6 +5,7 @@ import demoPage from '../views/demoPage.vue';
 import feedbackPage from '../views/feedbackPage.vue';
 import payPage from '../views/payPage.vue';
 import reviewPage from '../views/reviewPage.vue';
+import viewGame from '../views/viewGame.vue';
 
 const routes = [
     // Other routes
@@ -41,6 +42,12 @@ const routes = [
         path: '/',
         name: 'reviewPage',
         component: reviewPage,
+    },
+
+    {
+        path: '/viewGame',
+        name: 'viewGame',
+        component: viewGame,
     },
 
 ];
