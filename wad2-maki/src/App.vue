@@ -4,19 +4,19 @@
 <template>
   <navBar />
   <router-view></router-view>
-  <viewGame />
+  <!-- <viewGame /> -->
 </template>
 
 <script>
 import navBar from "./components/navBar.vue";
 import 'bootstrap/dist/css/bootstrap.css';
 // to be deleted
-import viewGame from "./views/viewGame.vue";
+// import viewGame from "./views/viewGame.vue";
 
 export default {
   name: 'App',
   components: {
-    navBar, viewGame
+    navBar
   },
   // methods: {
   // },

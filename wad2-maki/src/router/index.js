@@ -6,49 +6,56 @@ import feedbackPage from '../views/feedbackPage.vue';
 import payPage from '../views/payPage.vue';
 import reviewPage from '../views/reviewPage.vue';
 import viewGame from '../views/viewGame.vue';
+import borrowGame from '../views/borrowGame.vue';
 
 const routes = [
     // Other routes
 
     {
-        path: '/',
+        path: '/testPage',
         name: 'testPage',
         component: testPage,
     },
 
     {
-        path: '/',
+        path: '/borrowPage',
         name: 'borrowPage',
         component: borrowPage, // Example: Import your Home component
     },
 
 
     {
-        path: '/',
+        path: '/demoPage',
         name: 'demoPage',
         component: demoPage,
     },
 
     {
-        path: '/',
+        path: '/feedbackPage',
         name: 'feedbackPage',
         component: feedbackPage,
     },{
-        path: '/',
+        path: '/payPage',
         name: 'payPage',
         component: payPage,
     },
 
     {
-        path: '/',
+        path: '/reviewPage',
         name: 'reviewPage',
         component: reviewPage,
     },
 
     {
-        path: '/viewGame',
+        path: '/viewGame/:gameID',
         name: 'viewGame',
         component: viewGame,
+    },
+
+    {
+        path: '/borrowGame/:gameID',
+        name: 'borrowGame',
+        component: borrowGame,
     },
 
 ];

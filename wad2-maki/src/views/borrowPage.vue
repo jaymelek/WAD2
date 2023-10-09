@@ -5,15 +5,15 @@
 
   <div class="container-fluid">
     <div class="row">
-      <router-link to="'/games/' + games.slug" class="card-link col-lg-4 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;">
-      <div class="card">
+      <!-- <router-link to="'games/' + games.slug" class="card-link col-lg-4 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;"> -->
+      <div class="card col-lg-4 my-4" v-for="listing in listings" :key="listing.name" @click="gotoEvent(listing)">
                 <img :src="listing.img" class="card-img-top">    
                 <div class="card-body">
                     <h4 class="card-title">{{ listing.name }}</h4>
                     <h6 class="card-text">{{  listing.desc }}</h6>
                 </div>
         </div>
-    </router-link>
+    <!-- </router-link> -->
     </div>
   </div>
 
@@ -100,6 +100,13 @@ export default {
       firebaseData,
     };
   },
+
+  methods: {
+    gotoEvent(listing) {
+                this.$router.push('/' + listing.id)
+                this.$router.push({ name: 'viewGame', params: { gameID: listing.id } })
+    }
+  }
 
 };
 
