@@ -9,7 +9,7 @@
             <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
             <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
         </div>
-        <div class="bottom d-inline">
+        <div class="bottom d-inline text-center">
             <p> &copy; Strategica . 2023</p>
         </div>
     </div>
