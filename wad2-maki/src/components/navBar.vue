@@ -7,7 +7,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <router-link :to="{ name: 'testPage' }">
+          <router-link :to="{ name: 'landingPage' }">
             <a class="navbar-brand" href="#">
               <img src="../assets/logo.png" style="width: 100px; height: auto;">
             </a>
