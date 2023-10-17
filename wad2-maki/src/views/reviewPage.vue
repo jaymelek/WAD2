@@ -1,14 +1,13 @@
 <template>
-    <div>
-        <h1>This is the review page!</h1>
-    </div>
+    <h1>This is the reviewpage!</h1>
 </template>
 
 <script>
-    export default {
-    }
+export default {
+}
 </script>
 
-<style scoped>
+<style>
+
 
 </style>
