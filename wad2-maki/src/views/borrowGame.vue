@@ -6,7 +6,7 @@
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
         <div class="row align-items-center justify-content-center m-2"> 
-            <div class="col-sm-5 pe-0 pb-4">
+            <div class="col-7 col-md-5 pe-0 pb-4">
                 <!-- <img :src="listing.img" class=" w-75 bg-secondary-subtle rounded" >  -->
                 <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
                     <div class="carousel-inner">
