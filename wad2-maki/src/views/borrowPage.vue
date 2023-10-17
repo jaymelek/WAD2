@@ -1,17 +1,22 @@
 <template>
-  <div>
+  <!-- <div>
     <h1>Borrow a Game</h1>
-  </div>
+  </div> -->
 
-  <div class="container-fluid">
-    <div class="row">
+  <div class="container-fluid px-4 maxwidth">
+    <div class="row justify-content-center">
       <!-- <router-link to="'games/' + games.slug" class="card-link col-lg-4 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;"> -->
-      <div class="card col-lg-4 my-4" v-for="listing in listings" :key="listing.name" @click="gotoEvent(listing)">
-                <img :src="listing.img" class="card-img-top">    
-                <div class="card-body">
-                    <h4 class="card-title">{{ listing.name }}</h4>
-                    <h6 class="card-text">{{  listing.desc }}</h6>
-                </div>
+        <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name" @click="gotoEvent(listing)">  
+          <ListingCard
+              :gameName="listing.name"
+              :imgSrc = "listing.img"
+              :description="listing.desc"
+              :pax="listing.pax"
+              :category="listing.type"
+              :open="listing._open"
+              @click="gotoEvent(listing)"
+              :id="listing._listing_id"
+            ></ListingCard>
         </div>
     <!-- </router-link> -->
     </div>
@@ -26,15 +31,19 @@ import { getDatabase, ref as dbRef, get } from 'firebase/database';
 import axios from 'axios';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 
+import ListingCard from '../components/listingComponent.vue';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/games.json'; // Replace with the path to your data
 
 export default {
+  name: "LandingPage",
+  components: {
+    ListingCard,
+  },  
   data(){
     return{
       listings: [],
-
     }
   },
   created() {
@@ -111,3 +120,10 @@ export default {
 };
 
 </script>
+
+<style scoped>
+  .maxwidth { /* DO NOT CHANGE THIS */
+  width: 100%;
+  max-width: 1200px;
+  }
+</style>
