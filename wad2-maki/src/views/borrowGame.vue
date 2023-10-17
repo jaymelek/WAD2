@@ -34,11 +34,11 @@
 
         <div class="row">
             <div class="container">
-                <form class="row g-3 justify-content-start align-items-center">
+                <form class="row g-3 justify-content-start align-items-center" id="borrowGameForm">
                         <!-- Name -->
                         <div class="col-md-6">
                             <label for="name1" class="form-label">Matriculated Name:</label>
-                            <input type="text" class="form-control inputstl" id="name1" placeholder="Enter Your Full Name" >
+                            <input type="text" class="form-control inputstl" id="name1" placeholder="Enter Your Full Name" required>
                         </div>
                         
                         <!-- Telegram Handle -->
@@ -146,7 +146,8 @@
                 
                         <!-- Confirm Button -->
                         <button type="submit" class="btn btn-outline-secondary w-100"
-                            @click="postApplication(listing)">Confirm</button>
+                        @click="postApplication()"
+                        >Confirm</button> <!--@click="postApplication(listing)"-->
                 </form>
             </div>
         </div>
@@ -159,44 +160,45 @@
 <!-- Script -->
 <script>
 // Connection to Firebase
-import { ref, onMounted } from 'vue'; // Import Vue composition API functions
-import { app } from "../firebase/firebase";
-import { getDatabase, ref as dbRef, get } from 'firebase/database';
+// import { ref, onMounted } from 'vue'; // Import Vue composition API functions
+// import { app } from "../firebase/firebase";
+// import { getDatabase, ref as dbRef, get } from 'firebase/database';
 import axios from 'axios';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
-const path = '/games.json'; // Replace with the path to your data
+const gamePath = '/games.json'; 
+const borrowApplicationsPath = '/borrowApplications.json';
 
 
 
 export default {
     setup() {
-        const firebaseData = ref(null);
+        // const firebaseData = ref(null);
 
-        onMounted(async () => {
-        try {
-            const db = getDatabase(app);
-            const databaseRef = dbRef(db, 'games');
+        // onMounted(async () => {
+        // try {
+        //     const db = getDatabase(app);
+        //     const databaseRef = dbRef(db, 'games');
 
-            const snapshot = await get(databaseRef);
+        //     const snapshot = await get(databaseRef);
 
-            if (snapshot.exists()) {
-            const data = snapshot.val();
-            firebaseData.value = data; // Update the data property with fetched data
-            } else {
-            console.log('No data available');
-            }
-        } catch (error) {
-            console.error('Error reading data from Realtime Database:', error);
-        }
-        });
+        //     if (snapshot.exists()) {
+        //     const data = snapshot.val();
+        //     firebaseData.value = data; // Update the data property with fetched data
+        //     } else {
+        //     console.log('No data available');
+        //     }
+        // } catch (error) {
+        //     console.error('Error reading data from Realtime Database:', error);
+        // }
+        // });
 
-        return {
-        firebaseData,
-        };
+        // return {
+        // firebaseData,
+        // };
     },
 
     data(){
@@ -245,7 +247,7 @@ export default {
 
         getGameData() {
             axios
-            .get(firebaseDatabaseURL + path)
+            .get(firebaseDatabaseURL + gamePath)
             .then((response) => {
             if (typeof response.data === 'object') {
                 this.listing = response.data[this.gameID];
@@ -283,41 +285,21 @@ export default {
 
         postApplication() {
             console.log("Posting Application")
-        //     axios
-        //     .post(firebaseDatabaseURL + path)
-        //     .then((response) => {
-        //     if (typeof response.data === 'object') {
-        //         this.listing = response.data[this.gameID];
-
-        //         // Initialize Firebase Storage
-        //         const storage = getStorage();
-
-                
-        //         if (Object.prototype.hasOwnProperty.call(this.listing, "img")) {
-        //             const listing = this.listing;
-        //             console.log(listing.img)
-
-        //             // Check if the listing has an 'img' property
-        //             if (listing.img) {
-        //             const imageRef = storageRef(storage, listing.img);
-        //             getDownloadURL(imageRef)
-        //                 .then((url) => {
-        //                 // Update the 'img' property of the listing with the new URL
-        //                 this.listing.img = url;
-        //                 })
-        //                 .catch((error) => {
-        //                 console.error('Error getting download URL for image:', error);
-        //                 });
-        //             }
-        //         }
-                
-        //     } else {
-        //         console.error('Response data is not an object:', response.data);
-        //     }
-        //     })
-        //     .catch((error) => {
-        //     console.error('Error fetching data:', error);
-        //     });
+            // Get the form data
+            const form = document.getElementById('borrowGameForm');
+            const formData = new FormData(form);
+            var data = Object.fromEntries(formData.entries());
+            data['gameID'] = this.gameID;
+            data["game_name"] = this.listing.name;
+            console.log(data);
+            axios
+            .post(firebaseDatabaseURL + borrowApplicationsPath, data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+            console.error('Error posting data:', error);
+            });
         }
 
     },
