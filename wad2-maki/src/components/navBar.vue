@@ -2,7 +2,7 @@
   <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-              <router-link :to="{ name: 'testPage' }">
+              <router-link :to="{ name: 'landingPage' }">
                   <a class="navbar-brand" href="#">
                       <img src="../assets/logo.png" style="width: 100px; height: auto;">
                   </a>

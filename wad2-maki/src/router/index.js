@@ -5,11 +5,18 @@ import demoPage from '../views/demoPage.vue';
 import feedbackPage from '../views/feedbackPage.vue';
 import payPage from '../views/payPage.vue';
 import reviewPage from '../views/reviewPage.vue';
+import landingPage from '../views/landingPage.vue';
 import viewGame from '../views/viewGame.vue';
 import borrowGame from '../views/borrowGame.vue';
 
 const routes = [
     // Other routes
+
+    {
+        path: '/',
+        name: 'landingPage',
+        component:landingPage,
+    },
 
     {
         path: '/testPage',
