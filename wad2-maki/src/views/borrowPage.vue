@@ -5,7 +5,6 @@
 
   <div class="container-fluid px-4 maxwidth">
     <div class="row justify-content-center">
-      <!-- <router-link to="'games/' + games.slug" class="card-link col-lg-4 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;"> -->
         <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name" @click="gotoEvent(listing)">  
           <ListingCard
               :gameName="listing.name"
@@ -13,12 +12,11 @@
               :description="listing.desc"
               :pax="listing.pax"
               :category="listing.type"
-              :open="listing._open"
+              :availability="listing.availability"
               @click="gotoEvent(listing)"
               :id="listing._listing_id"
             ></ListingCard>
         </div>
-    <!-- </router-link> -->
     </div>
   </div>
 

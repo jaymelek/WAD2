@@ -11,13 +11,13 @@
                 <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img :src="listing.img" class="d-block w-100" alt="...">
+                            <img :src="listing.img" class="d-block w-100" >
                         </div>
                         <div class="carousel-item">
-                            <img :src="listing.img" class="d-block w-100" alt="...">
+                            <img :src="listing.img" class="d-block w-100" >
                         </div>
                         <div class="carousel-item">
-                            <img :src="listing.img" class="d-block w-100" alt="...">
+                            <img :src="listing.img" class="d-block w-100" >
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
@@ -64,6 +64,16 @@
                         <div class="col-md-6">
                             <label for="email1" class="form-label">SMU Email (with Faculty):</label>
                             <input type="email" class="form-control inputstl" id="email1" placeholder="john.2021@scis.smu.edu.sg">
+                        </div>
+
+                        <!-- Warning if Availability is not "Available" -->
+                        <div class="col-12" v-if="this.listing.availability != 'Available'">
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="alert-heading">Note:</h4>
+                                <p> {{this.listing.name}} is {{ this.listing.availability }} </p>
+                                <hr>
+                                <p class="mb-0">If you select dates that clash with any confirmed bookings, your loan application will be rejected.</p>
+                            </div>
                         </div>
                 
                         <!-- Loan Start Date -->
@@ -292,6 +302,8 @@ export default {
             data['gameID'] = this.gameID;
             data["game_name"] = this.listing.name;
             console.log(data);
+
+            // Post the form data to the Firebase Realtime Database borrowApplications Node
             axios
             .post(firebaseDatabaseURL + borrowApplicationsPath, data)
             .then((response) => {
@@ -300,7 +312,37 @@ export default {
             .catch((error) => {
             console.error('Error posting data:', error);
             });
-        }
+
+            // Update the Games Node Availability in Firebase Realtime Database
+            // The code below works but we have to make the exco pages to CONFIRM the loan application before availability is updated
+            // axios
+            // .put(firebaseDatabaseURL + "games/" + this.gameID + ".json", 
+            // {
+            //     "id": this.gameID,
+            //     "desc": this.listing.desc,
+            //     "name": this.listing.name,
+            //     "img": this.listing.img,
+            //     "type": this.listing.type,
+            //     "pax": this.listing.pax,
+            //     "availability": "Unavailable from " + this.pretty_date(this.loanStartDate) + " to " + this.pretty_date(this.selectedEndDate),
+            // })
+            // .then((response) => {
+            //     console.log(response);
+            // })
+            // .catch((error) => {
+            // console.error('Error updating data:', error);
+            // });
+        },
+
+        pretty_date(ugly_date) {
+            var pretty_date = new Date(ugly_date);
+            return pretty_date.toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+        },
 
     },
 

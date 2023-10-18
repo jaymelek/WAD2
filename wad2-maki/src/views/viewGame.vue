@@ -4,11 +4,13 @@
 <template>
     
     <!-- Start of Content -->
-    <div class="container-fluid">
-        <div class="row align-items-center justify-content-center m-2"> 
-            <div class="col-sm-6 pe-0 pb-4">
-                <!-- <img :src="listing.img" class=" w-75 bg-secondary-subtle rounded" >  -->
-                <div id="gameCarousel" class="carousel slide w-75 bg-secondary-subtle rounded">
+    <div class="container-fluid colWidth">
+        <div class="row align-items-center justify-content-center mx-2 my-4"> 
+
+            <!-- Carousel of Game Images (NOT Dynamic to show all images of a game in the database yet)-->
+            <!-- Need to make listing.img a list and v-for loop through it -->
+            <div class=" col-sm-4 col-8 col-md-4 pe-0 pb-4"> 
+                <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img :src="listing.img" class="d-block w-100" alt="...">
@@ -31,24 +33,28 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 ">
+            <!-- Game Details -->
+            <div class="col-sm-6 col-md-8"> <!--col-md-auto-->
                 <h3 >{{ listing.name }}</h3>
+                <i class="bi bi-person-circle"></i>
                 <p class="text-start">{{ listing.desc }}</p>
-                <p class="text-start"><span class="bolded">Game Type:</span> {{ listing.type }}</p>
+                <p class="text-start"><span class="bolded">Game Category:</span> {{ listing.type }}</p>
                 <p class="text-start"><span class="bolded">Max Players:</span> {{ listing.pax }}</p>
                 <p class="text-start"><span class="bolded">Availability:</span> {{ listing.availability }}</p>
-                <p class="text-start"><span class="bolded">Category:</span> {{ listing.category }}</p>
+                <!-- <p class="text-start"><span class="bolded">Category:</span> {{ listing.category }}</p> -->
                 <button type="button" class="btn btn-outline-secondary w-100"
                 @click="borrowGame(listing)"
                 >Borrow Game</button>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col colWidth">
                 <h1 class="text-start">Reviews</h1>
                 <div class="container-fluid w-100 p-0">
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 m-0 justify-content-center">
+                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 justify-content-center"
+                    v-for="reviewInfo in reviews" :key="reviewInfo.name"
+                    >
                         <div class="col-9">
                             <h4 class="text-start mb-0">{{ reviewInfo.title }}</h4> 
                             <p class="text-start text-body-secondary subtext my-0">{{ reviewInfo.name }}</p>
@@ -129,13 +135,21 @@ export default {
         return{
         listing: {},
         gameID: this.$route.params.gameID,
-        reviewInfo: {
+        reviews: [{
             title: "Great Game! Would Recommend!",
             name: "Dudette McReview",
             review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
             rating: 5,
-            date: "2021-10-01",
+            date: "2022-10-01",
         },
+        {
+            title: "Its alright, so so only :)",
+            name: "Daniella YF",
+            review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
+            rating: 3,
+            date: "2021-03-23",
+        },
+        ]
         }
     },
 
@@ -227,6 +241,7 @@ export default {
     .star {
         width: 20%;
         max-width: 25px;
+        /* min-width: 15px; */
         height: auto;
     }
 

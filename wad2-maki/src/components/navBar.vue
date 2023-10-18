@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,35 +23,35 @@
                 <a class="nav-link active" aria-current="page" href="#">Demo</a>
               </router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'feedbackPage' }">
                 <a class="nav-link active" aria-current="page" href="#">Feedback</a>
               </router-link>
-            </li>
+            </li> -->
             <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'payPage' }">
                 <a class="nav-link active" aria-current="page" href="#">Pay</a>
               </router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'reviewPage' }">
                 <a class="nav-link active" aria-current="page" href="#">Reviews</a>
               </router-link>
-            </li>
+            </li> -->
             <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'profilePage' }">
-                <a class="nav-link active" aria-current="page" href="#">Profile</a>
+                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-person-circle profileIcon"></i></a>
               </router-link>
             </li>
           </ul>
-          <form class="d-flex align-items-center justify-content-center" role="search">
+          <!-- <form class="d-flex align-items-center justify-content-center" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
             <router-link class="router-link" :to="{ name: 'reviewPage' }">
               <a class="nav-link active profile" aria-current="page" href="#" title="Click here to login!">Login
               </a>
             </router-link>
-          </form>
+          </form> -->
 
         </div>
       </div>
@@ -120,6 +120,11 @@ export default {}
 .profile {
   margin-left: 50px;
   margin-right: 50px;
+}
+
+.profileIcon {
+  width: 40px;
+  color: black;
 }
 
 

@@ -11,14 +11,14 @@
     </div>
     <div class="col-8 align-self-center">
       <div class="card-body">
-        <h5 class="card-title">{{ gameName }}</h5>
-        <p class="card-text mb-1 overflowText">{{ description }}</p>
+        <h5 class="card-title overflowOneLine">{{ gameName }}</h5>
+        <p class="card-text mb-1 overflowTwoLine">{{ description }}</p>
         <p class="card-text mb-1"><small>
           For {{ pax }} Players
         <br>
           Category: {{ category }}
         </small></p>
-        <p class="card-text"><small class="text-muted">Currently Unavailable for Loan</small></p>
+        <p class="card-text overflowOneLine"><small class="text-muted">{{availability}}</small></p>
       </div>
     </div>
   </div>
@@ -37,10 +37,7 @@
       description: String,
       pax: String,
       category: String,
-      open: Number,
-      access: String,
-      employeeSkills: Array,
-      roleSkills: Array,
+      availability: String,
       // lastUpdated: String,
       // primaryColor: String,
       // secondaryColor: String
@@ -61,14 +58,14 @@
     width: 100%;
   }
 
-  /* .overflowText {
+  .overflowOneLine {
     max-width: 20ch;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap
-  } */
+  }
 
-  .overflowText {
+  .overflowTwoLine {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
