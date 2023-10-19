@@ -5,14 +5,16 @@
 
   <div class="container-fluid">
     <div class="row">
-      <router-link to="'/games/' + games.slug" class="card-link col-lg-4 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;">
-      <div class="card">
+      <router-link to="'/games/' + games.slug" class="card-link col-lg-4 col-md-6 my-4" v-for="listing in listings" :key="listing.name" style="text-decoration: none;">
+      <div class="card-wrapper">
+        <div class="card" >
                 <img :src="listing.img" class="card-img-top">    
                 <div class="card-body">
                     <h4 class="card-title">{{ listing.name }}</h4>
                     <h6 class="card-text">{{  listing.desc }}</h6>
                 </div>
         </div>
+      </div>
     </router-link>
     </div>
   </div>
@@ -104,3 +106,20 @@ export default {
 };
 
 </script>
+
+<style>
+/* Add this CSS to your component's style block or external stylesheet */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make the card-wrapper take the full height of the row */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make the card take the full height of the card-wrapper */
+}
+
+/* You may need to adjust the styling further to match your design */
+</style>
