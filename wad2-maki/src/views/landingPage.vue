@@ -165,8 +165,86 @@ export default {
                 <p>Betrayal</p>
             </div>
         </div>
+    </div>
+    <div class="slider">
 
-    
+
+        <div class="slide-track">
+
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+            <div class="slide">
+                <img src="" />
+            </div>
+        </div>
+    </div>
+
+
+    <div class="reviews">
+        <div class="review text-center" v-for="reviewInfo in reviews" :key="reviewInfo.name">
+            <div class="head-review">
+                <img class="review-img" src="" width="250px">
+            </div>
+            <div class="body-review">
+                <div class="name-review">{{ reviewInfo.name }}</div>
+                <div class="rating">
+                    <img src="../assets/star.png" class="star" alt="" v-for="n in reviewInfo.rating" :key="n">
+                </div>
+                <div class="desc-review">{{ reviewInfo.review }}</div>
+            </div>
+        </div>
+
+
 
 
     </div>
@@ -266,14 +344,14 @@ export default {
     font-size: 50px;
 }
 
-.slider{
+.slider {
     min-height: 100vh;
     display: grid;
     place-items: center;
     overflow: hidden;
 }
 
-.slider{
+.slider {
     height: 250px;
     margin: auto;
     position: relative;
@@ -282,13 +360,13 @@ export default {
     place-items: center;
 }
 
-.slide-track{
+.slide-track {
     display: flex;
     width: calc(500px *18);
     animation: scroll 40s linear infinite;
 }
 
-.slide{
+.slide {
     height: auto;
     width: 2000px;
     display: flex;
@@ -296,22 +374,22 @@ export default {
     padding: 15px;
 }
 
-.slide img{
+.slide img {
     width: 100%;
 }
 
 .slider::before,
 .slider::after {
-    content:'';
-    height:100%;
+    content: '';
+    height: 100%;
     position: absolute;
-    width:15%;
+    width: 15%;
     z-index: 2;
 }
 
-.slider::before{
-    left:0;
-    top:0;
+.slider::before {
+    left: 0;
+    top: 0;
 }
 
 .slider::after {
@@ -320,13 +398,13 @@ export default {
     transform: rotateZ(100deg);
 }
 
-@keyframes scroll{
+@keyframes scroll {
     0% {
         transform: translateX(0)
     }
-    100%{
+
+    100% {
         transform: translateX(calc(-300px * 9));
     }
 }
-
 </style>
