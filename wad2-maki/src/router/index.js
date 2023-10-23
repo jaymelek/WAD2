@@ -9,6 +9,7 @@ import profilePage from '../views/profilePage.vue';
 import landingPage from '../views/landingPage.vue';
 import viewGame from '../views/viewGame.vue';
 import borrowGame from '../views/borrowGame.vue';
+import loginPage from '../views/loginPage.vue';
 
 const routes = [
     // Other routes
@@ -70,6 +71,12 @@ const routes = [
         path: '/borrowGame/:gameID',
         name: 'borrowGame',
         component: borrowGame,
+    },
+
+    {
+        path: '/loginPage',
+        name: 'loginPage',
+        component: loginPage
     },
 
 ];

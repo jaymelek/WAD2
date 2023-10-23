@@ -1,45 +1,46 @@
 <template>
-
-    <div class="container">
+    <div class="container maxwidth">
         <!-- <h1>This is the profile page!</h1> -->
-        <div class="row mt-3">
+        <div class="row mt-3 align-items-center justify-content-center">
             <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-1 d-flex align-items-center">
-                <img src="../assets/profile.png" class="img-fluid mx-auto">
+                <img src="../assets/profile.png" class=" img img-fluid mx-auto">
             </div>
             <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-2 d-flex align-items-center">
-                <p class="name">John Doe</p>
+                <p class="name">{{ person.name }}</p>
             </div>
-            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 mt-3 order-4">
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 order-3 mt-3 ">
+                <div class="info-border">
+                    <p><strong>Email: </strong> {{ person.email }}</p>
+                    <p><strong>Telegram: </strong>{{ person.telegram }} </p>
+                    <p><strong>Membership Status: </strong>{{ person.membership }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 order-5 mt-3">
+                <div class="info-border">
+                    <p><strong>Current borrowing: </strong></p>
+                    <ul>
+                        <li v-for="(game, index) in person.currentBorrowing" :key="index">{{ game }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6 mt-3 order-4">
                 <div class="info-border">
                     <p><strong>History of past games: </strong>
                     <ul>
-                        <li>Bang Card</li>
-                        <li>Betrayal</li>
+                        <li v-for="(game, index) in person.historyGame" :key="index">{{ game }}</li>
                     </ul>
                     </p>
                     <p><strong>Favourite Games: </strong>
                     <ul>
-                        <li>Skull</li>
-                        <li>Splendor</li>
+                        <li v-for="(game, index) in person.favGame" :key="index">{{ game }}</li>
                     </ul>
                     </p>
-                </div>
-            </div>
-            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-3 mt-3 ">
-                <div class="info-border">
-                    <p><strong>Email:</strong> johndoe@smu.edu.sg</p>
-                    <p><strong>Telegram:</strong> </p>
-                    <p><strong>Membership Status:</strong> You are a member!</p>
-                </div>
-            </div>
-            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-5 mt-3">
-                <div class="info-border">
-                    <p><strong>Current borrowing: </strong></p>
-                    <ul>
-                        <li>Example 1</li>
-                        <li>Example 2</li>
-                        <li>Example 3</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -47,7 +48,49 @@
 </template>
 
 <script>
-export default {}
+import axios from "axios";
+
+const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
+const path = '/users.json'; // Replace with the path to your data
+
+// import loginPage from './loginPage.vue';
+
+export default {
+    data() {
+        return {
+            // myStr: loginPage.data().username,
+            // person: [],
+            users: [],
+            person: []
+        }
+    },
+    created() {
+        axios
+            .get(firebaseDatabaseURL + path)
+            .then((response) => {
+                if (typeof response.data === 'object') {
+                    this.users = response.data;
+
+                    // Iterate through object properties using for...in loop
+                    for (const key in this.users) {
+                        if (Object.prototype.hasOwnProperty.call(this.users, key)) {
+                            //checks if the users is this user
+                            if (key == "user1") {
+                                this.person = this.users[key];  //append the respective user to the person array
+                                // console.log(key)
+                                // console.log(this.person)
+                            }
+                        }
+                    }
+                } else {
+                    console.error('Response data is not an object:', response.data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    },
+}
 </script>
 
 <style>
@@ -56,11 +99,11 @@ export default {}
     margin: auto;
 }
 
-@media screen and (min-width: 768px){
-    .info-border{
+/* @media screen and (min-width: 768px) {
+    .info-border {
         width: 50%;
     }
-}
+} */
 
 .info-border {
     border: 1px;
@@ -75,5 +118,11 @@ export default {}
     /* width: 50%; */
     /* max-width: 50%; */
     margin: auto;
+}
+
+.maxwidth {
+    /* DO NOT CHANGE THIS */
+    width: 100%;
+    max-width: 1200px;
 }
 </style>

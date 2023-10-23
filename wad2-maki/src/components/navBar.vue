@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md bg-body-tertiary">
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,14 +33,14 @@
                 <a class="nav-link active" aria-current="page" href="#">Pay</a>
               </router-link>
             </li>
-            <!-- <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'reviewPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Reviews</a>
+            <li class="nav-item">
+              <router-link class="router-link" :to="{ name: 'loginPage' }">
+                <a class="nav-link active" aria-current="page" href="#">Login</a>
               </router-link>
-            </li> -->
+            </li>
             <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'profilePage' }">
-                <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-person-circle profileIcon"></i></a>
+                <a class="nav-link active" aria-current="page" href="#">Profile<i class="bi bi-person-circle profileIcon"></i></a>
               </router-link>
             </li>
           </ul>
