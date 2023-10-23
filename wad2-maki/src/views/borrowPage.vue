@@ -119,3 +119,27 @@ export default {
   max-width: 1200px;
 }
 </style>
+
+<style scoped>
+  .maxwidth { /* DO NOT CHANGE THIS */
+  width: 100%;
+  max-width: 1200px;
+  }
+</style>
+
+<style>
+/* Add this CSS to your component's style block or external stylesheet */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make the card-wrapper take the full height of the row */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make the card take the full height of the card-wrapper */
+}
+
+/* You may need to adjust the styling further to match your design */
+</style>

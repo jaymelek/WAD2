@@ -5,6 +5,7 @@ import demoPage from '../views/demoPage.vue';
 import feedbackPage from '../views/feedbackPage.vue';
 import payPage from '../views/payPage.vue';
 import reviewPage from '../views/reviewPage.vue';
+import paymentSuccess from '../views/paymentSuccess.vue';
 import profilePage from '../views/profilePage.vue';
 import landingPage from '../views/landingPage.vue';
 import viewGame from '../views/viewGame.vue';
@@ -43,7 +44,9 @@ const routes = [
         path: '/feedbackPage',
         name: 'feedbackPage',
         component: feedbackPage,
-    },{
+    },
+    
+    {
         path: '/payPage',
         name: 'payPage',
         component: payPage,
@@ -53,6 +56,30 @@ const routes = [
         path: '/reviewPage',
         name: 'reviewPage',
         component: reviewPage,
+    },
+    
+    {
+        path: '/payPage/paymentSuccess',
+        name: 'paymentSuccess',
+        component: paymentSuccess,
+    },
+
+    {
+        path: '/profilePage',
+        name: 'profilePage',
+        component: profilePage,
+    },
+
+    {
+        path: '/viewGame/:gameID',
+        name: 'viewGame',
+        component: viewGame,
+    },
+
+    {
+        path: '/borrowGame/:gameID',
+        name: 'borrowGame',
+        component: borrowGame,
     },
 
     {
