@@ -43,7 +43,9 @@ const routes = [
         path: '/feedbackPage',
         name: 'feedbackPage',
         component: feedbackPage,
-    },{
+    },
+    
+    {
         path: '/payPage',
         name: 'payPage',
         component: payPage,
@@ -51,13 +53,12 @@ const routes = [
 
     {
         path: '/reviewPage',
-        path: '/reviewPage',
         name: 'reviewPage',
         component: reviewPage,
     },
     
     {
-        path: '/paymentSuccess',
+        path: '/payPage/paymentSuccess',
         name: 'paymentSuccess',
         component: paymentSuccess,
     },

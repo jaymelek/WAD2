@@ -121,6 +121,7 @@ export default {
                 <p>Betrayal</p>
             </div>
         </div>
+
         <footerBar />
 
 
