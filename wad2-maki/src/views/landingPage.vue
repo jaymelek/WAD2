@@ -75,32 +75,9 @@ export default {
     <img src="../assets/strategica_header3.png" class="header rounded-start" alt="">
     <!-- End Header Image -->
 
-    <!-- <div id="carouselexco" class="carousel slide mt-5 rounded" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../assets/exco24.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/santorini.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../assets/exco.jpg" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselexco"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselexco"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div> -->
-
     <!-- Carousell Start -->
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-12">
                 <div id="carouselexco" class="carousel slide mt-5" data-bs-ride="carousel">
@@ -329,7 +306,7 @@ export default {
 }
 
 #carouselexco {
-    width: 1400px;
+    width: 1000px;
     height: 800px;
 
 }
@@ -344,13 +321,7 @@ export default {
     font-size: 50px;
 }
 
-.slider {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-}
-
+ 
 .slider {
     height: 250px;
     margin: auto;
@@ -358,6 +329,11 @@ export default {
     width: 90%;
     display: grid;
     place-items: center;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    margin-top: 100px;
 }
 
 .slide-track {
