@@ -6,9 +6,19 @@ import feedbackPage from '../views/feedbackPage.vue';
 import payPage from '../views/payPage.vue';
 import reviewPage from '../views/reviewPage.vue';
 import paymentSuccess from '../views/paymentSuccess.vue';
+import profilePage from '../views/profilePage.vue';
+import landingPage from '../views/landingPage.vue';
+import viewGame from '../views/viewGame.vue';
+import borrowGame from '../views/borrowGame.vue';
 
 const routes = [
     // Other routes
+
+    {
+        path: '/',
+        name: 'landingPage',
+        component:landingPage,
+    },
 
     {
         path: '/testPage',
@@ -41,6 +51,7 @@ const routes = [
 
     {
         path: '/reviewPage',
+        path: '/reviewPage',
         name: 'reviewPage',
         component: reviewPage,
     },
@@ -49,6 +60,42 @@ const routes = [
         path: '/paymentSuccess',
         name: 'paymentSuccess',
         component: paymentSuccess,
+    },
+
+    {
+        path: '/profilePage',
+        name: 'profilePage',
+        component: profilePage,
+    },
+
+    {
+        path: '/viewGame/:gameID',
+        name: 'viewGame',
+        component: viewGame,
+    },
+
+    {
+        path: '/borrowGame/:gameID',
+        name: 'borrowGame',
+        component: borrowGame,
+    },
+
+    {
+        path: '/profilePage',
+        name: 'profilePage',
+        component: profilePage,
+    },
+
+    {
+        path: '/viewGame/:gameID',
+        name: 'viewGame',
+        component: viewGame,
+    },
+
+    {
+        path: '/borrowGame/:gameID',
+        name: 'borrowGame',
+        component: borrowGame,
     },
 
 ];
