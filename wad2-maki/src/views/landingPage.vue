@@ -46,20 +46,6 @@ export default {
                 rating: 3,
                 date: "2021-03-23",
             },
-            {
-                title: "Its alright, so so only :)",
-                name: "Daniella YF",
-                review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-                rating: 3,
-                date: "2021-03-23",
-            },
-            {
-                title: "Its alright, so so only :)",
-                name: "Daniella YF",
-                review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-                rating: 3,
-                date: "2021-03-23",
-            },
             ]
         }
     },
@@ -72,37 +58,18 @@ export default {
 <!-- Template -->
 <template>
     <!-- Header Image -->
-    <img src="../assets/strategica_header3.png" class="header rounded-start" alt="">
+    <!-- <img src="../assets/strategica_header3.png" class="header rounded-start" alt=""> -->
     <!-- End Header Image -->
 
-    <!-- Carousell Start -->
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-12">
-                <div id="carouselexco" class="carousel slide mt-5" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../assets/exco24.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../assets/santorini.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../assets/exco.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselexco" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselexco" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
+    <div class="banner">
+        <div class="content">
+            <h3>LET'S GET THE DICE ROLLING</h3>
+            <a href="" class="btn">Borrow Your Game Now!</a>
         </div>
+    </div>
+
+
+    <div class="container-fluid">
 
         <div class="row">
             <div class="gotw col d-flex justify-content-center m-5">
@@ -311,12 +278,6 @@ export default {
 
 }
 
-#carouselexco .carousel-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
 .gotw {
     font-size: 50px;
 }
@@ -383,4 +344,43 @@ export default {
         transform: translateX(calc(-300px * 9));
     }
 }
+
+.banner{
+    width: 100%;
+    height: 150vh;
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url(../assets/boardgamecover.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    text-align: center;
+    color:#fff;
+
+}
+
+.content h3{
+    font-size: 50px;
+    margin-top: 80px;
+}
+
+
+
+.btn{
+    font-size: 18px;
+    font-weight: bold;
+    background: transparent;
+    /* border: 2px solid #fff;; */
+    width: 300px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
 </style>
+
