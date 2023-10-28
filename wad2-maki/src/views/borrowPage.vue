@@ -5,21 +5,14 @@
 
   <div class="container-fluid px-4 maxwidth">
     <div class="row justify-content-center">
-        <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name" @click="gotoEvent(listing)">  
-          <ListingCard
-              :gameName="listing.name"
-              :imgSrc = "listing.img"
-              :description="listing.desc"
-              :pax="listing.pax"
-              :category="listing.type"
-              :availability="listing.availability"
-              @click="gotoEvent(listing)"
-              :id="listing._listing_id"
-            ></ListingCard>
-        </div>
+      <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name"
+        @click="gotoEvent(listing)">
+        <ListingCard :gameName="listing.name" :imgSrc="listing.img" :description="listing.desc" :pax="listing.pax"
+          :category="listing.type" :availability="listing.availability" @click="gotoEvent(listing)"
+          :id="listing._listing_id"></ListingCard>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -38,48 +31,48 @@ export default {
   name: "LandingPage",
   components: {
     ListingCard,
-  },  
-  data(){
-    return{
+  },
+  data() {
+    return {
       listings: [],
     }
   },
   created() {
-  axios
-    .get(firebaseDatabaseURL + path)
-    .then((response) => {
-      if (typeof response.data === 'object') {
-        this.listings = response.data;
+    axios
+      .get(firebaseDatabaseURL + path)
+      .then((response) => {
+        if (typeof response.data === 'object') {
+          this.listings = response.data;
 
-        // Initialize Firebase Storage
-        const storage = getStorage();
+          // Initialize Firebase Storage
+          const storage = getStorage();
 
-        // Iterate through object properties using for...in loop
-        for (const key in this.listings) {
-          if (Object.prototype.hasOwnProperty.call(this.listings, key)) {
-            const listing = this.listings[key];
+          // Iterate through object properties using for...in loop
+          for (const key in this.listings) {
+            if (Object.prototype.hasOwnProperty.call(this.listings, key)) {
+              const listing = this.listings[key];
 
-            // Check if the listing has an 'img' property
-            if (listing.img) {
-              const imageRef = storageRef(storage, listing.img);
-              getDownloadURL(imageRef)
-                .then((url) => {
-                  // Update the 'img' property of the listing with the new URL
-                  this.listings[key].img = url;
-                })
-                .catch((error) => {
-                  console.error('Error getting download URL for image:', error);
-                });
+              // Check if the listing has an 'img' property
+              if (listing.img) {
+                const imageRef = storageRef(storage, listing.img);
+                getDownloadURL(imageRef)
+                  .then((url) => {
+                    // Update the 'img' property of the listing with the new URL
+                    this.listings[key].img = url;
+                  })
+                  .catch((error) => {
+                    console.error('Error getting download URL for image:', error);
+                  });
+              }
             }
           }
+        } else {
+          console.error('Response data is not an object:', response.data);
         }
-      } else {
-        console.error('Response data is not an object:', response.data);
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching data:', error);
-    });
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   },
 
   setup() {
@@ -110,8 +103,8 @@ export default {
 
   methods: {
     gotoEvent(listing) {
-                this.$router.push('/' + listing.id)
-                this.$router.push({ name: 'viewGame', params: { gameID: listing.id } })
+      this.$router.push('/' + listing.id)
+      this.$router.push({ name: 'viewGame', params: { gameID: listing.id } })
     }
   }
 
@@ -120,10 +113,11 @@ export default {
 </script>
 
 <style scoped>
-  .maxwidth { /* DO NOT CHANGE THIS */
+.maxwidth {
+  /* DO NOT CHANGE THIS */
   width: 100%;
   max-width: 1200px;
-  }
+}
 </style>
 
 <style scoped>
