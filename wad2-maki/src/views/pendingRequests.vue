@@ -49,7 +49,9 @@
                         </div>
                         
                         <!-- if club borrowing -->
-                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
+                        v-if="application.borrowingBehalf == 'Club'"
+                        >
                             <hr>
                             <div class="col-6">
                                 <p class="my-0">Club Contact: {{ application.borrowerClubContact }}</p>
@@ -60,7 +62,6 @@
                             <div class="col-6">
                                 <p class="my-0">Type of Players: For {{ application.borrowerWhoPlay }}</p>
                                 <p class="my-0">Club Email: {{ application.borrowerClubEmail }}</p>
-                                {{ application.applicationID }}
                             </div>
                         </div>
                     </div> 
@@ -72,26 +73,70 @@
             
         </div>
 
-        <div class="row justify-content-center">
+
+        <!-- Reviewed Requests ==================================================================================== --> 
+        <div class="row justify-content-center mt-3">
             <div class="col colWidth">
-                <h1 class="text-start">Reviews</h1>
+                <h1 class="text-start">Reviewed Requests</h1>
+                
                 <div class="container-fluid w-100 p-0">
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 justify-content-center"
-                    v-for="reviewInfo in reviews" :key="reviewInfo.name"
-                    >
-                        <div class="col-9">
-                            <h4 class="text-start mb-0">{{ reviewInfo.title }}</h4> 
-                            <p class="text-start text-body-secondary subtext my-0">{{ reviewInfo.name }}</p>
-                        </div>
-                        <div class="col-3">
-                            <img src="../assets/star.png" class="star float-end" alt=""
-                            v-for="n in reviewInfo.rating"
-                            :key="n"
+
+                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
+                        v-for="application in reviewedApplications" :key="application.applicationID"
+                        >
+                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
+                                <div class="col-9">
+                                    <h4 class="mb-0">{{ application.gameName }}</h4>
+                                </div>
+
+                                <div class="col-3">
+                                    <!-- Each application is a form  -->
+                                    <div class="bg-success statusBar px-3 ms-auto"
+                                    v-if="application.status == 'Approved'"
+                                    >
+                                        {{ application.status }}
+                                    </div>
+                                    <div class="bg-danger statusBar px-3 ms-auto"
+                                    v-if="application.status == 'Rejected'"
+                                    >
+                                        {{ application.status }}
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                                <div class="col-6">
+                                    <p class="my-0">Borrower: {{ application.borrowerName }}</p>
+                                    <p class="my-0">Start Date: {{ pretty_date(application.loanStartDate) }}</p>
+                                    <p class="my-0">End Date: {{ pretty_date(application.loanEndDate) }}</p>
+                                </div>
+                                
+                                <div class="col-6">
+                                    <p class="my-0">Borrowing Type: For {{ application.borrowingType }}</p>
+                                    <p class="my-0">Borrower's Email: {{ application.borrowerEmail }}</p>
+                                    <p class="my-0">Borrower's Telegram: {{ application.borrowerTelegram }}</p>
+                                </div>
+                            </div>
+                            
+                            <!-- if club borrowing -->
+                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
+                            v-if="application.borrowingBehalf == 'Club'"
                             >
-                        </div>
-                        <p class="text-start my-1">{{ reviewInfo.review }}</p>
-                        <p class="text-end text-body-secondary subtext m-0">Posted on: {{ reviewInfo.date }}</p>
-                    </div>
+                                <hr>
+                                <div class="col-6">
+                                    <p class="my-0">Club Contact: {{ application.borrowerClubContact }}</p>
+                                    <p class="my-0">Location: {{ application.borrowerLocation }}</p>
+                                    <p class="my-0">Purpose: {{ application.borrowerPurpose }}</p>
+                                </div>
+                                
+                                <div class="col-6">
+                                    <p class="my-0">Type of Players: For {{ application.borrowerWhoPlay }}</p>
+                                    <p class="my-0">Club Email: {{ application.borrowerClubEmail }}</p>
+                                </div>
+                            </div>
+                        </div> 
+                        <!--End of v-for loop-->
+
                 </div>
             </div>
         </div>
@@ -146,7 +191,8 @@ export default {
 
     data(){
         return{
-        applications: [],        
+        applications: [],      
+        reviewedApplications: [],  
         reviews: [{
             title: "Great Game! Would Recommend!",
             name: "Dudette McReview",
@@ -182,7 +228,11 @@ export default {
                 
                 // initiate application data 
                 for (let app in response.data) {
-                    this.applications.push(response.data[app]);
+                    if (response.data[app].status == "Pending") {
+                        this.applications.push(response.data[app]);
+                    } else {
+                        this.reviewedApplications.push(response.data[app]);
+                    }
                 }
 
                 // add in the game data for each application
@@ -230,13 +280,14 @@ export default {
                 // update the application status to approved
                 axios
                 .patch(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json", {
-                    status: "approved",
+                    status: "Approved",
                 })
                 .then((response) => {
                     console.log(response);
                     // remove the application from the list of applications
                     for (let app in this.applications) {
                         if (this.applications[app].applicationID == applicationID) {
+                            this.reviewedApplications.push(this.applications[app]);
                             this.applications.splice(app, 1);
                         }
                     }
@@ -247,14 +298,15 @@ export default {
             } else if (status == "reject") {
                 // update the application status to rejected
                 axios
-                .patch(firebaseDatabaseURL + applicationsPath + "/" + applicationID + ".json", {
-                    status: "rejected",
+                .patch(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json", {
+                    status: "Rejected",
                 })
                 .then((response) => {
                     console.log(response);
                     // remove the application from the list of applications
                     for (let app in this.applications) {
                         if (this.applications[app].applicationID == applicationID) {
+                            this.reviewedApplications.push(this.applications[app]);
                             this.applications.splice(app, 1);
                         }
                     }
@@ -311,5 +363,13 @@ export default {
     .colWidth {
         width: 100%;
         max-width: 800px;
+    }
+
+    .statusBar {
+        border-radius: 25px;
+        padding: 5px;
+        color: white;
+        text-align: center;
+        width: fit-content;
     }
 </style>
