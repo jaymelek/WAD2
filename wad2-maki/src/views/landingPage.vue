@@ -5,6 +5,12 @@
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import axios from 'axios';
+import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
+
+
+const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
+const path = '/games.json'; // Replace with the path to your data
 
 
 
@@ -15,6 +21,7 @@ export default {
     //components: {
     //navBar, // Register the navBar component
     //},
+    name: "viewGame",
 
     mounted() {
         // Initialize the carousel when the component is mounted
@@ -23,7 +30,7 @@ export default {
 
     data() {
         return {
-            listing: {},
+            listings: [],
             gameID: this.$route.params.gameID,
             reviews: [{
                 title: "Great Game! Would Recommend!",
@@ -49,6 +56,64 @@ export default {
             ]
         }
     },
+    created() {
+    this.listings = [];
+    axios
+        .get(firebaseDatabaseURL + path)
+        .then((response) => {
+        if (typeof response.data === 'object') {
+            const allListings = response.data;
+            let count = 0;
+
+            // Initialize Firebase Storage
+            const storage = getStorage();
+
+            // Iterate through object properties using for...in loop
+            for (const key in allListings) {
+            if (Object.prototype.hasOwnProperty.call(allListings, key)) {
+                const listing = allListings[key];
+
+                // Check if the listing has an 'img' property
+                if (listing.img) {
+                const imageRef = storageRef(storage, listing.img);
+
+                getDownloadURL(imageRef)
+                    .then((url) => {
+                    // Update the 'img' property of the listing with the new URL
+                    listing.img = url;
+
+                    // Push the updated listing into the this.listings array
+                    this.listings.push(listing);
+
+                    })
+                    .catch((error) => {
+                    console.error('Error getting download URL for image:', error);
+                    });
+                } else {
+                // If the listing has no image, push it into the this.listings array as is
+                this.listings.push(listing);
+                }
+
+                // Increment the count
+                count++;
+
+                // Break the loop after pushing the top 3 listings
+                if (count >= 3) {
+                break;
+                }
+            }
+            }
+            console.log(this.listings);
+        } else {
+            console.error('Response data is not an object:', response.data);
+        }
+        })
+        .catch((error) => {
+        console.error('Error fetching data:', error);
+        });
+    },
+
+
 };
 
 
@@ -78,35 +143,16 @@ export default {
         </div>
 
 
-
-
-        <div class="row overflow-hidden">
-            <div class="col-md-4 col-sm-12 d-flex justify-content-center mb-3">
-                <div class="card customcard" style="width: 500px; height: 500px;">
-                    <img src="../assets/catan.png" class="card-img-top img-fluid m-auto" alt="...">
+        <div>
+            <div class="row">
+            <div class="col-md-4 col-sm-12" v-for="game in listings" :key="game.id">
+                <router-link :to="{ name: 'viewGame', params: { gameID: game.id } } " style="text-decoration: none;">
+                <div class="card customcard" style="width: 100%; height: 500px;">
+                    <img :src="game.img" class="card-img-top img-fluid m-auto">
+                    <h3 style="text-align: center; ">{{ game.name }}</h3>
                 </div>
+                </router-link>
             </div>
-            <div class="col-md-4 col-sm-12 d-flex justify-content-center mb-3">
-                <div class="card customcard" style="width: 500px; height: 500px;">
-                    <img src="../assets/bang_bullet.png" class="card-img-top img-fluid m-auto" alt="...">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 d-flex justify-content-center mb-3">
-                <div class="card customcard" style="width: 500px; height: 500px;">
-                    <img src="../assets/betrayal.png" class="card-img-top img-fluid m-auto" alt="...">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="gamedesc col-md-4 col-sm-12 d-flex justify-content-center">
-                <p>Catan</p>
-            </div>
-            <div class="gamedesc col-md-4 col-sm-12 d-flex justify-content-center">
-                <p>Bang Bullet</p>
-            </div>
-            <div class=" gamedesc col-md-4 col-sm-12 d-flex justify-content-center">
-                <p>Betrayal</p>
             </div>
         </div>
     </div>
