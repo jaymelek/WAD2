@@ -11,28 +11,62 @@
             <div class="colWidth">
                 <h1 class="text-start">Pending Requests</h1>
                 <div class="container-fluid w-100 p-0">
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 justify-content-center"
-                    v-for="application in applications" :key="application.application_id"
+                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
+                    v-for="application in applications" :key="application.applicationID"
                     >
+                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
+                            <div class="col-9">
+                                <h4 class="mb-0">{{ application.gameName }}</h4>
+                            </div>
 
-                    <v-col class="col-9">
-                        <h1>{{ application.game_name }}</h1>
-                    </v-col>
+                            <div class="col-3">
+                                <!-- Each application is a form  -->
+                                <form class="row g-3 justify-content-end align-items-center" id="approveRequest">
+                                    <input type="hidden" :value="application.applicationID">
+                                    <button type="button" class="btn btn-success w-auto"
+                                    @click="updateApplication(application.applicationID, 'approve')"
+                                    >Approve</button>
+                                    <button type="button" class="btn btn-danger w-auto mx-1"
+                                    @click="updateApplication(application.applicationID, 'reject')"
+                                    >Reject</button>
+                                </form>
+                            </div>
+                        </div>
                     
-                    <v-col class="col-3">
-                        <!-- Each application is a form  -->
-                        <form class="row g-3 justify-content-end align-items-center" id="approveRequest">
-                            <input type="hidden" :value="application.application_id">
-                            <button type="submit" class="btn btn-success w-auto"
-                            @click="updateApplication()"
-                            >Approve</button>
-                            <button type="submit" class="btn btn-danger w-auto ms-1"
-                            @click="updateApplication()"
-                            >Reject</button>
-                        </form>
-                    </v-col>
+                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                            <div class="col-6">
+                                <p class="my-0">Borrower: {{ application.borrowerName }}</p>
+                                <p class="my-0">Start Date: {{ pretty_date(application.loanStartDate) }}</p>
+                                <p class="my-0">End Date: {{ pretty_date(application.loanEndDate) }}</p>
+                            </div>
+                            
+                            <div class="col-6">
+                                <p class="my-0">Borrowing Type: For {{ application.borrowingType }}</p>
+                                <p class="my-0">Borrower's Email: {{ application.borrowerEmail }}</p>
+                                <p class="my-0">Borrower's Telegram: {{ application.borrowerTelegram }}</p>
+                                {{ application.applicationID }}
+                            </div>
+                        </div>
+                        
+                        <!-- if club borrowing -->
+                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                            <hr>
+                            <div class="col-6">
+                                <p class="my-0">Club Contact: {{ application.borrowerClubContact }}</p>
+                                <p class="my-0">Location: {{ application.borrowerLocation }}</p>
+                                <p class="my-0">Purpose: {{ application.borrowerPurpose }}</p>
+                            </div>
+                            
+                            <div class="col-6">
+                                <p class="my-0">Type of Players: For {{ application.borrowerWhoPlay }}</p>
+                                <p class="my-0">Club Email: {{ application.borrowerClubEmail }}</p>
+                                {{ application.applicationID }}
+                            </div>
+                        </div>
+                    </div> 
+                    <!--End of v-for loop-->
 
-                    </div>
+
                 </div>
             </div>
             
@@ -189,7 +223,57 @@ export default {
             .catch((error) => {
             console.error('Error fetching applications data:', error);
             });
-        }
+        },
+
+        updateApplication(applicationID, status) {
+            if (status == "approve") {
+                // update the application status to approved
+                axios
+                .patch(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json", {
+                    status: "approved",
+                })
+                .then((response) => {
+                    console.log(response);
+                    // remove the application from the list of applications
+                    for (let app in this.applications) {
+                        if (this.applications[app].applicationID == applicationID) {
+                            this.applications.splice(app, 1);
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            } else if (status == "reject") {
+                // update the application status to rejected
+                axios
+                .patch(firebaseDatabaseURL + applicationsPath + "/" + applicationID + ".json", {
+                    status: "rejected",
+                })
+                .then((response) => {
+                    console.log(response);
+                    // remove the application from the list of applications
+                    for (let app in this.applications) {
+                        if (this.applications[app].applicationID == applicationID) {
+                            this.applications.splice(app, 1);
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+        },
+
+        pretty_date(ugly_date) {
+            var pretty_date = new Date(ugly_date);
+            return pretty_date.toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
+        },
 
     },
 
