@@ -10,8 +10,7 @@ import landingPage from '../views/landingPage.vue';
 import viewGame from '../views/viewGame.vue';
 import borrowGame from '../views/borrowGame.vue';
 import loginPage from '../views/loginPage.vue';
-
-
+import pendingRequests from '../views/pendingRequests.vue';
 
 const routes = [
     // Other routes
@@ -102,7 +101,12 @@ const routes = [
         component: loginPage
     },
 
-
+    {
+        path: '/pendingRequests',
+        name: 'pendingRequests',
+        component: pendingRequests,
+        // beforeEnter: authGuard, // if we want to make it extra secure that members cannot access this page
+    },
 
 ];
 

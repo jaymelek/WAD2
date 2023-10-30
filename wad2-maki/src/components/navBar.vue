@@ -14,24 +14,28 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'borrowPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Borrow</a>
+              <a class="nav-link active" aria-current="page" href="#">Borrow a Game</a>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'demoPage' }" >
               <a class="nav-link active" aria-current="page" href="#">Demo</a>
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'payPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Pay</a>
+              <a class="nav-link active" aria-current="page" href="#">Be a Member</a>
             </router-link>
           </li>
         </ul>
-        <a class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          My Account
+      </div>
+
+      <a class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg>
         </a>
-        <!-- Dropdown Menu for User Options -->
+        
         <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="userDropdown">
           <li>
             <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
@@ -44,67 +48,25 @@
             </router-link>
           </li>
         </ul>
-        <!-- <form class="d-flex align-items-center justify-content-center" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-          <router-link class="router-link" :to="{ name: 'reviewPage' }">
-            <a class="nav-link active profile" aria-current="page" href="#" title="Click here to login!">Login</a>
-          </router-link>
-        </form> -->
-      </div>
 
     </div>
   </nav>
 
-      <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid">
-              <router-link :to="{ name: 'landingPage' }">
-                  <a class="navbar-brand" href="#">
-                      <img src="../assets/logo.png" style="width: 100px; height: auto;">
-                  </a>
-              </router-link>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                          <router-link class="router-link" :to="{ name: 'borrowPage' }">
-                              <a class="nav-link active" aria-current="page" href="#">Borrow</a>
-                          </router-link>
-                      </li>
-                      <li class="nav-item">
-                          <router-link class="router-link" :to="{ name: 'demoPage' }">
-                              <a class="nav-link active" aria-current="page" href="#">Demo</a>
-                          </router-link>
-                      </li>
-                      <li class="nav-item">
-                          <router-link class="router-link" :to="{ name: 'feedbackPage' }">
-                              <a class="nav-link active" aria-current="page" href="#">Feedback</a>
-                          </router-link>
-                      </li>
-                      <li class="nav-item">
-                          <router-link class="router-link" :to="{ name: 'payPage' }">
-                              <a class="nav-link active" aria-current="page" href="#">Pay</a>
-                          </router-link>
-                      </li>
-                      <li class="nav-item">
-                          <router-link class="router-link" :to="{ name: 'reviewPage' }">
-                              <a class="nav-link active" aria-current="page" href="#">Reviews</a>
-                          </router-link>
-                      </li>
-                  </ul>
-                  <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-              </div>
-          </div>
-      </nav> -->
-
 </template>
+
 
 <script>
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Global from "../global";
 
-export default {}
+export default {
+  methods: {
+    logoutUser() {
+      Global.sharedData = null;
+      // console.log(Global.sharedData) 
+    }
+  }
+}
 </script>
 
 <style>
@@ -126,19 +88,4 @@ export default {}
   width: 40px;
   color: black;
 }
-
-@media (min-width: 576px) {
-  .custom-dropdown {
-    width: max-content;
-  }
-}
-
-/* CSS for smaller screens (when collapsed) */
-@media (max-width: 575px) {
-  .custom-dropdown {
-    width: 100%; /* Full width */
-  }
-}
-
-
 </style>

@@ -157,7 +157,7 @@
                         <!-- Confirm Button -->
                         <button type="submit" class="btn btn-outline-secondary w-100"
                         @click="postApplication()"
-                        >Confirm</button> <!--@click="postApplication(listing)"-->
+                        >Confirm</button> 
                 </form>
             </div>
         </div>
@@ -228,12 +228,15 @@ export default {
             // Get the loan start date
             // convert loanStartDate to Date object
             var startDate = new Date(this.loanStartDate);
+            
             // const startDate = this.loanStartDate
-            var loanEndDate = new Date()
+            var loanEndDate = new Date(startDate);
             
             loanEndDate.setDate(startDate.getDate() + 14);
+            
             loanEndDate = loanEndDate.toISOString().split('T')[0];
             // this.loanEndDate = loanEndDate;
+            console.log(loanEndDate)
             return loanEndDate;
         }
 
@@ -246,12 +249,12 @@ export default {
 
             // Calculate the date 2 weeks (14 days) in the future
             const minDate = new Date(currentDate);
-            // console.log(currentDate)
+            
             minDate.setDate(currentDate.getDate() + 7);
-
+            
             // Format the date as YYYY-MM-DD (required format for the 'max' attribute)
             const formattedMinDate = minDate.toISOString().split('T')[0];
-
+            
             return formattedMinDate;
         },
 

@@ -2,68 +2,81 @@
     <div>
         <h2>Login</h2>
         <form @submit.prevent="login">
-            <input type="text" v-model="username" placeholder="Username" required>
-            <button type="submit" @click="login">Login</button>
+            <input type="email" v-model="email" placeholder="Username" required>
+            <input type="password" v-model="password" placeholder="Password" required>
+            <button type="submit" @click="userLogin()">Login</button>
         </form>
     </div>
-    <!-- <loginComponent></loginComponent> -->
+
 </template>
 
 <script>
+// import { getAuth } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import axios from "axios";
+import Global from "../global";
+
+const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
+const path = '/users.json'; // Replace with the path to your data
+
 export default {
+    
     data() {
         return {
-            username: '',
+            email: '',
+            password: '',
+            users: [],
+            person: [],
+
         }
     },
+    created() {
+        axios
+            .get(firebaseDatabaseURL + path)
+            .then((response) => {
+                if (typeof response.data === 'object') {
+                    this.users = response.data;
+                    // console.log(this.users)
+                } else {
+                    console.error('Response data is not an object:', response.data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+
+    },
     methods: {
-        login(){
-            console.log(this.username);
-            this.$router.push('/profilePage')
+        userLogin() {
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, this.email, this.password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    // console.log(user)
+
+                    if (user !== null) {
+                        // console.log(user.uid)
+                        if (Object.keys(this.users).includes(user.uid)){
+                            // this.person = this.users[user.uid]
+                            // console.log(this.person)
+                            Global.sharedData = user.uid;
+                            this.$router.push("profilePage")
+                        }
+                    }
+                })
+
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode)
+                    console.log(errorMessage)
+                });
         }
     }
-    // components: {
-    //     loginComponent
-    // }
-    // data() {
-    //     return {
-    //         // email: '',
-    //         // password: '',
-    //         username: '',
-    //         users: [],
-    //         user: [],
-    //     };
-    // },
-    // methods: {
-    //     login() {
-    //         // console.log(this.username)
-    //         // this.$router.push('/profilePage');
-    //         axios
-    //             .get(firebaseDatabaseURL + path)
-    //             .then((response) => {
-    //                 // console.log(response)
-    //                 // console.log(this.username)
-    //                 if (typeof response.data === 'object') {
-    //                     this.users = response.data
-    //                     // console.log(this.users)
-    //                     for (const key in this.users) {
-    //                         // console.log(key)
-    //                         if (Object.prototype.hasOwnProperty.call(this.users, key)) {
-    //                             if (key == this.username) {
-    //                                 this.user = this.users[key];
-    //                                 // console.log(this.user)
-    //                                 this.$router.push('/profilePage');
-    //                             }
-    //                         }
-
-    //                     }
-
-    //                 }
-    //             })
-    //     },
-    // }
-
 }
+// }
+// }
 </script>
 
-<style></style>
+<style></style> 
