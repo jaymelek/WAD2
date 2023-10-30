@@ -4,12 +4,12 @@
         </div>
        
         <div class="user-player-hand rounded" id="user_hand"
-        v-for="(card, index) in user_hand" :key="index"
         :draggable="true" @dragstart="startDrag(card, index)"
         >
             <div :class="[card, 'rounded']" 
             id="sashimi1"
             style = "position: relative; display: inline-block;"
+            v-for="(card, index) in user_hand" :key="index"
             ></div>
         </div>
 
@@ -21,12 +21,12 @@
         </div>
 
         <div class="user-played-area rounded" id="user_area" 
-        v-for="(card, index) in user_area" :key="index"
         @dragover.prevent="allowDrop" @drop="dropCard"
         >
             <div :class="[card, 'rounded']" 
             id="sashimi1"
             style = "position: relative; display: inline-block;"
+            v-for="(card, index) in user_area" :key="index"
             ></div>
         </div>
 
@@ -79,7 +79,7 @@
                 other_hand: [],
                 user_area: [],
                 player2_area: [],
-                deck: ["sashimi", "salmon", "squid", "sashimi", "salmon", "salmon", "squid"],
+                deck: ["sashimi", "salmon", "squid", "sashimi", "salmon", "salmon", "squid", "salmon"],
                 distCardBtnShow: "",
             }
         },
@@ -93,16 +93,15 @@
 
                 this.distCardBtnShow = "none";
 
-                for (let i = 0; i < deck.length; i++) {
-                    let card = deck[i];
+                for (let i = 0; i < 4; i++) {
+                    // console.log(deck.length)
+                    let card = deck[0];
+                    let other_card = deck[1];
                     // card.style = "position: relative; display: inline-block;";
                     // card.draggable = true;
-                    if (i % 2 == 0) {
-                        user_hand.push(card);
-                    } else {
-                        other_hand.push(card);
-                    }
-                    deck.splice(i, 1);
+                    user_hand.push(card);
+                    other_hand.push(other_card);
+                    deck.splice(0, 2);
                 }
 
                 console.log(user_hand)
