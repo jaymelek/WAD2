@@ -5,47 +5,37 @@
     
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
-        <div class="row align-items-center justify-content-center mx-2 my-4"> 
+        <div class="row align-items-center justify-content-center"> 
 
-            <!-- Carousel of Game Images (NOT Dynamic to show all images of a game in the database yet)-->
-            <!-- Need to make listing.img a list and v-for loop through it -->
-            <div class=" col-sm-4 col-8 col-md-4 pe-0 pb-4"> 
-                <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img :src="listing.img" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img :src="listing.img" class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img :src="listing.img" class="d-block w-100">
-                        </div>
+            <!-- Pending Requests -->
+            <div class="colWidth">
+                <h1 class="text-start">Pending Requests</h1>
+                <div class="container-fluid w-100 p-0">
+                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 justify-content-center"
+                    v-for="application in applications" :key="application.application_id"
+                    >
+
+                    <v-col class="col-9">
+                        {{ application }}
+                    </v-col>
+                    
+                    <v-col class="col-3">
+                        <!-- Each application is a form  -->
+                        <form class="row g-3 justify-content-end align-items-center" id="approveRequest">
+                            <input type="hidden" :value="application.application_id">
+                            <button type="submit" class="btn btn-success w-auto"
+                            @click="updateApplication()"
+                            >Approve</button>
+                            <button type="submit" class="btn btn-danger w-auto ms-1"
+                            @click="updateApplication()"
+                            >Reject</button>
+                        </form>
+                    </v-col>
+
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
-
-            <!-- Game Details -->
-            <div class="col-sm-6 col-md-8"> <!--col-md-auto-->
-                <h3 >{{ listing.name }}</h3>
-                <i class="bi bi-person-circle"></i>
-                <p class="text-start">{{ listing.desc }}</p>
-                <p class="text-start"><span class="bolded">Game Category:</span> {{ listing.type }}</p>
-                <p class="text-start"><span class="bolded">Max Players:</span> {{ listing.pax }}</p>
-                <p class="text-start"><span class="bolded">Availability:</span> {{ listing.availability }}</p>
-                <!-- <p class="text-start"><span class="bolded">Category:</span> {{ listing.category }}</p> -->
-                <button type="button" class="btn btn-outline-secondary w-100"
-                @click="borrowGame(listing)"
-                >Borrow Game</button>
-            </div>
+            
         </div>
 
         <div class="row justify-content-center">
@@ -83,12 +73,13 @@ import { ref, onMounted } from 'vue'; // Import Vue composition API functions
 import { app } from "../firebase/firebase";
 import { getDatabase, ref as dbRef, get } from 'firebase/database';
 import axios from 'axios';
-import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
+// import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
-const path = '/games.json'; // Replace with the path to your data
+// const path = '/games.json'; // Replace with the path to your data
+const applicationsPath = '/borrowApplications.json'
 
 
 
@@ -119,22 +110,9 @@ export default {
         };
     },
 
-    // data() {
-    //     return {
-    //         gameData: {},
-    //         gameID: "game-01",
-    //         gameName: "", 
-    //         gameDesc: "",
-    //         gameImg: "",
-    //         gameType: "",
-    //         gamePax: "",
-    //     };
-    // },
-
     data(){
         return{
-        listing: {},
-        gameID: this.$route.params.gameID,
+        applications: [],        
         reviews: [{
             title: "Great Game! Would Recommend!",
             name: "Dudette McReview",
@@ -155,57 +133,7 @@ export default {
 
     methods: {
         getGameData() {
-            // axios.get(firebaseDatabaseURL + path)
-            // .then((response) => {
-            //     const data = response.data;
-            //     const gameID = this.gameID;
-            //     this.gameData = data;
-            //     this.gameName = data[gameID].name;
-            //     this.gameDesc = data[gameID].desc;
-            //     this.gameImg = data[gameID].img;
-            //     this.gameType = data[gameID].type;
-            //     this.gamePax = data[gameID].pax;
-            //     console.log(data);
-            // })
-            // .catch((error) => {
-            //     console.error('Error fetching data:', error);
-            // });
-
-            axios
-            .get(firebaseDatabaseURL + path)
-            .then((response) => {
-            if (typeof response.data === 'object') {
-                this.listing = response.data[this.gameID];
-
-                // Initialize Firebase Storage
-                const storage = getStorage();
-
-                
-                if (Object.prototype.hasOwnProperty.call(this.listing, "img")) {
-                    const listing = this.listing;
-                    console.log(listing.img)
-
-                    // Check if the listing has an 'img' property
-                    if (listing.img) {
-                    const imageRef = storageRef(storage, listing.img);
-                    getDownloadURL(imageRef)
-                        .then((url) => {
-                        // Update the 'img' property of the listing with the new URL
-                        this.listing.img = url;
-                        })
-                        .catch((error) => {
-                        console.error('Error getting download URL for image:', error);
-                        });
-                    }
-                }
-                
-            } else {
-                console.error('Response data is not an object:', response.data);
-            }
-            })
-            .catch((error) => {
-            console.error('Error fetching data:', error);
-            });
+            
         },
 
         borrowGame(listing) {
@@ -213,10 +141,61 @@ export default {
             this.$router.push({ name: 'borrowGame', params: { gameID: listing.id } });
         },
 
+        getApplicationsData() {
+            axios
+            .get(firebaseDatabaseURL + applicationsPath)
+            .then((response) => {
+                
+                // initiate application data 
+                for (let app in response.data) {
+                    this.applications.push(response.data[app]);
+                }
+
+                // add in the game data for each application
+                // for (let app in this.applications) {
+                //     axios
+                //     .get(firebaseDatabaseURL + path)
+                //     .then((response) => {
+                //     if (typeof response.data === 'object') {
+                //         let returnListing = response.data[this.applications[app].gameID];
+                //         // Initialize Firebase Storage
+                //         const storage = getStorage();                
+                //         if (Object.prototype.hasOwnProperty.call(returnListing, "img")) {
+                //             if (returnListing.img) {
+                //             const imageRef = storageRef(storage, returnListing.img);
+                //             getDownloadURL(imageRef)
+                //                 .then((url) => {
+                //                 // Update the 'img' property of the listing with the new URL
+                //                 returnListing.img = url;
+                //                 })
+                //                 .catch((error) => {
+                //                 console.error('Error getting download URL for image:', error);
+                //                 });
+                //             }
+                //         }
+                    
+                //         this.applications[app].gameData = returnListing;
+                //     } else {
+                //         console.error('Response data is not an object:', response.data);
+                //     }
+                //     })
+                //     .catch((error) => {
+                //     console.error('Error fetching data:', error);
+                //     });
+                // }
+                // console.log(this.applications)
+                
+            })
+            .catch((error) => {
+            console.error('Error fetching applications data:', error);
+            });
+        }
+
     },
 
     created() {
         this.getGameData();
+        this.getApplicationsData();
     },
 
     mounted() {
