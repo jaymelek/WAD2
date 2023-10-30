@@ -63,7 +63,8 @@
         </div>
       </div>
     </nav>
-    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  </div>
+  <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
               <router-link :to="{ name: 'landingPage' }">
                   <a class="navbar-brand" href="#">
@@ -105,7 +106,6 @@
               </div>
           </div>
       </nav> -->
-
 </template>
 
 <script>
