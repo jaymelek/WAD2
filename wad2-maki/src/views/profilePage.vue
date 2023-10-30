@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="row align-items-center justify-content-center">
-            <div class="col-6 order-3 mt-3 ">
+            <div class="col-12 order-3 mt-3 ">
                 <div class="info-border">
                     <p><strong>Email: </strong> {{ person.email }}</p>
                     <p><strong>Telegram: </strong>{{ person.telegram }} </p>
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="row align-items-center justify-content-center">
-            <div class="col-6 order-5 mt-3">
+            <div class="col-12 order-5 mt-3">
                 <div class="info-border">
                     <p><strong>Current borrowing: </strong></p>
                     <ul>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="row align-items-center justify-content-center">
-            <div class="col-6 mt-3 order-4">
+            <div class="col-12 mt-3 order-4">
                 <div class="info-border">
                     <p><strong>History of past games: </strong>
                     <ul>
@@ -123,6 +123,6 @@ export default {
 .maxwidth {
     /* DO NOT CHANGE THIS */
     width: 100%;
-    max-width: 1200px;
+    max-width: 600px;
 }
 </style>

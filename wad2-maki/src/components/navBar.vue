@@ -14,17 +14,17 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'borrowPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Borrow</a>
+              <a class="nav-link active" aria-current="page" href="#">Borrow a Game</a>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'demoPage' }" >
               <a class="nav-link active" aria-current="page" href="#">Demo</a>
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link class="router-link" :to="{ name: 'payPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Pay</a>
+              <a class="nav-link active" aria-current="page" href="#">Be a Member</a>
             </router-link>
           </li>
         </ul>
