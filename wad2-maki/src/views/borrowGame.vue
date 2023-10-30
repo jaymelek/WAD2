@@ -38,13 +38,13 @@
                         <!-- Name -->
                         <div class="col-md-6">
                             <label for="name1" class="form-label">Matriculated Name:</label>
-                            <input type="text" class="form-control inputstl" id="name1" placeholder="Enter Your Full Name" required>
+                            <input type="text" class="form-control inputstl" id="name1" placeholder="Enter Your Full Name" v-model="personName" required>
                         </div>
                         
                         <!-- Telegram Handle -->
                         <div class="col-md-6">
                             <label for="telegram" class="form-label">Telegram Handle:</label>
-                            <input type="text" class="form-control inputstl" id="telegram" name="telegram" placeholder="@Username" required>
+                            <input type="text" class="form-control inputstl" id="telegram" name="telegram" v-model="telegram" placeholder="@Username" required>
                         </div>
                 
                         <!-- Borrowing on behalf of themselves or a club -->
@@ -63,7 +63,7 @@
                         <!-- Email Address -->
                         <div class="col-md-6">
                             <label for="email1" class="form-label">SMU Email (with Faculty):</label>
-                            <input type="email" class="form-control inputstl" id="email1" placeholder="john.2021@scis.smu.edu.sg">
+                            <input type="email" class="form-control inputstl" id="email1" v-model="email" placeholder="john.2021@scis.smu.edu.sg">
                         </div>
 
                         <!-- Warning if Availability is not "Available" -->
@@ -95,37 +95,37 @@
                             <!-- Club Name -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="clubName" class="form-label">SMU Club Name:</label>
-                                <input type="text" class="form-control inputstl" id="clubName" name="clubName" placeholder="Enter Club Name" required>
+                                <input type="text" class="form-control inputstl" id="clubName" name="clubName" v-model="clubName" placeholder="Enter Club Name" required>
                             </div>
                 
                             <!-- Club Email Address -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="clubEmail" class="form-label">Club Email:</label>
-                                <input type="email" class="form-control inputstl" id="clubEmail" name="clubEmail" placeholder="Enter Club Email" required>
+                                <input type="email" class="form-control inputstl" id="clubEmail" name="clubEmail" v-model="clubEmail" placeholder="Enter Club Email" required>
                             </div>
 
                             <!-- Club Contact Designation -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="clubContactDesignation" class="form-label">Club Contact Designation:</label>
-                                <input type="text" class="form-control inputstl" id="clubContactDesignation" name="clubContactDesignation" placeholder="e.g., President, Hon Fin, etc." required>
+                                <input type="text" class="form-control inputstl" id="clubContactDesignation" name="clubContactDesignation" v-model="clubContact" placeholder="e.g., President, Hon Fin, etc." required>
                             </div>
 
                             <!-- Event/Purpose for Borrowing -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="borrowPurpose" class="form-label">Purpose for Borrowing:</label>
-                                <input type="text" class="form-control inputstl" id="borrowPurpose" name="borrowPurpose" placeholder="Name of Event, Casual etc" required>
+                                <input type="text" class="form-control inputstl" id="borrowPurpose" name="borrowPurpose" v-model="purpose" placeholder="Name of Event, Casual etc" required>
                             </div>
 
                             <!-- Location of Event -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="eventLocation" class="form-label">Location of Event:</label>
-                                <input type="text" class="form-control inputstl" id="eventLocation" name="eventLocation" placeholder="SCIS CR B1-1" required>
+                                <input type="text" class="form-control inputstl" id="eventLocation" name="eventLocation" v-model="location" placeholder="SCIS CR B1-1" required>
                             </div>
 
                             <!-- Who will be Playing -->
                             <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
                                 <label for="personsPlaying" class="form-label">Who will be playing the games?</label>
-                                <input type="text" class="form-control inputstl" id="personsPlaying" name="personsPlaying" placeholder="Members, Exchange Students..." required>
+                                <input type="text" class="form-control inputstl" id="personsPlaying" name="personsPlaying" v-model="whoPlay" placeholder="Members, Exchange Students..." required>
                             </div>
 
                             <!-- Event Date -->
@@ -177,6 +177,7 @@ import axios from 'axios';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import router from '../router/index';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const gamePath = '/games.json'; 
@@ -219,6 +220,15 @@ export default {
         loanStartDate: this.minDate(),
         selectedEndDate: this.minDate(),
         borrowingBehalf:"",
+        personName:"",
+        telegram:"",
+        email:"",
+        clubName:"",
+        clubEmail:"",
+        clubContact:"",
+        purpose:"",
+        location:"",
+        whoPlay:"",
         }; 
     },
 
@@ -297,45 +307,40 @@ export default {
         },
 
         postApplication() {
-            console.log("Posting Application")
-            // Get the form data
-            const form = document.getElementById('borrowGameForm');
-            const formData = new FormData(form);
-            var data = Object.fromEntries(formData.entries());
-            data['gameID'] = this.gameID;
-            data["game_name"] = this.listing.name;
-            console.log(data);
+        const data = {
+            gameID: this.gameID,
+            gameName: this.listing.name,
+            borrowerName: this.personName,
+            borrowerEmail: this.email,
+            borrowerTelegram: this.telegram,
+            loanStartDate: this.loanStartDate,
+            loanEndDate: this.selectedEndDate,
+            status: "Pending",
+        };
 
-            // Post the form data to the Firebase Realtime Database borrowApplications Node
-            axios
+        if (this.borrowingBehalf == "Club") {
+            // Include club-related data only if the user is from a club
+            data.borrowerClubName = this.clubName;
+            data.borrowerClubEmail = this.clubEmail;
+            data.borrowerClubContact = this.clubContact;
+            data.borrowerPurpose = this.purpose;
+            data.borrowerLocation = this.location;
+            data.borrowerWhoPlay = this.whoPlay;
+        }
+
+        // Post the form data to the Firebase Realtime Database borrowApplications Node
+        axios
             .post(firebaseDatabaseURL + borrowApplicationsPath, data)
             .then((response) => {
-                console.log(response);
+            console.log(response);
+            alert("Your application has been submitted successfully!")
+            router.push({ name: 'borrowPage' });
             })
             .catch((error) => {
             console.error('Error posting data:', error);
             });
-
-            // Update the Games Node Availability in Firebase Realtime Database
-            // The code below works but we have to make the exco pages to CONFIRM the loan application before availability is updated
-            // axios
-            // .put(firebaseDatabaseURL + "games/" + this.gameID + ".json", 
-            // {
-            //     "id": this.gameID,
-            //     "desc": this.listing.desc,
-            //     "name": this.listing.name,
-            //     "img": this.listing.img,
-            //     "type": this.listing.type,
-            //     "pax": this.listing.pax,
-            //     "availability": "Unavailable from " + this.pretty_date(this.loanStartDate) + " to " + this.pretty_date(this.selectedEndDate),
-            // })
-            // .then((response) => {
-            //     console.log(response);
-            // })
-            // .catch((error) => {
-            // console.error('Error updating data:', error);
-            // });
         },
+
 
         pretty_date(ugly_date) {
             var pretty_date = new Date(ugly_date);

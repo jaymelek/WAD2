@@ -6,8 +6,12 @@
             <a href="">Contact Us</a>
         </div>
         <div class="logos mb-3">
-            <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
-            <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
+            <a href="https://www.instagram.com/smu_strategica/?hl=en">
+                <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
+            </a>
+            <a href="https://t.me/SMUStrategica">
+                <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
+            </a>
         </div>
         <div class="bottom d-inline text-center">
             <p> &copy; Strategica . 2023</p>
