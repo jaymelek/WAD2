@@ -16,7 +16,7 @@
                     >
                         <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
                             <div class="col-9">
-                                <h4 class="mb-0">{{ application.gameName }}</h4>
+                                <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                             </div>
 
                             <div class="col-3">
@@ -86,7 +86,7 @@
                         >
                             <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
                                 <div class="col-9">
-                                    <h4 class="mb-0">{{ application.gameName }}</h4>
+                                    <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                                 </div>
 
                                 <div class="col-3">
@@ -193,32 +193,13 @@ export default {
         return{
         applications: [],      
         reviewedApplications: [],  
-        reviews: [{
-            title: "Great Game! Would Recommend!",
-            name: "Dudette McReview",
-            review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
-            rating: 5,
-            date: "2022-10-01",
-        },
-        {
-            title: "Its alright, so so only :)",
-            name: "Daniella YF",
-            review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-            rating: 3,
-            date: "2021-03-23",
-        },
-        ]
         }
     },
 
     methods: {
-        getGameData() {
-            
-        },
-
-        borrowGame(listing) {
-            console.log(listing);
-            this.$router.push({ name: 'borrowGame', params: { gameID: listing.id } });
+        gotoEvent(listingid) {
+            this.$router.push('/' + listingid)
+            this.$router.push({ name: 'viewGame', params: { gameID: listingid } })
         },
 
         getApplicationsData() {
@@ -330,7 +311,6 @@ export default {
     },
 
     created() {
-        this.getGameData();
         this.getApplicationsData();
     },
 
