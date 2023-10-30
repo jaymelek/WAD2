@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import testPage from '../views/testPage.vue';
 import borrowPage from '../views/borrowPage.vue';
 import demoPage from '../views/demoPage.vue';
 import feedbackPage from '../views/feedbackPage.vue';
@@ -22,11 +21,6 @@ const routes = [
         component:landingPage,
     },
 
-    {
-        path: '/testPage',
-        name: 'testPage',
-        component: testPage,
-    },
 
     {
         path: '/borrowPage',

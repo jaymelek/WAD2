@@ -28,7 +28,7 @@ const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast
 const path = '/games.json'; // Replace with the path to your data
 
 export default {
-  name: "LandingPage",
+  name: "borrowPage",
   components: {
     ListingCard,
   },
