@@ -11,6 +11,8 @@ import viewGame from '../views/viewGame.vue';
 import borrowGame from '../views/borrowGame.vue';
 import loginPage from '../views/loginPage.vue';
 
+
+
 const routes = [
     // Other routes
 
@@ -99,6 +101,8 @@ const routes = [
         name: 'loginPage',
         component: loginPage
     },
+
+
 
 ];
 
