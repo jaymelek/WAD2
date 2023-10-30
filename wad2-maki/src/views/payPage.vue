@@ -1,45 +1,77 @@
-<template >
-  <div style="background-color: #f4f4f4; border-radius: 15px; padding: 50px; margin: 50px;">
-    <div >
-        <h1 style="text-align: center;">Pay for Membership</h1>
-        <div>
-                <h4 style="text-align: center;">You are paying $5 for One Year Strategica Membership</h4>
+<template>
+
+  <div>
+      <h1 style="text-align: center;">Pay for Membership</h1>
+      <div>
+              <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
+      </div>
+      <div class="text-center" style="margin: 30px;">
+      <input
+        type="radio"
+        id="termly"
+        value="termly"
+        v-model="selectedPaymentOption"
+      />
+      <label for="termly" style="margin-right: 30px;">Termly ($3)</label>
+
+      <input
+        type="radio"
+        id="yearly"
+        value="yearly"
+        v-model="selectedPaymentOption"
+      />
+      <label for="yearly">Yearly ($5)</label>
+    </div>
+
+  </div>
+  <div class="container">
+      <form id="payment-form" @submit.prevent="submitPayment">
+        <div class="col-lg-8 offset-lg-2">
+          <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2 mx-auto">
+            <input type="text" placeholder="Card Holder Name" style="border: none; width: 100%;" required id="cardHolderName" v-model="cardHolderName">
+          </div>
         </div>
-    </div>
-    <div class="container">
-        <form id="payment-form" @submit.prevent="submitPayment">
 
-            <div style="border: 1px solid black; border-radius: 5px; width: 75%;" class="p-2 mb-2 mx-auto">
-                <input type="text" placeholder="Card Holder Name" style="border: none; width: 100%; background-color: #f4f4f4;" required id="cardHolderName" v-model="cardHolderName">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6">
+            <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2">
+              <input type="text" maxlength="19"
+                placeholder="Card Number" style="border: none; width: 100%;" required id="cardNumber" v-model="cardNumber">
             </div>
+          </div>
 
-            
-            <!-- <div id="card-element" style="border: 1px solid black; border-radius: 5px; padding: 10px; width: 75%;"></div> -->
-            <div style="border: 1px solid black; border-radius: 5px; width: 75%;" class="p-2 mb-2 mx-auto">
-                <i class="fas fa-credit-card"></i> <input type="text" maxlength="19"
-                    placeholder="Card Number" style="border: none; width: 60%; background-color: #f4f4f4;" required id="cardNumber" v-model="cardNumber">
-
-                <i class="fas fa-calendar-alt"></i> <input type="text" placeholder="MM/YY"
-                    style="border: none; width: 15%; background-color: #f4f4f4;" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required
-                    id="expDate" maxlength="5" expDate="expDate" v-model="expDate">
-
-                <i class="fas fa-key"></i><input type="text" placeholder="CVC"
-                    style="border: none; width: 15%; background-color: #f4f4f4;" required maxlength="3" id="CVC" v-model="CVC"> 
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <div style="border: 1px solid black; border-radius: 5px; width: 100%;" class="p-2 mb-2">
+              <input type="text" placeholder="MM/YY"
+                style="border: none; width: 100%" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required
+                id="expDate" maxlength="5" expDate="expDate" v-model="expDate">
             </div>
+          </div>
 
-            <!-- Error Message: Your card number is incomplete. -->
-            <div id="error-message" class="alert alert-danger" style="display: none; width: 75%;"></div>
-    
-            <div style="margin: 5px; margin-top: 50px; text-align: center; font-size: 30px;">
-                Total: $5
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2">
+              <input type="text" placeholder="CVC"
+                style="border: none; width: 100%;" required id="CVC" v-model="CVC"> 
             </div>
-            <div class="text-center"> <!-- Add text-center class here -->
-                <button class="btn btn-lg mx-auto" id="checkout-button" style="width: 75%; background-color: #070F5F; color: white;">
-                    Pay
-                </button>
-            </div>
-        </form>
-    </div>
+          </div>
+        </div>
+
+
+
+
+          <!-- Error Message: Your card number is incomplete. -->
+          <div id="error-message" class="alert alert-danger" style="display: none; width: 75%;"></div>
+  
+          <div style="margin: 5px; margin-top: 50px; text-align: center; font-size: 30px;">
+              Total: {{ totalAmount }}
+          </div>
+          <div class="text-center"> <!-- Add text-center class here -->
+              <button class="btn btn-success btn-lg mx-auto" id="checkout-button" style="width: 75%;">
+                  Pay
+              </button>
+          </div>
+      </form>
   </div>
 
 </template>
@@ -58,24 +90,19 @@ export default{
           cardHolderName: "",
           paymentIntentData: "",
           paymentIntentId: "",
-          return_url: "http://localhost:8080/payPage/paymentSuccess"
+          return_url: "http://localhost:8080/payPage/paymentSuccess",
+          selectedPaymentOption: "yearly",
+          paymentAmount: 500,
       }
   },
-  // created() {
-  // this.stripe = new Stripe('pk_test_51NyYaTGYkOKxngERoX3Zt6vDiHlBEtPmyxFtCLbWsb9fKJ6No7ZwuzxCIjD6OVNtpRqUdUWxnAOroywhZUoGSLPx00uOwww8m9');
-  // },
   methods: {
   async createPaymentIntent() {
     try {
-      // const cardDetails = {
-      //   number: this.cardNumber, // Get card number from your form
-      //   exp_month: this.expDate.split("/")[0], // Extract month from your form
-      //   exp_year: this.expDate.split("/")[1], // Extract year from your form
-      //   cvc: this.CVC, // Get CVC from your form
-      // };
+      this.paymentAmount = this.selectedPaymentOption == "yearly" ? 500 : 300
+
 
       const response = await stripe.paymentIntents.create({
-        amount: 500, // Amount in cents
+        amount: this.paymentAmount, // Amount in cents
         currency: 'sgd',
         payment_method: "pm_card_visa",
       });
@@ -119,13 +146,21 @@ export default{
       this.createPaymentIntent();
   },
   },
+  computed: {
+    totalAmount(){
+      if (this.selectedPaymentOption == "yearly"){
+        return "$5";
+      } else if (this.selectedPaymentOption == "termly"){
+        return "$3";
+      }
+      return "$0";
+    }
+  }
 }
 
 </script>
 
-<style>
-#cardName::placeholder, #cardNumber::placeholder, #expDate::placeholder, #CVC::placeholder,
-#cardHolderName::placeholder {
-    color: #070F5F;
-}
+<style scoped>
+
+
 </style>
