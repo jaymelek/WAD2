@@ -46,7 +46,7 @@
 import axios from 'axios';
 import 'firebase/storage';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage methods
-
+import router from '../router/index';
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const allGamesPath = '/games.json';
 
@@ -145,6 +145,8 @@ export default {
             .then((response) => {
             console.log('Data updated successfully:', response);
             // Reset form fields or perform any other actions as needed
+            alert("Game Added Successfully!")
+            router.push({ name: 'borrowPage' });
             })
             .catch((error) => {
             console.error('Error updating data:', error);

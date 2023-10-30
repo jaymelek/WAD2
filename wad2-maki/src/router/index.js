@@ -11,6 +11,7 @@ import viewGame from '../views/viewGame.vue';
 import borrowGame from '../views/borrowGame.vue';
 import loginPage from '../views/loginPage.vue';
 import pendingRequests from '../views/pendingRequests.vue';
+import addListing from '../views/addListing.vue';
 
 const routes = [
     // Other routes
@@ -105,6 +106,13 @@ const routes = [
         path: '/pendingRequests',
         name: 'pendingRequests',
         component: pendingRequests,
+        // beforeEnter: authGuard, // if we want to make it extra secure that members cannot access this page
+    },
+    
+    {
+        path: '/addListing',
+        name: 'addListing',
+        component: addListing,
         // beforeEnter: authGuard, // if we want to make it extra secure that members cannot access this page
     },
 
