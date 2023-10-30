@@ -168,10 +168,7 @@ export default {
                 <img src="../assets/photo1697619346.jpeg" />
             </div>
             <div class="slide">
-                <img src="../assets/photo1697619300.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619346.jpeg" />
+                <img src="../assets/slide1.jpeg" />
             </div>
             <div class="slide">
                 <img src="../assets/photo1697619300.jpeg" />
@@ -180,79 +177,39 @@ export default {
                 <img src="../assets/photo1697619346.jpeg" />
             </div>
             <div class="slide">
-                <img src="" />
+                <img src="../assets/slide1.jpeg" />
             </div>
             <div class="slide">
-                <img src="" />
+                <img src="../assets/photo1697619300.jpeg" />
             </div>
             <div class="slide">
-                <img src="" />
-            </div>
-
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
-            </div>
-            <div class="slide">
-                <img src="" />
+                <img src="../assets/photo1697619346.jpeg" />
             </div>
         </div>
-    </div>
+    </div>    
 
 
-    <div class="reviews">
-        <div class="review text-center" v-for="reviewInfo in reviews" :key="reviewInfo.name">
-            <div class="head-review">
-                <img class="review-img" src="" width="250px">
-            </div>
-            <div class="body-review">
-                <div class="name-review">{{ reviewInfo.name }}</div>
-                <div class="rating">
-                    <img src="../assets/star.png" class="star" alt="" v-for="n in reviewInfo.rating" :key="n">
+        <div class="reviews">
+            <div class="review text-center" v-for="reviewInfo in reviews" :key="reviewInfo.name">
+                <div class="body-review">
+                    <div class="name-review">{{ reviewInfo.name }}</div>
+                    <div class="rating">
+                        <img src="../assets/star.png" class="star" alt="" v-for="n in reviewInfo.rating" :key="n">
+                    </div>
+                    <div class="desc-review">{{ reviewInfo.review }}</div>
                 </div>
-                <div class="desc-review">{{ reviewInfo.review }}</div>
             </div>
+
+
+
+
         </div>
-
-
-
-
-    </div>
 </template>
 
 
 
 <!-- Style -->
 <style scoped>
-.carousel {
-    padding: 0;
-    width: 800px;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    align-content: center;
-    border-radius: 10px;
-}
 
 .customcard {
     border-radius: 10%;
@@ -261,9 +218,6 @@ export default {
     margin-bottom: 0;
 }
 
-.header {
-    width: 100%;
-}
 
 .gamedesc {
     font-size: 30px;
@@ -328,7 +282,7 @@ export default {
     font-size: 50px;
 }
 
- 
+
 .slider {
     height: 250px;
     margin: auto;
@@ -345,13 +299,13 @@ export default {
 
 .slide-track {
     display: flex;
-    width: calc(500px *18);
+    width: calc(450px *8);
     animation: scroll 40s linear infinite;
 }
 
 .slide {
     height: auto;
-    width: 2000px;
+    width: 450px;
     display: flex;
     align-items: center;
     padding: 15px;
@@ -387,37 +341,37 @@ export default {
     }
 
     100% {
-        transform: translateX(calc(-300px * 9));
+        transform: translateX(calc(-300px * 4));
     }
 }
 
-.banner{
+.banner {
     width: 100%;
     height: 150vh;
-    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url(../assets/boardgamecover.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../assets/boardgamecover.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
 }
 
-.content{
+.content {
     width: 100%;
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
     text-align: center;
-    color:#fff;
+    color: #fff;
 
 }
 
-.content h3{
+.content h3 {
     font-size: 50px;
     margin-top: 80px;
 }
 
 
 
-.btn{
+.btn {
     font-size: 18px;
     font-weight: bold;
     background: transparent;
@@ -426,7 +380,5 @@ export default {
     color: #fff;
     cursor: pointer;
 }
-
-
 </style>
 
