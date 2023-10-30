@@ -57,8 +57,16 @@
 
 <script>
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Global from "../global";
 
-export default {}
+export default {
+  methods: {
+    logoutUser() {
+      Global.sharedData = null;
+      // console.log(Global.sharedData) 
+    }
+  }
+}
 </script>
 
 <style>
@@ -80,19 +88,4 @@ export default {}
   width: 40px;
   color: black;
 }
-
-@media (min-width: 576px) {
-  .custom-dropdown {
-    width: max-content;
-  }
-}
-
-/* CSS for smaller screens (when collapsed) */
-@media (max-width: 575px) {
-  .custom-dropdown {
-    width: 100%; /* Full width */
-  }
-}
-
-
 </style>

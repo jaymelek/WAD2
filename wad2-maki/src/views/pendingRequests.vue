@@ -16,7 +16,7 @@
                     >
 
                     <v-col class="col-9">
-                        {{ application }}
+                        <h1>{{ application.game_name }}</h1>
                     </v-col>
                     
                     <v-col class="col-3">
