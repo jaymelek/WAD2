@@ -1,61 +1,61 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-sm bg-body-tertiary">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <router-link :to="{ name: 'landingPage' }">
-            <a class="navbar-brand" href="#">
-              <img src="../assets/logo.png" style="width: 100px; height: auto;">
-            </a>
-          </router-link>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'borrowPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Borrow</a>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'demoPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Demo</a>
-              </router-link>
-            </li>
-            <!-- <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'feedbackPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Feedback</a>
-              </router-link>
-            </li> -->
-            <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'payPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Pay</a>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'loginPage' }">
-                <a class="nav-link active" aria-current="page" href="#">Login</a>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="router-link" :to="{ name: 'profilePage' }">
-                <a class="nav-link active" aria-current="page" href="#">Profile<i class="bi bi-person-circle profileIcon"></i></a>
-              </router-link>
-            </li>
-          </ul>
-          <!-- <form class="d-flex align-items-center justify-content-center" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            <router-link class="router-link" :to="{ name: 'reviewPage' }">
-              <a class="nav-link active profile" aria-current="page" href="#" title="Click here to login!">Login
-              </a>
+  <nav class="navbar navbar-expand-sm bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <router-link :to="{ name: 'landingPage' }">
+        <a class="navbar-brand" href="#">
+          <img src="../assets/logo.png" style="width: 100px; height: auto;">
+        </a>
+      </router-link>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <router-link class="router-link" :to="{ name: 'borrowPage' }">
+              <a class="nav-link active" aria-current="page" href="#">Borrow</a>
             </router-link>
-          </form> -->
-
-        </div>
+          </li>
+          <li class="nav-item">
+            <router-link class="router-link" :to="{ name: 'demoPage' }" >
+              <a class="nav-link active" aria-current="page" href="#">Demo</a>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="router-link" :to="{ name: 'payPage' }">
+              <a class="nav-link active" aria-current="page" href="#">Pay</a>
+            </router-link>
+          </li>
+        </ul>
+        <a class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          My Account
+        </a>
+        <!-- Dropdown Menu for User Options -->
+        <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="userDropdown">
+          <li>
+            <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
+              <a class="dropdown-item" style="text-decoration: none !important;">Profile</a>
+            </router-link>
+          </li>
+          <li>
+            <router-link :to="{ name: 'loginPage' }" style="text-decoration: none;">
+              <a class="dropdown-item" style="text-decoration: none !important;">Login</a>
+            </router-link>
+          </li>
+        </ul>
+        <!-- <form class="d-flex align-items-center justify-content-center" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          <router-link class="router-link" :to="{ name: 'reviewPage' }">
+            <a class="nav-link active profile" aria-current="page" href="#" title="Click here to login!">Login</a>
+          </router-link>
+        </form> -->
       </div>
-    </nav>
+
+    </div>
+  </nav>
+
       <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
               <router-link :to="{ name: 'landingPage' }">
@@ -98,7 +98,7 @@
               </div>
           </div>
       </nav> -->
-  </div>
+
 </template>
 
 <script>
@@ -127,6 +127,18 @@ export default {}
   color: black;
 }
 
+@media (min-width: 576px) {
+  .custom-dropdown {
+    width: max-content;
+  }
+}
+
+/* CSS for smaller screens (when collapsed) */
+@media (max-width: 575px) {
+  .custom-dropdown {
+    width: 100%; /* Full width */
+  }
+}
 
 
 </style>
