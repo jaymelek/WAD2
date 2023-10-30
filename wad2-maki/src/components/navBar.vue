@@ -40,7 +40,14 @@
             </li>
             <li class="nav-item">
               <router-link class="router-link" :to="{ name: 'profilePage' }">
-                <a class="nav-link active" aria-current="page" href="#">Profile<i class="bi bi-person-circle profileIcon"></i></a>
+                <a class="nav-link active" aria-current="page" href="#">Profile<i
+                    class="bi bi-person-circle profileIcon"></i></a>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="router-link" :to="{ name: 'landingPage' }">
+                <a @click="logoutUser()" class="nav-link active" aria-current="page" href="#">Logout<i
+                    class="bi bi-person-circle profileIcon"></i></a>
               </router-link>
             </li>
           </ul>
@@ -56,7 +63,7 @@
         </div>
       </div>
     </nav>
-      <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
               <router-link :to="{ name: 'landingPage' }">
                   <a class="navbar-brand" href="#">
@@ -103,8 +110,16 @@
 
 <script>
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Global from "../global";
 
-export default {}
+export default {
+  methods: {
+    logoutUser() {
+      Global.sharedData = null;
+      // console.log(Global.sharedData) 
+    }
+  }
+}
 </script>
 
 <style>
@@ -126,7 +141,4 @@ export default {}
   width: 40px;
   color: black;
 }
-
-
-
 </style>

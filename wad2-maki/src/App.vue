@@ -12,7 +12,6 @@ import navBar from "./components/navBar.vue";
 import 'bootstrap/dist/css/bootstrap.css';
 import footerBar from "./components/footerBar.vue";
 
-
 export default {
   name: 'App',
   components: {

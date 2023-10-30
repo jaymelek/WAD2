@@ -49,36 +49,37 @@
 
 <script>
 import axios from "axios";
+import Global from "../global";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/users.json'; // Replace with the path to your data
 
-// import loginPage from './loginPage.vue';
-
 export default {
     data() {
         return {
-            // myStr: loginPage.data().username,
-            // person: [],
             users: [],
-            person: []
+            person: [],
+            
         }
     },
     created() {
+        console.log(Global.sharedData)
         axios
             .get(firebaseDatabaseURL + path)
             .then((response) => {
                 if (typeof response.data === 'object') {
                     this.users = response.data;
+                    // console.log(this.users)
+                    // console.log(Object.keys(this.users))
 
                     // Iterate through object properties using for...in loop
                     for (const key in this.users) {
                         if (Object.prototype.hasOwnProperty.call(this.users, key)) {
                             //checks if the users is this user
-                            if (key == "user1") {
+                            if (key == Global.sharedData) {
                                 this.person = this.users[key];  //append the respective user to the person array
-                                // console.log(key)
-                                // console.log(this.person)
+                                console.log(this.person)
+
                             }
                         }
                     }
