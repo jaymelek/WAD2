@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="footer bg-transparent">
         <div class="nav mb-3 justify-content-center">
             <a href="">Home</a>
             <a href="">About Us</a>

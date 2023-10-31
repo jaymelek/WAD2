@@ -21,6 +21,7 @@ const routes = [
         path: '/',
         name: 'landingPage',
         component:landingPage,
+        meta: { backgroundColor: 'transparent'},
     },
 
 
@@ -65,24 +66,7 @@ const routes = [
         path: '/profilePage',
         name: 'profilePage',
         component: profilePage,
-    },
 
-    {
-        path: '/viewGame/:gameID',
-        name: 'viewGame',
-        component: viewGame,
-    },
-
-    {
-        path: '/borrowGame/:gameID',
-        name: 'borrowGame',
-        component: borrowGame,
-    },
-
-    {
-        path: '/profilePage',
-        name: 'profilePage',
-        component: profilePage,
     },
 
     {

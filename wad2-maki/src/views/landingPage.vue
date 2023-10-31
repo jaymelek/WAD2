@@ -1,6 +1,94 @@
-<!-- Beat -->
 
-<!-- Script -->
+<template>
+    <!-- Header Image -->
+    <!-- <img src="../assets/strategica_header3.png" class="header rounded-start" alt=""> -->
+    <!-- End Header Image -->
+
+    <div class="img-container">
+        <div class="banner">
+        <div class="content">
+            <h3>LET'S GET THE DICE ROLLING</h3>
+            <a href="" class="btn">Borrow Your Game Now!</a>
+        </div>
+    </div>
+
+
+    </div>
+
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="gotw col d-flex justify-content-center m-5">
+                <div class="fw-bold">GAMES OF THE WEEK</div>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="row">
+            <div class="col-md-4 col-sm-12" v-for="game in listings" :key="game.id">
+                <router-link :to="{ name: 'viewGame', params: { gameID: game.id } } " style="text-decoration: none;">
+                <div class="card customcard" style="width: 100%; height: 500px;">
+                    <img :src="game.img" class="card-img-top img-fluid m-auto">
+                    <h3 style="text-align: center; ">{{ game.name }}</h3>
+                </div>
+                </router-link>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider">
+
+
+        <div class="slide-track">
+
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/slide1.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/slide1.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619300.jpeg" />
+            </div>
+            <div class="slide">
+                <img src="../assets/photo1697619346.jpeg" />
+            </div>
+        </div>
+    </div>    
+
+
+        <div class="reviews">
+            <div class="review text-center" v-for="reviewInfo in reviews" :key="reviewInfo.name">
+                <div class="body-review">
+                    <div class="name-review">{{ reviewInfo.name }}</div>
+                    <div class="rating">
+                        <img src="../assets/star.png" class="star" alt="" v-for="n in reviewInfo.rating" :key="n">
+                    </div>
+                    <div class="desc-review">{{ reviewInfo.review }}</div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+</template>
+
 <script>
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';

@@ -3,7 +3,7 @@
     <h1>Borrow a Game</h1>
   </div> -->
 
-  <div class="container-fluid px-4 maxwidth">
+  <div class="container-fluid px-4 maxwidth" style="margin-top: 80px;">
     <div class="row justify-content-center">
       <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name"
         @click="gotoEvent(listing)">
