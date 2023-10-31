@@ -4,7 +4,7 @@
 <template>
 
 <!-- Card -->
-<div class="card" style="max-width: 456px; height: 200px;"> <!--DO NOT CHANGE MAX WIDTH-->
+<div class="card cardStyle" style="max-width: 456px; height: 200px;"> <!--DO NOT CHANGE MAX WIDTH-->
   <div class="row g-0">
     <div class="col-4 align-self-center">
       <img :src="imgSrc" class="img-fluid rounded-start imgClass" alt="">
@@ -38,14 +38,10 @@
       pax: String,
       category: String,
       availability: String,
-      // lastUpdated: String,
-      // primaryColor: String,
-      // secondaryColor: String
     },
     data() {
       return {
-          primaryColor: "grey",
-          secondaryColor: "grey-lighten-1",
+          
       };
     },
 
@@ -56,6 +52,7 @@
 <style>
   .imgClass {
     width: 100%;
+    border-radius: 10px;
   }
 
   .overflowOneLine {
@@ -71,4 +68,15 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+.cardStyle {
+  background-color: transparent;
+  /* border: 2px solid #070F5F; */
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  padding-top: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
 </style>

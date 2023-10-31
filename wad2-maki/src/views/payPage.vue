@@ -1,6 +1,7 @@
 <template>
+  <div class="marginTop"></div>
 
-  <div class="paymentBox" style="margin-top: 80px;">
+  <div class="paymentBox">
       <h1 style="text-align: center;">Pay for Membership</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
@@ -168,6 +169,10 @@ export default{
   padding: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
   color: #286fb4;
+}
+
+.marginTop {
+  height: 80px;
 }
 
 </style>

@@ -2,6 +2,7 @@
 
 <!-- Template -->
 <template>
+    <div class="marginTop"></div>
     
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
@@ -391,5 +392,9 @@ export default {
 
     .inputstl {
         background-color: rgb(230, 230, 230, 0.3);
+    }
+
+    .marginTop {
+    height: 80px;
     }
 </style>
