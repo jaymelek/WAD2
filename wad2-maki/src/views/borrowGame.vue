@@ -313,6 +313,7 @@ export default {
             borrowerName: this.personName,
             borrowerEmail: this.email,
             borrowerTelegram: this.telegram,
+            borrowingBehalf: this.borrowingBehalf,
             loanStartDate: this.loanStartDate,
             loanEndDate: this.selectedEndDate,
             status: "Pending",
