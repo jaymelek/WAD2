@@ -2,10 +2,11 @@
   <!-- <div>
     <h1>Borrow a Game</h1>
   </div> -->
+  <div class="marginTop"></div>
 
-  <div class="container-fluid px-4 maxwidth" style="margin-top: 80px;">
+  <div class="container-fluid px-4 maxwidth" >
     <div class="row justify-content-center">
-      <div class="col-sm-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name"
+      <div class="col-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name"
         @click="gotoEvent(listing)">
         <ListingCard :gameName="listing.name" :imgSrc="listing.img" :description="listing.desc" :pax="listing.pax"
           :category="listing.type" :availability="listing.availability" @click="gotoEvent(listing)"
@@ -117,6 +118,10 @@ export default {
   /* DO NOT CHANGE THIS */
   width: 100%;
   max-width: 1200px;
+}
+
+.marginTop {
+  height: 80px;
 }
 
 </style>

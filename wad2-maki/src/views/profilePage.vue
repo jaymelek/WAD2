@@ -1,4 +1,6 @@
 <template>
+    <div class="marginTop"></div>
+    
     <div class="container maxwidth">
         <!-- <h1>This is the profile page!</h1> -->
         
@@ -155,6 +157,10 @@ export default {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: #286fb4; }
+}
+
+.marginTop {
+  height: 80px;
 }
 
 </style>

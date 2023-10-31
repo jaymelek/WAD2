@@ -2,7 +2,8 @@
 
 <!-- Template -->
 <template>
-    
+    <div class="marginTop"></div>
+
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
         <div class="row align-items-center justify-content-center mx-2 my-4"> 
@@ -248,5 +249,9 @@ export default {
     .colWidth {
         width: 100%;
         max-width: 800px;
+    }
+
+    .marginTop {
+    height: 80px;
     }
 </style>

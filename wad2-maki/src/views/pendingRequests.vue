@@ -2,6 +2,7 @@
 
 <!-- Template -->
 <template>
+    <div class="marginTop"></div>
     
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
@@ -351,5 +352,9 @@ export default {
         color: white;
         text-align: center;
         width: fit-content;
+    }
+
+    .marginTop {
+    height: 80px;
     }
 </style>
