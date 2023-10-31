@@ -18,9 +18,7 @@ const path = '/games.json'; // Replace with the path to your data
 // import navBar from '../components/navBar.vue';
 
 export default {
-    //components: {
-    //navBar, // Register the navBar component
-    //},
+    
     name: "viewGame",
 
     mounted() {
@@ -31,29 +29,6 @@ export default {
     data() {
         return {
             listings: [],
-            gameID: this.$route.params.gameID,
-            reviews: [{
-                title: "Great Game! Would Recommend!",
-                name: "Dudette McReview",
-                review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
-                rating: 5,
-                date: "2022-10-01",
-            },
-            {
-                title: "Its alright, so so only :)",
-                name: "Daniella YF",
-                review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-                rating: 3,
-                date: "2021-03-23",
-            },
-            {
-                title: "Its alright, so so only :)",
-                name: "Daniella YF",
-                review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-                rating: 3,
-                date: "2021-03-23",
-            },
-            ]
         }
     },
     created() {
@@ -122,88 +97,88 @@ export default {
 
 <!-- Template -->
 <template>
-    <!-- Header Image -->
-    <!-- <img src="../assets/strategica_header3.png" class="header rounded-start" alt=""> -->
-    <!-- End Header Image -->
-
-    <div class="banner">
-        <div class="content">
-            <h3>LET'S GET THE DICE ROLLING</h3>
-            <a href="" class="btn">Borrow Your Game Now!</a>
-        </div>
-    </div>
-
-
     <div class="container-fluid">
 
+        <!-- First Row: Strategica Banner with dice background -->
         <div class="row">
-            <div class="gotw col d-flex justify-content-center m-5">
-                <div class="fw-bold">GAMES OF THE WEEK</div>
-            </div>
-        </div>
-
-
-        <div>
-            <div class="row">
-            <div class="col-md-4 col-sm-12" v-for="game in listings" :key="game.id">
-                <router-link :to="{ name: 'viewGame', params: { gameID: game.id } } " style="text-decoration: none;">
-                <div class="card customcard" style="width: 100%; height: 500px;">
-                    <img :src="game.img" class="card-img-top img-fluid m-auto">
-                    <h3 style="text-align: center; ">{{ game.name }}</h3>
-                </div>
-                </router-link>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="slider">
-
-
-        <div class="slide-track">
-
-            <div class="slide">
-                <img src="../assets/photo1697619300.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619346.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/slide1.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619300.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619346.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/slide1.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619300.jpeg" />
-            </div>
-            <div class="slide">
-                <img src="../assets/photo1697619346.jpeg" />
-            </div>
-        </div>
-    </div>    
-
-
-        <div class="reviews">
-            <div class="review text-center" v-for="reviewInfo in reviews" :key="reviewInfo.name">
-                <div class="body-review">
-                    <div class="name-review">{{ reviewInfo.name }}</div>
-                    <div class="rating">
-                        <img src="../assets/star.png" class="star" alt="" v-for="n in reviewInfo.rating" :key="n">
+            <div class="col px-0">
+                <div class="imgbox">
+                    <div class="banner">
                     </div>
-                    <div class="desc-review">{{ reviewInfo.review }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid maxWidth">
+            <!-- Second row:  Slogan and Group of Games Image-->
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7 px-md-5 text-center">
+                    <h1 class="sloganText">Never <span class="highlighted">Bored</span> 
+                    <br> with <span class="highlighted">Board</span> Games</h1>
+                    <h4>SMU Strategica is SMU's premiere board game club, boasting over 150 board games hosted at our weekly game nights every Friday!</h4>
+                </div>
+                <div class="col-auto px-0">
+                    <img src="../assets/games_group.png" class="imgFit">
                 </div>
             </div>
 
+            <!-- Third Row: What we do -->
+            <div class="row align-items-center justify-content-center mb-4">
+                <div class="col-md-6 px-sm-5 dice-bg text-center">
+                    <h1 class="sloganText"><span class="highlighted">What do we do?</span> </h1>
+                    <h4>We hold weekly sessions on <span class="coloured">Friday Evenings: 6.30-9pm</span>, open to all! Watch out for our weekly EDMs over email and our telegram channel.
+                        Members are also invited to our annual Strategica Retreat and can loan our board games for free!
+                        <br> Interested?
+                        <br> <span class="coloured">Join us today!</span>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- Fourth Row: Autoscrolling EDMs -->
+            <div class="row align-items-center justify-content-center ">
+                <div class="col px-0">
+                    <div class="slider">
+                        <div class="slide-track">
+                            <div class="slide">
+                                <img src="../assets/photo1697619300.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/photo1697619346.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/slide1.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/photo1697619300.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/photo1697619346.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/slide1.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/photo1697619300.jpeg" />
+                            </div>
+                            <div class="slide">
+                                <img src="../assets/photo1697619346.jpeg" />
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <!-- Fifth Row: Past Events Pictures, Interested in a collab? -->
 
 
 
-        </div>
+        </div> <!-- End of Container -->
+        
+    </div>
+    
+
+    
+        
 </template>
 
 
@@ -211,90 +186,80 @@ export default {
 <!-- Style -->
 <style scoped>
 
-.customcard {
-    border-radius: 10%;
-    width: 2000px;
-    height: 300px;
-    margin-bottom: 0;
+@keyframes scroll {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(calc(-300px * 4));
+    }
 }
 
+.banner {
+    max-width: 100vw;
+    max-height: 50vh;
+    margin:auto;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(170, 212, 230, 0.1),  rgba(170, 212, 230, 1)), url(../assets/strategica_header.png); /* linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),  */
+} 
 
-.gamedesc {
-    font-size: 30px;
+.imgbox {
+    display: grid;
+    height: 100%;
+}
+
+.sloganText {
+    font-size: 50px;
     font-weight: bold;
 }
 
-.reviews {
-    margin: 2rem auto;
-    display: flex;
-    flex-wrap: wrap;
-
+.highlighted {  
+    background: linear-gradient(transparent 40%, #070F5F 40%);
 }
 
-.review {
-    margin: 0 1rem;
-    min-width: 300px;
-    flex: 1;
+.underlined {
+    text-decoration: underline;
+    text-decoration-color: #070F5F;
 }
 
-.head-review {
-    margin: 1.75rem auto;
-    width: 150px;
-    height: 150px;
+.coloured {
+    color: #070F5F;
 }
 
-.review-img {
+.maxWidth {
+    max-width: 1200px;
+}
+
+.imgFit {
     width: 100%;
+    max-width: 450px;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
 }
 
-.body-review {
-    background-color: rgb(238, 238, 238);
-    padding: 2.5rem;
-    box-shadow: 2px 2px 10px 3px rgb(225, 225, 225);
+.dice-bg {
+    background-image: url(../assets/dice_2_bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;    
 }
 
-.name-review {
-    font-size: 1.5rem;
-    color: rgb(50, 50, 50);
-    margin-bottom: .25rem;
+.whatDoDiv {
+    max-width: 500px;
 }
 
-.rating {
-    color: rgb(253, 180, 42);
-    margin: 1rem 0;
-}
-
-.desc-review {
-    line-height: 1.5rem;
-    letter-spacing: 1px;
-}
-
-#carouselexco {
-    width: 1000px;
-    height: 800px;
-
-}
-
-.gotw {
-    font-size: 50px;
-}
-
-
+/* Autoscrolling EDM Classes */
 .slider {
     height: 250px;
     margin: auto;
     position: relative;
-    width: 90%;
+    width: 100%;
     display: grid;
     place-items: center;
-    min-height: 100vh;
+    min-height: 70vh;
     display: grid;
-    place-items: center;
     overflow: hidden;
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 .slide-track {
@@ -304,15 +269,16 @@ export default {
 }
 
 .slide {
-    height: auto;
-    width: 450px;
+    max-height: 250px;
+    width: auto;
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 0px;
 }
 
 .slide img {
-    width: 100%;
+    width: 85%;
+    max-height: 80vh;
 }
 
 .slider::before,
@@ -345,40 +311,5 @@ export default {
     }
 }
 
-.banner {
-    width: 100%;
-    height: 150vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../assets/boardgamecover.jpg);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.content {
-    width: 100%;
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #fff;
-
-}
-
-.content h3 {
-    font-size: 50px;
-    margin-top: 80px;
-}
-
-
-
-.btn {
-    font-size: 18px;
-    font-weight: bold;
-    background: transparent;
-    /* border: 2px solid #fff;; */
-    width: 300px;
-    color: #fff;
-    cursor: pointer;
-}
 </style>
 
