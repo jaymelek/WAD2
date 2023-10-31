@@ -1,34 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-body-tertiary">
+
+    <nav class="navbar navbar-expand-sm fixed-top" :style="navbarBackgroundColor">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <router-link :to="{ name: 'landingPage' }">
+      <router-link :to="{ name: 'landingPage' }" >
         <a class="navbar-brand" href="#">
           <img src="../assets/logo.png" style="width: 100px; height: auto;">
         </a>
       </router-link>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <router-link class="router-link" :to="{ name: 'borrowPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Borrow a Game</a>
-            </router-link>
-          </li>
-          <!-- <li class="nav-item">
-            <router-link class="router-link" :to="{ name: 'demoPage' }" >
-              <a class="nav-link active" aria-current="page" href="#">Demo</a>
-            </router-link>
-          </li> -->
-          <li class="nav-item">
-            <router-link class="router-link" :to="{ name: 'payPage' }">
-              <a class="nav-link active" aria-current="page" href="#">Be a Member</a>
-            </router-link>
-          </li>
-        </ul>
-      </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li :class="{ 'nav-item-active': isActive('borrowPage') }">
+          <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
+            <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Borrow a Game</a>
+          </router-link>
+        </li>
+        <li :class="{ 'nav-item-active': isActive('payPage') }">
+          <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
+            <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Be a Member</a>
+          </router-link>
+        </li>
+      </ul>
+    </div>
+
 
       <a class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -39,18 +32,20 @@
         <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="userDropdown">
           <li>
             <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
-              <a class="dropdown-item" style="text-decoration: none !important;">Profile</a>
+              <a class="dropdown-item hover-effect" style="text-decoration: none !important;">Profile</a>
             </router-link>
           </li>
           <li>
             <router-link :to="{ name: 'loginPage' }" style="text-decoration: none;">
-              <a class="dropdown-item" style="text-decoration: none !important;">Login</a>
+              <a class="dropdown-item hover-effect" style="text-decoration: none !important;">Login</a>
             </router-link>
           </li>
         </ul>
 
     </div>
   </nav>
+
+  
 
 </template>
 
@@ -59,13 +54,49 @@
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Global from "../global";
 
+
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar'); // Select your navbar element
+    const scrollPosition = window.scrollY; // Get the current scroll position
+
+    // Set a threshold scroll position where the class should toggle
+    const thresholdPosition = 200; // Adjust this value as needed
+
+    // Check if the scroll position has passed the threshold
+    if (scrollPosition > thresholdPosition) {
+        navbar.classList.remove('fixed-top'); // Remove the "fixed-top" class
+    } else {
+        navbar.classList.add('fixed-top'); // Add the "fixed-top" class
+    }
+});
+
+
 export default {
   methods: {
     logoutUser() {
       Global.sharedData = null;
       // console.log(Global.sharedData) 
+    },
+    isActive(routeName) {
+      return this.$route.name === routeName;
     }
-  }
+  },
+  computed: {
+      navbarBackgroundColor() {
+        const routeMeta = this.$route.meta;
+        return {
+        backgroundColor: routeMeta.backgroundColor || 'transparent',
+        color: routeMeta.color || 'white',
+        paddingTop: routeMeta.padding-top || '0px',
+        }
+      },
+      fontColor(){
+        const routeMeta = this.$route.meta;
+        return {
+        color: routeMeta.color || 'white',
+        }
+      }
+    },
 }
 </script>
 
@@ -88,4 +119,19 @@ export default {
   width: 40px;
   color: black;
 }
+
+.hover-effect:hover{
+  color: #286fb4;
+  background: #286fb4;
+}
+
+navbar{
+  padding: 0;
+}
+
+.nav-item-active {
+  background: #286fb4; /* Change this to the desired active color */
+}
+
+
 </style>

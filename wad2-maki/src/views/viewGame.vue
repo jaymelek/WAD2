@@ -91,141 +91,141 @@ const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast
 const path = '/games.json'; // Replace with the path to your data
 
 
-
 export default {
     setup() {
         const firebaseData = ref(null);
-
+        
         onMounted(async () => {
-        try {
-            const db = getDatabase(app);
-            const databaseRef = dbRef(db, 'games');
-
-            const snapshot = await get(databaseRef);
-
-            if (snapshot.exists()) {
-            const data = snapshot.val();
-            firebaseData.value = data; // Update the data property with fetched data
-            } else {
-            console.log('No data available');
+            try {
+                const db = getDatabase(app);
+                const databaseRef = dbRef(db, 'games');
+                
+                const snapshot = await get(databaseRef);
+                
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    firebaseData.value = data; // Update the data property with fetched data
+                } else {
+                    console.log('No data available');
+                }
+            } catch (error) {
+                console.error('Error reading data from Realtime Database:', error);
             }
-        } catch (error) {
-            console.error('Error reading data from Realtime Database:', error);
-        }
         });
-
+        
         return {
-        firebaseData,
+            firebaseData,
         };
     },
-
+    
     // data() {
-    //     return {
-    //         gameData: {},
-    //         gameID: "game-01",
-    //         gameName: "", 
-    //         gameDesc: "",
-    //         gameImg: "",
-    //         gameType: "",
-    //         gamePax: "",
-    //     };
-    // },
-
-    data(){
-        return{
-        listing: {},
-        gameID: this.$route.params.gameID,
-        reviews: [{
-            title: "Great Game! Would Recommend!",
-            name: "Dudette McReview",
-            review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
-            rating: 5,
-            date: "2022-10-01",
+        //     return {
+            //         gameData: {},
+            //         gameID: "game-01",
+            //         gameName: "", 
+            //         gameDesc: "",
+            //         gameImg: "",
+            //         gameType: "",
+            //         gamePax: "",
+            //     };
+            // },
+            
+            data(){
+                return{
+                    listing: {},
+                    gameID: this.$route.params.gameID,
+                    reviews: [{
+                        title: "Great Game! Would Recommend!",
+                        name: "Dudette McReview",
+                        review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
+                        rating: 5,
+                        date: "2022-10-01",
+                    },
+                    {
+                        title: "Its alright, so so only :)",
+                        name: "Daniella YF",
+                        review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
+                        rating: 3,
+                        date: "2021-03-23",
+                    },
+                ]
+            }
         },
-        {
-            title: "Its alright, so so only :)",
-            name: "Daniella YF",
-            review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
-            rating: 3,
-            date: "2021-03-23",
-        },
-        ]
-        }
-    },
-
-    methods: {
-        getGameData() {
-            // axios.get(firebaseDatabaseURL + path)
-            // .then((response) => {
-            //     const data = response.data;
-            //     const gameID = this.gameID;
-            //     this.gameData = data;
-            //     this.gameName = data[gameID].name;
-            //     this.gameDesc = data[gameID].desc;
-            //     this.gameImg = data[gameID].img;
-            //     this.gameType = data[gameID].type;
-            //     this.gamePax = data[gameID].pax;
-            //     console.log(data);
-            // })
-            // .catch((error) => {
-            //     console.error('Error fetching data:', error);
-            // });
-
-            axios
-            .get(firebaseDatabaseURL + path)
-            .then((response) => {
-            if (typeof response.data === 'object') {
-                this.listing = response.data[this.gameID];
-
-                // Initialize Firebase Storage
-                const storage = getStorage();
-
-                
-                if (Object.prototype.hasOwnProperty.call(this.listing, "img")) {
-                    const listing = this.listing;
-                    console.log(listing.img)
-
-                    // Check if the listing has an 'img' property
-                    if (listing.img) {
-                    const imageRef = storageRef(storage, listing.img);
-                    getDownloadURL(imageRef)
-                        .then((url) => {
-                        // Update the 'img' property of the listing with the new URL
-                        this.listing.img = url;
+        
+        methods: {
+            getGameData() {
+                // axios.get(firebaseDatabaseURL + path)
+                // .then((response) => {
+                    //     const data = response.data;
+                    //     const gameID = this.gameID;
+                    //     this.gameData = data;
+                    //     this.gameName = data[gameID].name;
+                    //     this.gameDesc = data[gameID].desc;
+                    //     this.gameImg = data[gameID].img;
+                    //     this.gameType = data[gameID].type;
+                    //     this.gamePax = data[gameID].pax;
+                    //     console.log(data);
+                    // })
+                    // .catch((error) => {
+                        //     console.error('Error fetching data:', error);
+                        // });
+                        
+                        axios
+                        .get(firebaseDatabaseURL + path)
+                        .then((response) => {
+                            if (typeof response.data === 'object') {
+                                this.listing = response.data[this.gameID];
+                                
+                                // Initialize Firebase Storage
+                                const storage = getStorage();
+                                
+                                
+                                if (Object.prototype.hasOwnProperty.call(this.listing, "img")) {
+                                    const listing = this.listing;
+                                    console.log(listing.img)
+                                    
+                                    // Check if the listing has an 'img' property
+                                    if (listing.img) {
+                                        const imageRef = storageRef(storage, listing.img);
+                                        getDownloadURL(imageRef)
+                                        .then((url) => {
+                                            // Update the 'img' property of the listing with the new URL
+                                            this.listing.img = url;
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error getting download URL for image:', error);
+                                        });
+                                    }
+                                }
+                                
+                            } else {
+                                console.error('Response data is not an object:', response.data);
+                            }
                         })
                         .catch((error) => {
-                        console.error('Error getting download URL for image:', error);
+                            console.error('Error fetching data:', error);
                         });
-                    }
-                }
+                    },
+                    
+                    borrowGame(listing) {
+                        console.log(listing);
+                        this.$router.push({ name: 'borrowGame', params: { gameID: listing.id } });
+                    },
+                    
+                },
                 
-            } else {
-                console.error('Response data is not an object:', response.data);
-            }
-            })
-            .catch((error) => {
-            console.error('Error fetching data:', error);
-            });
-        },
-
-        borrowGame(listing) {
-            console.log(listing);
-            this.$router.push({ name: 'borrowGame', params: { gameID: listing.id } });
-        },
-
-    },
-
-    created() {
-        this.getGameData();
-    },
-
-    mounted() {
-    // Initialize the carousel when the component is mounted
-    $('#gameCarousel');
-  },
-};
-  
-</script>
+                created() {
+                    this.getGameData();
+                    window.scrollTo(0, 0)
+                },
+                
+                mounted() {
+                    // Initialize the carousel when the component is mounted
+                    $('#gameCarousel');
+                },
+            };
+            
+        </script>
 
 
 <!-- Style -->

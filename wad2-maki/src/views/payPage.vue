@@ -1,30 +1,28 @@
 <template>
 
-  <div>
+  <div class="paymentBox" style="margin-top: 80px;">
       <h1 style="text-align: center;">Pay for Membership</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
       </div>
       <div class="text-center" style="margin: 30px;">
-      <input
-        type="radio"
-        id="termly"
-        value="termly"
-        v-model="selectedPaymentOption"
-      />
-      <label for="termly" style="margin-right: 30px;">Termly ($3)</label>
+        <input
+          type="radio"
+          id="termly"
+          value="termly"
+          v-model="selectedPaymentOption"
+        />
+        <label for="termly" style="margin-right: 30px;">Termly ($3)</label>
 
-      <input
-        type="radio"
-        id="yearly"
-        value="yearly"
-        v-model="selectedPaymentOption"
-      />
-      <label for="yearly">Yearly ($5)</label>
+        <input
+          type="radio"
+          id="yearly"
+          value="yearly"
+          v-model="selectedPaymentOption"
+        />
+        <label for="yearly">Yearly ($5)</label>
     </div>
-
-  </div>
-  <div class="container">
+    <div class="container">
       <form id="payment-form" @submit.prevent="submitPayment">
         <div class="col-lg-8 offset-lg-2">
           <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2 mx-auto">
@@ -57,9 +55,6 @@
           </div>
         </div>
 
-
-
-
           <!-- Error Message: Your card number is incomplete. -->
           <div id="error-message" class="alert alert-danger" style="display: none; width: 75%;"></div>
   
@@ -67,12 +62,15 @@
               Total: {{ totalAmount }}
           </div>
           <div class="text-center"> <!-- Add text-center class here -->
-              <button class="btn btn-success btn-lg mx-auto" id="checkout-button" style="width: 75%;">
+              <button class="btn btn-lg mx-auto" id="checkout-button" style="width: 75%; background-color: #e2f0f9;">
                   Pay
               </button>
           </div>
       </form>
   </div>
+
+  </div>
+
 
 </template>
 
@@ -162,5 +160,14 @@ export default{
 
 <style scoped>
 
+.paymentBox{
+  border: 1px solid #286fb4;
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
+  color: #286fb4;
+}
 
 </style>

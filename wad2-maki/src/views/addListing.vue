@@ -109,7 +109,7 @@ export default {
             pax: this.gamePax,
             type: this.gameType,
             img: this.NewImageURL,
-            gameID: this.gameID,
+            id: this.gameID,
             
             };
 
@@ -137,7 +137,7 @@ export default {
         updateGameID() {
         // Create an object with the new gameID
         const updatedData = {
-            gameID: this.oldID,
+            id: this.oldID,
         };
 
         // Use the current gameID (this.gameID) to locate the record you want to update
