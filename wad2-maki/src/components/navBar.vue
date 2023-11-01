@@ -2,45 +2,41 @@
 
     <nav class="navbar navbar-expand-sm fixed-top" :style="navbarBackgroundColor">
     <div class="container-fluid">
+      <div class="marginTop"></div>
       <router-link :to="{ name: 'landingPage' }" >
         <a class="navbar-brand" href="#">
           <img src="../assets/logo.png" style="width: 100px; height: auto;">
         </a>
       </router-link>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li :class="{ 'nav-item-active': isActive('borrowPage') }">
-          <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
-            <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Borrow a Game</a>
-          </router-link>
-        </li>
-        <li :class="{ 'nav-item-active': isActive('payPage') }">
-          <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
-            <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Be a Member</a>
-          </router-link>
-        </li>
-      </ul>
-    </div>
-
-
-      <a class="nav-link" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-          </svg>
-        </a>
-        
-        <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="userDropdown">
-          <li>
-            <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
-              <a class="dropdown-item hover-effect" style="text-decoration: none !important;">Profile</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li :class="{ 'nav-item-active': isActive('borrowPage') }">
+            <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
+              <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Borrow a Game</a>
             </router-link>
           </li>
-          <li>
-            <router-link :to="{ name: 'loginPage' }" style="text-decoration: none;">
-              <a class="dropdown-item hover-effect" style="text-decoration: none !important;">Login</a>
+          <li :class="{ 'nav-item-active': isActive('payPage') }">
+            <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
+              <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Be a Member</a>
             </router-link>
           </li>
         </ul>
+      </div>
+
+      <div>
+        <ul class="profileUl">
+          <li :class="{ 'profile-item-active': isActive('profilePage') }">
+            <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
+              <a class="nav-link profile-hover-effect" aria-current="page" :style="fontColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill profileIcon" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                </svg>
+              </a>
+            </router-link>
+          </li>
+        </ul>
+      </div>
 
     </div>
   </nav>
@@ -116,8 +112,14 @@ export default {
 }
 
 .profileIcon {
-  width: 40px;
-  color: black;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  /* color: black; */
+}
+
+.profileUl {
+  list-style-type: none;
 }
 
 .hover-effect:hover{
@@ -125,13 +127,27 @@ export default {
   border-radius: 10px;
 }
 
+.profile-hover-effect:hover {
+  background-color: rgba(7,15,95,0.5) ;
+  border-radius: 50%;
+}
+
 navbar{
   padding: 0;
 }
 
+.marginTop {
+  height: 2px;
+}
+
 .nav-item-active {
   background-color: rgba(7,15,95,0.5) ;
-  border-radius: 10px; /* Change this to the desired active color */
+  border-radius: 10px; 
+}
+
+.profile-item-active {
+  background-color: rgba(7,15,95,0.5) ;
+  border-radius: 50%; 
 }
 
 
