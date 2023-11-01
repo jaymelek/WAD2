@@ -1,6 +1,6 @@
 <template>
-
-    <div class="container my-5">
+    <div class="marginTop"></div>
+    <div class="container">
     <div class="text-center">
         <h1 class="">Add a New Game Listing</h1>
     </div>
