@@ -109,7 +109,7 @@ export default {
         <div class="container-fluid maxWidth">
             <!-- Second row:  Slogan and Group of Games Image-->
             <div class="row align-items-center justify-content-center">
-                <div class="col-md-7 px-md-5 text-center">
+                <div class="col-md-6 pl-md-5 text-center">
                     <h1 class="sloganText">Never <span class="highlighted">Bored</span> 
                     <br> with <span class="highlighted">Board</span> Games</h1>
                     <h4>SMU Strategica is SMU's premiere board game club, boasting over 150 board games hosted at our weekly game nights every Friday!</h4>
@@ -197,7 +197,7 @@ export default {
     max-width: 100vw;
     max-height: 50vh;
     margin:auto;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(170, 212, 230, 0.1),  rgba(170, 212, 230, 1)), url(../assets/strategica_header.png); /* linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),  */
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1),  rgba(123, 167, 187, 1)), url(../assets/strategica_header.jpg); /* linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),  */
 } 
 
 .imgbox {

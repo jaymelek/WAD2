@@ -18,7 +18,7 @@
         <br>
           Category: {{ category }}
         </small></p>
-        <p class="card-text overflowOneLine"><small class="text-muted">{{availability}}</small></p>
+        <p class="card-text overflowOneLine"><small>{{availability}}</small></p>
       </div>
     </div>
   </div>
@@ -71,12 +71,15 @@
 
 .cardStyle {
   background-color: transparent;
-  /* border: 2px solid #070F5F; */
   border: none;
   border-radius: 20px;
   padding: 10px;
   padding-top: 0px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.04), 0 6px 20px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 8px 0 rgba(170, 212, 230, 0.2), 0 6px 20px 0 rgba(170, 212, 230, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
+  /* border : 1.5px solid #aad4e6; */
+  /* border: 1.5px solid #b0dde4; */
+  color: white;
 }
 
 </style>

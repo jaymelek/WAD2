@@ -34,7 +34,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  background-color: #aad4e6;
+  background-color: #7ba7bb;
 }
 
 
