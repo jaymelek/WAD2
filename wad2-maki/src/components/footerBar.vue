@@ -1,5 +1,5 @@
 <template>
-    <div class="footer bg-transparent">
+    <div class="footer">
         <a href="#top" id="scrollToTopButton">
         <img src="../assets/dice_footer.png" style="float:right; width: 80px; height: auto; margin-right: 50px;">
         </a>
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .footer {
     width: 100%;
     padding: 70px 30px 20px;
-    background-color: white;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgb(78, 129, 152));
     color: black;
     margin-top: 100px;
 }
@@ -57,17 +57,38 @@ document.addEventListener('DOMContentLoaded', function() {
 .nav {
     margin: 30px;
     font-size: 20px;
-
 }
 
 .nav a {
     margin: 40px;
     text-decoration: none;
-    color: black;
+    color: white;
+    z-index: 1;
+    display: block;
+    position: relative;
+   
+    align-items: center;
+    transition: all 300ms ease; /*cubic-bezier(0.075, 0.82, 0.165, 1);*/
 }
 
-.nav a:hover {
-    color: blue;
+.nav a:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  display: block;
+  transition: all 0.3s ease;
+  bottom: 25%;
+  z-index: -1;
+  background-color: #070F5F;
+  left: -5%;
+}
+.nav a:hover::after {
+  width: 110%;
+  height: 12px;
+  left: -5%;
+  background-color: #070F5F;
+  z-index: -1;
 }
 
 .logo {

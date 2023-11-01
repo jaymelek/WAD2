@@ -2,7 +2,7 @@
 
     <nav class="navbar navbar-expand-sm fixed-top" :style="navbarBackgroundColor">
     <div class="container-fluid">
-      <div class="marginTop"></div>
+      <!-- <div class="marginTop"></div> -->
       <router-link :to="{ name: 'landingPage' }" >
         <a class="navbar-brand" href="#">
           <img src="../assets/logo.png" style="width: 100px; height: auto;">
@@ -11,14 +11,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li :class="{ 'nav-item-active': isActive('borrowPage') }">
+          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect']">
             <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
-              <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Borrow a Game</a>
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="highlighted">Borrow a Game</span></a>
             </router-link>
           </li>
-          <li :class="{ 'nav-item-active': isActive('payPage') }">
+          <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect']">
             <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
-              <a class="nav-link hover-effect" aria-current="page" :style="fontColor">Be a Member</a>
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="highlighted">Be a Member</span></a>
             </router-link>
           </li>
         </ul>
@@ -115,22 +115,98 @@ export default {
   width: 25px;
   height: 25px;
   margin: 5px;
-  /* color: black; */
+  
 }
 
 .profileUl {
   list-style-type: none;
 }
 
-.hover-effect:hover{
-  background-color: rgba(7,15,95,0.5) ;
-  border-radius: 10px;
+/* For Profile Hover and Active Effects */
+
+.profile-hover-effect {
+  margin: 5px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  position: relative;
+  align-items: center;
+  transition: all 300ms ease;
+  border-radius: 50%;
+  padding: 10px;
+  overflow: hidden; /* Add overflow to contain the hover circle */
 }
 
-.profile-hover-effect:hover {
-  background-color: rgba(7,15,95,0.5) ;
+.profile-hover-effect:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: all 0.3s ease;
+  background-color: #070F5F;
   border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: scale(0); /* Initial size, hidden */
+  transform-origin: center;
+  z-index: -1;
 }
+
+.profile-hover-effect:hover::after {
+  transform: scale(1); /* Scale up to full size on hover */
+}
+
+.profile-item-active .profile-hover-effect {
+  background-color: rgba(7,15,95) ;
+  border-radius: 50%; 
+}
+
+/* For Other Hover and Active Effects */
+
+.hover-effect {
+    margin: 0px;
+    text-decoration: none;
+    color: white;
+    z-index: 1;
+    display: block;
+    position: relative;
+   
+    align-items: center;
+    transition: all 300ms ease; /*cubic-bezier(0.075, 0.82, 0.165, 1);*/
+}
+
+.hover-effect:after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  display: block;
+  transition: all 0.3s ease;
+  bottom: 20%;
+  z-index: -1;
+  background-color: #070F5F;
+  left: -1%;
+}
+
+.hover-effect:hover::after {
+  width: 102%;
+  height: 16px;
+  left: -1%;
+  background-color: #070F5F;
+  z-index: -1;
+}
+
+.highlighted {
+  padding: 0 10px 0px 10px;
+}
+
+.nav-item-active .highlighted {
+  background: linear-gradient(transparent 40%, #070F5F 40%);
+  display: inline-block; 
+  padding: 0 10px 0px 10px;
+}
+
 
 navbar{
   padding: 0;
@@ -138,16 +214,6 @@ navbar{
 
 .marginTop {
   height: 2px;
-}
-
-.nav-item-active {
-  background-color: rgba(7,15,95,0.5) ;
-  border-radius: 10px; 
-}
-
-.profile-item-active {
-  background-color: rgba(7,15,95,0.5) ;
-  border-radius: 50%; 
 }
 
 
