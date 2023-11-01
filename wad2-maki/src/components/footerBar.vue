@@ -1,5 +1,9 @@
 <template>
     <div class="footer bg-transparent">
+        <a href="#top" id="scrollToTopButton">
+        <img src="../assets/dice_footer.png" style="float:right; width: 80px; height: auto; margin-right: 50px;">
+        </a>
+
         <div class="nav mb-3 justify-content-center">
             <a href="">Home</a>
             <a href="">About Us</a>
@@ -18,6 +22,22 @@
         </div>
     </div>
 </template>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollToTopButton = document.getElementById('scrollToTopButton');
+  if (scrollToTopButton) {
+    scrollToTopButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
+</script>
+
 
 
 <style>

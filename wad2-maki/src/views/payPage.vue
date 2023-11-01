@@ -1,5 +1,29 @@
 <template>
   <div class="marginTop"></div>
+  <div class="memberInfo">
+    <h1 class="lineUp">Hey There, Join Us Today!</h1>
+    <hr>
+    <div class="benefits">
+        <h1>Benefits</h1>
+      <div>
+        <ul>
+          <li>free rental of over 100 board games</li>
+          <li>free rental of over 100 board games</li>
+        </ul>
+      </div>
+      
+    </div>
+
+    Membership Requirements
+    <div>
+      <ul>
+        <li>$3 per semester</li>
+        <li>$5 per academic year</li>
+        <li>Attendance of 4 sessions</li>
+      </ul>
+    </div>
+
+  </div>
 
   <div class="paymentBox">
       <h1 style="text-align: center;">Pay for Membership</h1>
@@ -169,10 +193,38 @@ export default{
   padding: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
   color: #286fb4;
+  background-color: white;
 }
 
 .marginTop {
   height: 80px;
 }
+
+.lineUp {
+  animation: 2s anim-lineUp ease-out;
+}
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.memberInfo{
+  text-align: center;
+  margin: auto;
+}
+
 
 </style>

@@ -121,8 +121,8 @@ export default {
 }
 
 .hover-effect:hover{
-  color: #286fb4;
-  background: #286fb4;
+  background-color: rgba(7,15,95,0.5) ;
+  border-radius: 10px;
 }
 
 navbar{
@@ -130,7 +130,8 @@ navbar{
 }
 
 .nav-item-active {
-  background: #286fb4; /* Change this to the desired active color */
+  background-color: rgba(7,15,95,0.5) ;
+  border-radius: 10px; /* Change this to the desired active color */
 }
 
 
