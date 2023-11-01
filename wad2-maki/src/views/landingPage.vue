@@ -172,9 +172,7 @@ export default {
         </div> <!-- End of Container -->
         
     </div>
-    
 
-    
         
 </template>
 

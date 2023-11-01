@@ -6,6 +6,29 @@
 
   <div class="container-fluid px-4 maxwidth" >
     <div class="row justify-content-center">
+      <div class="col-auto">
+        <h2 class="featuredText"> <span class="highlighted">Featured This Month: Unfair + ABDW + CHKO Expansions!</span></h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-sm-6 ">
+        <img src="../assets/unfair.jpg" class="img-fluid rounded-start imgClass" alt="">
+      </div>
+      <div class="col-sm-6 order-sm-first align-self-center">
+        Unfair gets bigger and better with the new Comicbook, Hacker, Kaiju and Ocean theme packs, all new Solo mode, and Unfair add-ons!
+        With 14 modular theme packs, its replayability is through the roof!
+        <br>
+        Build the best theme park in town now with Unfair!
+        <br>
+        Up to 5 players, 60-150 minutes
+        <br>
+        <button class="btn btn-outline-light w-100 my-2" onclick="window.location.href='https://www.unfair-game.com/'">
+          Learn More
+        </button>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
       <div class="col-auto col-md-6 col-lg-auto py-2 px-2" v-for="listing in listings" :key="listing.name"
         @click="gotoEvent(listing)">
         <ListingCard :gameName="listing.name" :imgSrc="listing.img" :description="listing.desc" :pax="listing.pax"
@@ -122,6 +145,22 @@ export default {
 
 .marginTop {
   height: 80px;
+}
+
+.featuredText {
+  /* font-size: 3vw; */
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.highlighted {  
+  background: linear-gradient(transparent 40%, #070F5F 40%);
+}
+
+.btn-outline-light {
+  --bs-btn-hover-color: #7ba7bb;
+  --bs-btn-active-color: var(--bs-btn-hover-color);
 }
 
 </style>

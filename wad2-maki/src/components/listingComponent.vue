@@ -77,6 +77,7 @@
   padding-top: 0px;
   box-shadow: 0 4px 8px 0 rgba(170, 212, 230, 0.2), 0 6px 20px 0 rgba(170, 212, 230, 0.2);
   background-color: rgba(0, 0, 0, 0.05);
+  /* background-color: #aad4e6; */
   /* border : 1.5px solid #aad4e6; */
   /* border: 1.5px solid #b0dde4; */
   color: white;
