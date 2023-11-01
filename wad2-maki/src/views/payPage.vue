@@ -1,31 +1,61 @@
 <template>
   <div class="marginTop"></div>
-  <div class="memberInfo">
-    <h1 class="lineUp">Hey There, Join Us Today!</h1>
-    <hr>
-    <div class="benefits">
-        <h1>Benefits</h1>
-      <div>
+    <div class="memberInfo">
+      <h1 class="lineUp">Hey There, Join Us Today!</h1>
+      <hr>
+      <div class="center-container">
+        <div class="memberMsg col-md-10 col-lg-6">
+        <p>Are you a fan of board games and looking to be part of a community that shares your passion? If so, we have an exciting opportunity for you! We are thrilled to invite you to join our SMU Strategica, where we are dedicated to creating an inclusive, close-knit community of board game enthusiasts who enjoy great company and even better games. <br> <br>
+
+        Join us and be a part of something truly special. Together, we'll create lasting memories, share laughs, and build lifelong friendships through the magic of board games.<br> <br>
+
+        Ready to roll the dice and make new friends? Don't miss out on the fun, camaraderie, and countless adventures waiting for you. Join us today!</p>
+        </div>
+
+      </div>
+
+
+      <div class="container-fluid maxWidth">
+
+      <div class="row align-items-center justify-content-center rowInfo">
+          <div class="col-md-3 text-center">
+              <span class="highlighted">Benefits</span>
+          </div>
+          <div class="col-auto px-0">
+            <ul>
+              <li><h4>Free rental of over 100 board games</h4></li>
+              <li><h4>CCA Records</h4></li>
+              <li><h4>Diverse Game Library</h4></li>
+              <li><h4>Community Welfare</h4></li>
+              <li><h4>Game Teaching and Learning</h4></li>
+              <li><h4>Weekly Game Nights</h4></li>
+              
+            </ul>
+          </div>
+      </div>
+
+      <div class="row align-items-start justify-content-center" style="text-align: center;">
+      <div class="col-lg-6">
+        <span class="highlighted">Membership Requirements</span>
         <ul>
-          <li>free rental of over 100 board games</li>
-          <li>free rental of over 100 board games</li>
+          <li><h4>$3 per semester</h4></li>
+          <li><h4>$5 per academic year</h4></li>
+          <li><h4>Attendance of 4 sessions</h4></li>
         </ul>
       </div>
+</div>
+
+
       
-    </div>
-
-    Membership Requirements
-    <div>
-      <ul>
-        <li>$3 per semester</li>
-        <li>$5 per academic year</li>
-        <li>Attendance of 4 sessions</li>
-      </ul>
-    </div>
-
   </div>
 
-  <div class="paymentBox">
+  </div>
+  <div id="scrollHere">
+        <h1 style="text-align: center; margin: 100px;">Ready to roll the dice?</h1>
+  </div>
+  <hr>
+
+  <div id="paymentBox" class="hidden">
       <h1 style="text-align: center;">Pay for Membership</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
@@ -87,7 +117,7 @@
               Total: {{ totalAmount }}
           </div>
           <div class="text-center"> <!-- Add text-center class here -->
-              <button class="btn btn-lg mx-auto" id="checkout-button" style="width: 75%; background-color: #e2f0f9;">
+              <button class="btn btn-lg mx-auto" id="checkout-button" style="width: 75%; background-color: #070F5F; color: white;">
                   Pay
               </button>
           </div>
@@ -101,6 +131,7 @@
 
 <script>
 import Stripe from 'stripe'
+import $ from 'jquery';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
@@ -181,19 +212,54 @@ export default{
   }
 }
 
+$(document).ready(function() {
+  // Reference to the scroll trigger element
+  var scrollHere = $("#scrollHere");
+  // Reference to the hidden element to appear
+  var paymentBox = $("#paymentBox");
+
+  // Function to handle the scroll event
+  function handleScroll() {
+    // Calculate the position of the scroll trigger element
+    var triggerPosition = scrollHere.offset().top;
+    // Calculate the current scroll position
+    var scrollTop = $(window).scrollTop();
+
+    // Check if the scroll position is past the trigger element
+    if (scrollTop > triggerPosition-380) {
+      paymentBox.fadeIn(200);
+    } else {
+      paymentBox.fadeOut(200);
+    }
+  }
+
+  // Add a scroll event listener
+  $(window).scroll(handleScroll);
+
+  // Initial check on page load (in case the trigger point is already passed)
+  handleScroll();
+});
+
+
+
+
 </script>
 
 <style scoped>
+.rowInfo{
+  margin: 100px;
+}
 
-.paymentBox{
-  border: 1px solid #286fb4;
+#paymentBox{
+  border: 1px solid #070F5F;
   border-radius: 5px;
   width: 70%;
   margin: auto;
   padding: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
-  color: #286fb4;
+  color: #070F5F;
   background-color: white;
+  display: none;
 }
 
 .marginTop {
@@ -202,6 +268,7 @@ export default{
 
 .lineUp {
   animation: 2s anim-lineUp ease-out;
+  text-align: center;
 }
 @keyframes anim-lineUp {
   0% {
@@ -222,9 +289,26 @@ export default{
 }
 
 .memberInfo{
-  text-align: center;
   margin: auto;
 }
 
+.highlighted {  
+    background: linear-gradient(transparent 40%, #070F5F 40%);
+    font-size: 200%;
+    font-weight: bold;
+}
 
+.memberMsg{
+  text-align: left;
+
+}
+
+li{
+  text-align: left;
+}
+.center-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 </style>

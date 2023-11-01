@@ -5,16 +5,16 @@
         <!-- <h1>This is the profile page!</h1> -->
         
         <div class="row mt-3 align-items-center justify-content-center">
-            <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-1 d-flex align-items-center">
+            <!-- <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-1 d-flex align-items-center">
                 <img src="../assets/profile.png" class=" img img-fluid mx-auto">
-            </div>
+            </div> -->
         
             <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-2 d-flex align-items-center">
                 <p class="name">{{ person.name }}</p>
             </div>
         </div>
         <div class="row align-items-center justify-content-center">
-            <div class="typewriter">
+            <div class="lineUp">
             <h1>Welcome back, {{ person.name }}</h1>
             </div>
             <div class="col-12 order-3 mt-3 ">
@@ -106,7 +106,27 @@ export default {
     font-size: 30px;
     margin: auto;
 }
-
+.lineUp {
+  animation: 2s anim-lineUp ease-out;
+  text-align: center;
+}
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 /* @media screen and (min-width: 768px) {
     .info-border {
         width: 50%;
@@ -116,7 +136,7 @@ export default {
 .info-border {
     border: 1px;
     border-radius: 25px;
-    background-color: #b0dde4;
+    background-color: #070F5F;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
@@ -134,30 +154,6 @@ export default {
     max-width: 600px;
 }
 
-.typewriter h1 {
-  color: black;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid #286fb4; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 20px; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(30, end),
-    blink-caret .5s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #286fb4; }
-}
 
 .marginTop {
   height: 80px;
