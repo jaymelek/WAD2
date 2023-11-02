@@ -21,6 +21,22 @@
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Be a Member</span></a>
             </router-link>
           </li>
+
+          <!-- Exco Pages -->
+          <li :class="[{'nav-item-active': isActive('addListing')}, 'hover-effect']"
+          v-if="Global.memberStatus == 2"
+          >
+            <router-link :to="{ name: 'addListing' }" style="text-decoration: none;">
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Add a Listing</span></a>
+            </router-link>
+          </li>
+          <li :class="[{'nav-item-active': isActive('pendingRequests')}, 'hover-effect']"
+          v-if="Global.memberStatus == 2"
+          >
+            <router-link :to="{ name: 'pendingRequests' }" style="text-decoration: none;">
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Pending Requests</span></a>
+            </router-link>
+          </li>
         </ul>
       </div>
 
@@ -68,6 +84,13 @@ window.addEventListener('scroll', function () {
 
 
 export default {
+
+  data () {
+    return {
+      Global: Global,
+    }
+  },
+  
   methods: {
     logoutUser() {
       Global.sharedData = null;
