@@ -133,7 +133,6 @@
 import Stripe from 'stripe'
 import Global from '../global'
 // import $ from 'jquery';
-// import $ from 'jquery';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
