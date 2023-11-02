@@ -131,7 +131,8 @@
 
 <script>
 import Stripe from 'stripe'
-import $ from 'jquery';
+import Global from '../global'
+// import $ from 'jquery';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
@@ -147,8 +148,16 @@ export default{
           return_url: "http://localhost:8080/payPage/paymentSuccess",
           selectedPaymentOption: "yearly",
           paymentAmount: 500,
+          memberStatus: Global.memberStatus,
+          loginStatus: Global.loginInfo,
+
       }
   },
+  created(){
+    console.log(this.memberStatus)
+    console.log(this.loginStatus)
+  },
+
   methods: {
   async createPaymentIntent() {
     try {
@@ -212,33 +221,33 @@ export default{
   }
 }
 
-$(document).ready(function() {
-  // Reference to the scroll trigger element
-  var scrollHere = $("#scrollHere");
-  // Reference to the hidden element to appear
-  var paymentBox = $("#paymentBox");
+// $(document).ready(function() {
+//   // Reference to the scroll trigger element
+//   var scrollHere = $("#scrollHere");
+//   // Reference to the hidden element to appear
+//   var paymentBox = $("#paymentBox");
 
-  // Function to handle the scroll event
-  function handleScroll() {
-    // Calculate the position of the scroll trigger element
-    var triggerPosition = scrollHere.offset().top;
-    // Calculate the current scroll position
-    var scrollTop = $(window).scrollTop();
+//   // Function to handle the scroll event
+//   function handleScroll() {
+//     // Calculate the position of the scroll trigger element
+//     var triggerPosition = scrollHere.offset().top;
+//     // Calculate the current scroll position
+//     var scrollTop = $(window).scrollTop();
 
-    // Check if the scroll position is past the trigger element
-    if (scrollTop > triggerPosition-380) {
-      paymentBox.fadeIn(200);
-    } else {
-      paymentBox.fadeOut(200);
-    }
-  }
+//     // Check if the scroll position is past the trigger element
+//     if (scrollTop > triggerPosition-380) {
+//       paymentBox.fadeIn(200);
+//     } else {
+//       paymentBox.fadeOut(200);
+//     }
+//   }
 
-  // Add a scroll event listener
-  $(window).scroll(handleScroll);
+//   // Add a scroll event listener
+//   $(window).scroll(handleScroll);
 
-  // Initial check on page load (in case the trigger point is already passed)
-  handleScroll();
-});
+//   // Initial check on page load (in case the trigger point is already passed)
+//   handleScroll();
+// });
 
 
 

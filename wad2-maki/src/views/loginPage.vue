@@ -6,13 +6,12 @@
                     <div class="button-box">
                         <h3 class="loginheader">Log In</h3>
                     </div>
-                    <form id="login" class="input-group-login">
-                        <input type="email" class="input-field" placeholder="Email Address" required>
-                        <input type="password" class="input-field" placeholder="Enter Password" required>
-                        <button type="submit" class="submit-btn">Log In</button>
+                    <form id="login" class="input-group-login"  @submit.prevent="userLogin">
+                        <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
+                        <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
+                        <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
                     </form>
-                </div>
-
+                </div>  
             </div>
         </div>
     </div>
@@ -73,6 +72,7 @@ export default {
                             // console.log(this.person)
                             Global.sharedData = user.uid;
                             this.$router.push("profilePage")
+                            console.log(Global.sharedData)
                         }
                     }
                 })

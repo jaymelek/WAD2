@@ -21,7 +21,10 @@
                 <div class="info-border">
                     <p><strong>Email: </strong> {{ person.email }}</p>
                     <p><strong>Telegram: </strong>{{ person.telegram }} </p>
-                    <p><strong>Membership Status: </strong>{{ person.membership }}</p>
+                    <p v-if="person.membership=='2'"><strong>Membership Status: </strong>Executive Committee</p>
+                    <p v-else-if="person.membership=='1'"><strong>Membership Status: </strong>You are a member!</p>
+                    <p v-else-if="person.membership=='0'"><strong>Membership Status: You are not a member! </strong></p>
+
                 </div>
             </div>
         </div>
@@ -71,6 +74,8 @@ export default {
     },
     created() {
         console.log(Global.sharedData)
+        // console.log(Global.isExco);
+
         axios
             .get(firebaseDatabaseURL + path)
             .then((response) => {
@@ -86,7 +91,11 @@ export default {
                             if (key == Global.sharedData) {
                                 this.person = this.users[key];  //append the respective user to the person array
                                 console.log(this.person)
-
+                                this.person.loginStatus = true;
+                                Global.loginInfo = this.person.loginStatus;
+                                Global.memberStatus = this.person.membership;
+                                // console.log(Global.memberStatus)
+                                // console.log(Global.loginInfo)
                             }
                         }
                     }
