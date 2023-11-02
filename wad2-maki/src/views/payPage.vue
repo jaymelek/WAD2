@@ -15,7 +15,7 @@
       </div>
 
 
-      <div class="container-fluid maxWidth">
+      <div class="container-fluid">
 
       <div class="row align-items-center justify-content-center rowInfo">
           <div class="col-md-3 text-center">
@@ -35,15 +35,33 @@
       </div>
 
       <div class="row align-items-start justify-content-center" style="text-align: center;">
-      <div class="col-lg-6">
-        <span class="highlighted">Membership Requirements</span>
-        <ul>
-          <li><h4>$3 per semester</h4></li>
-          <li><h4>$5 per academic year</h4></li>
-          <li><h4>Attendance of 4 sessions</h4></li>
-        </ul>
+        <div class="col-lg-6 text-center">
+              <span class="highlighted">Membership Requirements</span>
+        </div>
+        <div class="d-flex justify-content-center">
+          <ul>
+            <li><h4>$3 per semester</h4></li>
+            <li><h4>$5 per academic year</h4></li>
+            <li><h4>Attendance of 4 sessions</h4></li>
+          </ul>
+        </div>
       </div>
-</div>
+
+
+      <!-- <div class="col-lg-6">
+        <div class="row align-items-start justify-content-center" style="text-align: center;">
+        <div>
+          <span class="highlighted">Membership Requirements</span>
+          <ul>
+            <li><h4>$3 per semester</h4></li>
+            <li><h4>$5 per academic year</h4></li>
+            <li><h4>Attendance of 4 sessions</h4></li>
+          </ul>
+        </div>
+      </div>
+
+      </div> -->
+
 
 
       
@@ -55,7 +73,7 @@
   </div>
   <hr>
 
-  <div id="paymentBox" class="hidden">
+  <div id="paymentBox">
       <h1 style="text-align: center;">Pay for Membership</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
@@ -130,9 +148,7 @@
 </template>
 
 <script>
-import Stripe from 'stripe'
-import Global from '../global'
-// import $ from 'jquery';
+import Stripe from 'stripe';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
@@ -148,16 +164,8 @@ export default{
           return_url: "http://localhost:8080/payPage/paymentSuccess",
           selectedPaymentOption: "yearly",
           paymentAmount: 500,
-          memberStatus: Global.memberStatus,
-          loginStatus: Global.loginInfo,
-
       }
   },
-  created(){
-    console.log(this.memberStatus)
-    console.log(this.loginStatus)
-  },
-
   methods: {
   async createPaymentIntent() {
     try {
@@ -221,33 +229,6 @@ export default{
   }
 }
 
-// $(document).ready(function() {
-//   // Reference to the scroll trigger element
-//   var scrollHere = $("#scrollHere");
-//   // Reference to the hidden element to appear
-//   var paymentBox = $("#paymentBox");
-
-//   // Function to handle the scroll event
-//   function handleScroll() {
-//     // Calculate the position of the scroll trigger element
-//     var triggerPosition = scrollHere.offset().top;
-//     // Calculate the current scroll position
-//     var scrollTop = $(window).scrollTop();
-
-//     // Check if the scroll position is past the trigger element
-//     if (scrollTop > triggerPosition-380) {
-//       paymentBox.fadeIn(200);
-//     } else {
-//       paymentBox.fadeOut(200);
-//     }
-//   }
-
-//   // Add a scroll event listener
-//   $(window).scroll(handleScroll);
-
-//   // Initial check on page load (in case the trigger point is already passed)
-//   handleScroll();
-// });
 
 
 
@@ -268,7 +249,6 @@ export default{
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
   color: #070F5F;
   background-color: white;
-  display: none;
 }
 
 .marginTop {
@@ -319,5 +299,6 @@ li{
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+}
+
 </style>

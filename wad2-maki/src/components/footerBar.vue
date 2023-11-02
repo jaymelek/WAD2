@@ -1,26 +1,34 @@
 <template>
-    <div class="footer">
-        <a href="#top" id="scrollToTopButton">
-        <img src="../assets/dice_footer.png" style="float:right; width: 80px; height: auto; margin-right: 50px;">
-        </a>
+  <div class="footer">
+    <a href="#top" id="scrollToTopButton">
+      <div class="dice-footer" style="text-align: end; ">
+        <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
+        
+      </div>
+    </a>
 
-        <div class="nav mb-3 justify-content-center">
-            <a href="">Home</a>
-            <a href="">About Us</a>
-            <a href="">Contact Us</a>
-        </div>
-        <div class="logos mb-3">
-            <a href="https://www.instagram.com/smu_strategica/?hl=en">
-                <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
-            </a>
-            <a href="https://t.me/SMUStrategica">
-                <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
-            </a>
-        </div>
-        <div class="bottom d-inline text-center">
-            <p> &copy; Strategica . 2023</p>
-        </div>
+    <p style="text-decoration: none; color: white; text-align: end; margin-right: 30px;">Bring Me Back Up!</p>
+
+    <div class="nav mb-3 justify-content-center">
+      <a href="">Home</a>
+      <a href="">About Us</a>
+      <a href="">Contact Us</a>
     </div>
+    
+    <div class="logos mb-3">
+      <a href="https://www.instagram.com/smu_strategica/?hl=en">
+        <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
+      </a>
+      <a href="https://t.me/SMUStrategica">
+        <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
+      </a>
+    </div>
+    
+    <div class="bottom d-inline text-center">
+      <p> &copy; Strategica . 2023</p>
+    </div>
+  </div>
+
 </template>
 
 <script>
