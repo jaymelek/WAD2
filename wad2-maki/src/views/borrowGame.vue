@@ -156,7 +156,7 @@
                         </div>
                 
                         <!-- Confirm Button -->
-                        <button type="submit" class="btn btn-outline-secondary w-100"
+                        <button type="submit" class="btn btn-outline-light w-100"
                         @click="postApplication()"
                         >Confirm</button> 
                 </form>
@@ -396,5 +396,10 @@ export default {
 
     .marginTop {
     height: 80px;
+    }
+
+    .btn-outline-light {
+    --bs-btn-hover-color: #7ba7bb;
+    --bs-btn-active-color: var(--bs-btn-hover-color);
     }
 </style>

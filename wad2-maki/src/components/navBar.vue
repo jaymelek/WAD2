@@ -146,7 +146,7 @@ export default {
   transition: all 0.3s ease;
   background-color: #070F5F;
   border-radius: 50%;
-  top: 0;
+  top: 0; 
   left: 0;
   transform: scale(0); /* Initial size, hidden */
   transform-origin: center;
@@ -187,6 +187,7 @@ export default {
   z-index: -1;
   background-color: #070F5F;
   left: -1%;
+  color: white;
 }
 
 .hover-effect:hover::after {
@@ -195,16 +196,21 @@ export default {
   left: -1%;
   background-color: #070F5F;
   z-index: -1;
+  color: white;
 }
 
-.highlighted {
-  padding: 0 10px 0px 10px;
+.hover-effect .highlighted {
+  /* padding: 0 10px 0px 10px; */
+  color: white;
 }
 
 .nav-item-active .highlighted {
-  background: linear-gradient(transparent 40%, #070F5F 40%);
-  display: inline-block; 
-  padding: 0 10px 0px 10px;
+  /* background: linear-gradient(transparent 40%, #070F5F 40%);
+  display: inline-block;  */
+  /* padding: 0 10px 0px 10px; */
+  text-decoration: underline 2.5px;
+  text-decoration-color: #070F5F;
+  color: white;
 }
 
 
