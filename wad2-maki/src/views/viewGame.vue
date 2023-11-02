@@ -11,7 +11,7 @@
             <!-- Carousel of Game Images (NOT Dynamic to show all images of a game in the database yet)-->
             <!-- Need to make listing.img a list and v-for loop through it -->
             <div class=" col-sm-4 col-8 col-md-4 pe-0 pb-4"> 
-                <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
+                <div id="gameCarousel" class="carousel slide w-100 carouselBox rounded">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img :src="listing.img" class="d-block w-100" alt="...">
@@ -35,7 +35,7 @@
             </div>
 
             <!-- Game Details -->
-            <div class="col-sm-6 col-md-8"> <!--col-md-auto-->
+            <div class="col-sm-6 col-md-8 px-md-5"> <!--col-md-auto-->
                 <h3 >{{ listing.name }}</h3>
                 <i class="bi bi-person-circle"></i>
                 <p class="text-start">{{ listing.desc }}</p>
@@ -43,7 +43,7 @@
                 <p class="text-start"><span class="bolded">Max Players:</span> {{ listing.pax }}</p>
                 <p class="text-start"><span class="bolded">Availability:</span> {{ listing.availability }}</p>
                 <!-- <p class="text-start"><span class="bolded">Category:</span> {{ listing.category }}</p> -->
-                <button type="button" class="btn btn-outline-secondary w-100"
+                <button type="button" class="btn btn-outline-light w-100"
                 @click="borrowGame(listing)"
                 >Borrow Game</button>
             </div>
@@ -53,12 +53,12 @@
             <div class="col colWidth">
                 <h1 class="text-start">Reviews</h1>
                 <div class="container-fluid w-100 p-0">
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 justify-content-center"
+                    <div class="row rounded w-100 py-2 mx-0 my-2 justify-content-center reviewBox" 
                     v-for="reviewInfo in reviews" :key="reviewInfo.name"
-                    >
+                    > <!--bg-light-subtle-->
                         <div class="col-9">
                             <h4 class="text-start mb-0">{{ reviewInfo.title }}</h4> 
-                            <p class="text-start text-body-secondary subtext my-0">{{ reviewInfo.name }}</p>
+                            <p class="text-start subtext my-0">{{ reviewInfo.name }}</p>
                         </div>
                         <div class="col-3">
                             <img src="../assets/star.png" class="star float-end" alt=""
@@ -67,7 +67,7 @@
                             >
                         </div>
                         <p class="text-start my-1">{{ reviewInfo.review }}</p>
-                        <p class="text-end text-body-secondary subtext m-0">Posted on: {{ reviewInfo.date }}</p>
+                        <p class="text-end subtext m-0">Posted on: {{ reviewInfo.date }}</p>
                     </div>
                 </div>
             </div>
@@ -137,14 +137,14 @@ export default {
                     gameID: this.$route.params.gameID,
                     reviews: [{
                         title: "Great Game! Would Recommend!",
-                        name: "Dudette McReview",
+                        name: "Joshua Ng",
                         review: "I love this game! It's so fun! Played with my friends and we had a blast! Would recommend!",
                         rating: 5,
                         date: "2022-10-01",
                     },
                     {
                         title: "Its alright, so so only :)",
-                        name: "Daniella YF",
+                        name: "Tan Jia Jun",
                         review: "The game is not in that great condition, and the cards are yellowing a little so we could tell what card each person held based on the condition. But overall, it was a fun game to play with my friends!",
                         rating: 3,
                         date: "2021-03-23",
@@ -253,5 +253,19 @@ export default {
 
     .marginTop {
     height: 80px;
+    }
+
+    .btn-outline-light {
+    --bs-btn-hover-color: #7ba7bb;
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    }
+
+    .reviewBox {
+        color: #7ba7bb;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .carouselBox {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 </style>

@@ -9,7 +9,7 @@
         <div class="row align-items-center justify-content-center m-2">
             <div class="col-7 col-md-5 pe-0 pb-4">
                 <!-- <img :src="listing.img" class=" w-75 bg-secondary-subtle rounded" >  -->
-                <div id="gameCarousel" class="carousel slide w-100 bg-secondary-subtle rounded">
+                <div id="gameCarousel" class="carousel slide w-100 carouselBox rounded">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img :src="listing.img" class="d-block w-100">
@@ -36,6 +36,36 @@
         <div class="row">
             <div class="container">
                 <form class="row g-3 justify-content-start align-items-center" id="borrowGameForm">
+                        <!-- Name -->
+                        <div class="col-sm-6">
+                            <label for="name1" class="form-label">Matriculated Name:</label>
+                            <input type="text" class="form-control inputstl" id="name1" placeholder="Enter Your Full Name" v-model="personName" required>
+                        </div>
+                        
+                        <!-- Telegram Handle -->
+                        <div class="col-sm-6">
+                            <label for="telegram" class="form-label">Telegram Handle:</label>
+                            <input type="text" class="form-control inputstl" id="telegram" name="telegram" v-model="telegram" placeholder="@Username" required>
+                        </div>
+                
+                        <!-- Borrowing on behalf of themselves or a club -->
+                        <div class="col-sm-6">
+                            <label class="form-label">Borrowing On Behalf Of</label>
+                            <div class="form-check px-0 pb-1">
+                                <input class="btn-check inputstl" type="radio" name="borrowingType" id="self" value="Self" v-model="borrowingBehalf" checked required>
+                                <label class="btn btn-outline-light w-100 btn-sm" for="self">Myself</label>
+                            </div>
+                            <div class="form-check px-0">
+                                <input class="btn-check inputstl" type="radio" name="borrowingType" id="club" value="Club" v-model="borrowingBehalf" required>
+                                <label class="btn btn-outline-light w-100 btn-sm" for="club">My Club</label>
+                            </div>
+                        </div>
+                
+                        <!-- Email Address -->
+                        <div class="col-sm-6">
+                            <label for="email1" class="form-label">SMU Email (with Faculty):</label>
+                            <input type="email" class="form-control inputstl" id="email1" v-model="email" placeholder="john.2021@scis.smu.edu.sg">
+                        </div>
                     <!-- Name -->
                     <div class="col-md-6">
                         <label for="name1" class="form-label">Matriculated Name:</label>
@@ -72,110 +102,98 @@
                             placeholder="john.2021@scis.smu.edu.sg">
                     </div>
 
-                    <!-- Warning if Availability is not "Available" -->
-                    <div class="col-12" v-if="this.listing.availability != 'Available'">
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="alert-heading">Note:</h4>
-                            <p> {{ this.listing.name }} is {{ this.listing.availability }} </p>
-                            <hr>
-                            <p class="mb-0">If you select dates that clash with any confirmed bookings, your loan
-                                application will be rejected.</p>
+                        <!-- Warning if Availability is not "Available" -->
+                        <div class="col-12" v-if="this.listing.availability != 'Available'">
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="alert-heading">Note:</h4>
+                                <p> {{this.listing.name}} is {{ this.listing.availability }} </p>
+                                <hr>
+                                <p class="mb-0">If you select dates that clash with any confirmed bookings, your loan application will be rejected.</p>
+                            </div>
                         </div>
-                    </div>
+                
+                        <!-- Loan Start Date -->
+                        <div class="col-md-6">
+                            <label for="startDate" class="form-label">Loan Start Date:</label>
+                            <input type="date" class="form-control inputstl" id="startDate" name="startDate" required
+                                v-bind:min="minDate()" v-model="loanStartDate"> <!--v-bind:max="maxDate"-->
+                        </div>
+                
+                        <!-- Loan Return Date -->
+                        <div class="col-md-6">
+                            <label for="returnDate" class="form-label">Loan Return Date:</label>
+                            <input type="date" class="form-control inputstl" id="returnDate" name="returnDate" required
+                                v-bind:min="loanStartDate" v-bind:max="loanEndDate" v-model="selectedEndDate"> 
+                        </div> 
+                        
+                        <!-- FOR CLUBS ======================================================== -->
 
-                    <!-- Loan Start Date -->
-                    <div class="col-md-6">
-                        <label for="startDate" class="form-label">Loan Start Date:</label>
-                        <input type="date" class="form-control inputstl" id="startDate" name="startDate" required
-                            v-bind:min="minDate()" v-model="loanStartDate"> <!--v-bind:max="maxDate"-->
-                    </div>
+                            <!-- Club Name -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="clubName" class="form-label">SMU Club Name:</label>
+                                <input type="text" class="form-control inputstl" id="clubName" name="clubName" v-model="clubName" placeholder="Enter Club Name" required>
+                            </div>
+                
+                            <!-- Club Email Address -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="clubEmail" class="form-label">Club Email:</label>
+                                <input type="email" class="form-control inputstl" id="clubEmail" name="clubEmail" v-model="clubEmail" placeholder="Enter Club Email" required>
+                            </div>
 
-                    <!-- Loan Return Date -->
-                    <div class="col-md-6">
-                        <label for="returnDate" class="form-label">Loan Return Date:</label>
-                        <input type="date" class="form-control inputstl" id="returnDate" name="returnDate" required
-                            v-bind:min="loanStartDate" v-bind:max="loanEndDate" v-model="selectedEndDate">
-                    </div>
+                            <!-- Club Contact Designation -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="clubContactDesignation" class="form-label">Club Contact Designation:</label>
+                                <input type="text" class="form-control inputstl" id="clubContactDesignation" name="clubContactDesignation" v-model="clubContact" placeholder="e.g., President, Hon Fin, etc." required>
+                            </div>
 
-                    <!-- FOR CLUBS ======================================================== -->
+                            <!-- Event/Purpose for Borrowing -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="borrowPurpose" class="form-label">Purpose for Borrowing:</label>
+                                <input type="text" class="form-control inputstl" id="borrowPurpose" name="borrowPurpose" v-model="purpose" placeholder="Name of Event, Casual etc" required>
+                            </div>
 
-                    <!-- Club Name -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="clubName" class="form-label">SMU Club Name:</label>
-                        <input type="text" class="form-control inputstl" id="clubName" name="clubName" v-model="clubName"
-                            placeholder="Enter Club Name" required>
-                    </div>
+                            <!-- Location of Event -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="eventLocation" class="form-label">Location of Event:</label>
+                                <input type="text" class="form-control inputstl" id="eventLocation" name="eventLocation" v-model="location" placeholder="SCIS CR B1-1" required>
+                            </div>
 
-                    <!-- Club Email Address -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="clubEmail" class="form-label">Club Email:</label>
-                        <input type="email" class="form-control inputstl" id="clubEmail" name="clubEmail"
-                            v-model="clubEmail" placeholder="Enter Club Email" required>
-                    </div>
+                            <!-- Who will be Playing -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="personsPlaying" class="form-label">Who will be playing the games?</label>
+                                <input type="text" class="form-control inputstl" id="personsPlaying" name="personsPlaying" v-model="whoPlay" placeholder="Members, Exchange Students..." required>
+                            </div>
 
-                    <!-- Club Contact Designation -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="clubContactDesignation" class="form-label">Club Contact Designation:</label>
-                        <input type="text" class="form-control inputstl" id="clubContactDesignation"
-                            name="clubContactDesignation" v-model="clubContact" placeholder="e.g., President, Hon Fin, etc."
-                            required>
-                    </div>
-
-                    <!-- Event/Purpose for Borrowing -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="borrowPurpose" class="form-label">Purpose for Borrowing:</label>
-                        <input type="text" class="form-control inputstl" id="borrowPurpose" name="borrowPurpose"
-                            v-model="purpose" placeholder="Name of Event, Casual etc" required>
-                    </div>
-
-                    <!-- Location of Event -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="eventLocation" class="form-label">Location of Event:</label>
-                        <input type="text" class="form-control inputstl" id="eventLocation" name="eventLocation"
-                            v-model="location" placeholder="SCIS CR B1-1" required>
-                    </div>
-
-                    <!-- Who will be Playing -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="personsPlaying" class="form-label">Who will be playing the games?</label>
-                        <input type="text" class="form-control inputstl" id="personsPlaying" name="personsPlaying"
-                            v-model="whoPlay" placeholder="Members, Exchange Students..." required>
-                    </div>
-
-                    <!-- Event Date -->
-                    <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
-                        <label for="eventDate" class="form-label">When is the event?</label>
-                        <input type="date" class="form-control inputstl" id="eventDate" name="eventDate"
-                            :min="loanStartDate" :max="selectedEndDate" required>
-                    </div>
+                            <!-- Event Date -->
+                            <div class="col-md-6" v-if="borrowingBehalf == 'Club'">
+                                <label for="eventDate" class="form-label">When is the event?</label>
+                                <input type="date" class="form-control inputstl" id="eventDate" name="eventDate" :min="loanStartDate" :max="selectedEndDate" required>
+                            </div>
 
                     <!-- END OF FOR CLUBS =================================================== -->
 
                     <div v-else>
                     </div>
 
-                    <!-- PDPA Clause -->
-                    <div class="col-12">
-                        By submitting this form, the borrower shall be responsible for the proper use and deployment of the
-                        board games. This includes supervising the games to ensure proper handling by the players.
-                        In the event where the loaned board games are damaged, lost, confiscated, or stolen from the time
-                        the borrower assumes custody to the time it is returned to Strategica,
-                        the borrower also agrees to be responsible for the full cost of repair or replacement of any or all
-                        of the components of the affected board games.
-                        If the board games are lost, stolen or damaged, the borrower agrees to promptly notify the Lender
-                        representative designated above. In the event of dispute, Strategica has the final say.
-                        <br><br>
-                        I agree to the clause above, and to ensure the proper use and handling of the loaned board games.
-                        <div width="auto" class="align-items-center">
-                            <input type="checkbox" class="inputstl" id="pdpaClause" name="pdpaClause" required>
-                            <label for="pdpaClause" class="form-label"> &nbsp; Yes</label>
+                        <!-- PDPA Clause -->
+                        <div class="col-12">
+                            By submitting this form, the borrower shall be responsible for the proper use and deployment of the board games. This includes supervising the games to ensure proper handling by the players.
+                            In the event where the loaned board games are damaged, lost, confiscated, or stolen from the time the borrower assumes custody to the time it is returned to Strategica, 
+                            the borrower also agrees to be responsible for the full cost of repair or replacement of any or all of the components of the affected board games. 
+                            If the board games are lost, stolen or damaged, the borrower agrees to promptly notify the Lender representative designated above. In the event of dispute, Strategica has the final say.
+                            <br><br>
+                            I agree to the clause above, and to ensure the proper use and handling of the loaned board games.
+                            <div width="auto" class="align-items-center">
+                                <input type="checkbox" class="inputstl" id="pdpaClause" name="pdpaClause" required>
+                                <label for="pdpaClause" class="form-label"> &nbsp; Yes</label>
+                            </div>
+                            
                         </div>
-
-                    </div>
-
-                    <!-- Confirm Button -->
-                    <button type="submit" class="btn btn-outline-secondary w-100"
-                        @click="postApplication()">Confirm</button>
+                
+                        <!-- Confirm Button -->
+                        <button type="submit" class="btn btn-outline-secondary w-100"
+                        @click="postApplication()"
+                        >Confirm</button> 
                 </form>
             </div>
         </div>
@@ -409,10 +427,11 @@ export default {
     max-width: 800px;
 }
 
-.inputstl {
-    background-color: rgb(230, 230, 230, 0.3);
-}
+    .inputstl {
+        background-color: rgb(230, 230, 230, 0.3);
+    }
 
 .marginTop {
     height: 80px;
-}</style>
+    }
+</style>
