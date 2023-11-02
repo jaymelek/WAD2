@@ -149,6 +149,8 @@
 
 <script>
 import Stripe from 'stripe';
+import Global from '../global';
+
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
@@ -164,8 +166,16 @@ export default{
           return_url: "http://localhost:8080/payPage/paymentSuccess",
           selectedPaymentOption: "yearly",
           paymentAmount: 500,
+          loginStatus: Global.loginInfo,
+          membershipStatus: Global.memberStatus,
+
       }
   },
+  created(){
+    console.log(this.loginStatus)
+    console.log(this.membershipStatus)
+  },
+
   methods: {
   async createPaymentIntent() {
     try {
