@@ -11,8 +11,8 @@
             <!-- Carousel of Game Images (NOT Dynamic to show all images of a game in the database yet)-->
             <!-- Need to make listing.img a list and v-for loop through it -->
             <div class=" col-sm-4 col-8 col-md-4 pe-0 pb-4"> 
-                <div id="gameCarousel" class="carousel slide w-100 carouselBox rounded">
-                    <div class="carousel-inner">
+                <div id="gameCarousel" class="carousel slide w-100 carouselBox">
+                    <div class="carousel-inner rounded">
                         <div class="carousel-item active">
                             <img :src="listing.img" class="d-block w-100" alt="...">
                         </div>
