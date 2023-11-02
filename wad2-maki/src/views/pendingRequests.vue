@@ -10,12 +10,12 @@
 
             <!-- Pending Requests -->
             <div class="colWidth">
-                <h1 class="text-start">Pending Requests</h1>
+                <h1 class="text-start"><span class="highlighted">Pending Requests</span></h1>
                 <div class="container-fluid w-100 p-0">
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
+                    <div class="row rounded reviewBox w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
                     v-for="application in applications" :key="application.applicationID"
                     >
-                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
+                        <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
                             <div class="col-9">
                                 <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                             </div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     
-                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                        <div class="row rounded reviewBox w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
                             <div class="col-6">
                                 <p class="my-0">Borrower: {{ application.borrowerName }}</p>
                                 <p class="my-0">Start Date: {{ pretty_date(application.loanStartDate) }}</p>
@@ -50,7 +50,7 @@
                         </div>
                         
                         <!-- if club borrowing -->
-                        <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
+                        <div class="row rounded reviewBox w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
                         v-if="application.borrowingBehalf == 'Club'"
                         >
                             <hr>
@@ -85,7 +85,7 @@
                     <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
                         v-for="application in reviewedApplications" :key="application.applicationID"
                         >
-                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
+                            <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
                                 <div class="col-9">
                                     <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                                 </div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         
-                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
+                            <div class="row rounded reviewBox w-100 py-2 mx-0 mt-0 mb-2 justify-content-center">
                                 <div class="col-6">
                                     <p class="my-0">Borrower: {{ application.borrowerName }}</p>
                                     <p class="my-0">Start Date: {{ pretty_date(application.loanStartDate) }}</p>
@@ -120,7 +120,7 @@
                             </div>
                             
                             <!-- if club borrowing -->
-                            <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
+                            <div class="row rounded reviewBox w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
                             v-if="application.borrowingBehalf == 'Club'"
                             >
                                 <hr>
@@ -356,5 +356,18 @@ export default {
 
     .marginTop {
     height: 80px;
+    }
+
+    .highlighted {  
+        background: linear-gradient(transparent 40%, #070F5F 40%);
+    }
+
+    .reviewBox {
+        color: #7ba7bb;
+        background-color: #d8e5eb;
+    }
+
+    hr {
+        height: 2px;
     }
 </style>

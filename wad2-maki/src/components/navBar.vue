@@ -13,12 +13,12 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect']">
             <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
-              <a class="nav-link" aria-current="page" :style="fontColor"><span class="highlighted">Borrow a Game</span></a>
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Borrow a Game</span></a>
             </router-link>
           </li>
           <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect']">
             <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
-              <a class="nav-link" aria-current="page" :style="fontColor"><span class="highlighted">Be a Member</span></a>
+              <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Be a Member</span></a>
             </router-link>
           </li>
         </ul>
@@ -194,20 +194,17 @@ export default {
   width: 102%;
   height: 16px;
   left: -1%;
-  background-color: #070F5F;
+  /* background-color: #070F5F; */
   z-index: -1;
   color: white;
 }
 
-.hover-effect .highlighted {
+.hover-effect .conHighlighted {
   /* padding: 0 10px 0px 10px; */
   color: white;
 }
 
-.nav-item-active .highlighted {
-  /* background: linear-gradient(transparent 40%, #070F5F 40%);
-  display: inline-block;  */
-  /* padding: 0 10px 0px 10px; */
+.nav-item-active .conHighlighted {
   text-decoration: underline 2.5px;
   text-decoration-color: #070F5F;
   color: white;
