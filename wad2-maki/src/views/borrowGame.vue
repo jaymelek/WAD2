@@ -319,18 +319,18 @@ export default {
                 borrowerPurpose: this.purpose,
                 borrowerLocation: this.location,
                 borrowerWhoPlay: this.whoPlay,
-                };
-                // Now you can proceed with submitting the data
-                axios
-                .post(firebaseDatabaseURL + borrowApplicationsPath, data)
-                .then((response) => {
-                console.log(response);
-                alert("Your application has been submitted successfully!")
-                this.$router.push({ name: 'borrowPage' });
-                })
-                .catch((error) => {
-                console.error('Error posting data:', error);
-                });
+            };
+            // Now you can proceed with submitting the data
+            axios
+            .post(firebaseDatabaseURL + borrowApplicationsPath, data)
+            .then((response) => {
+            console.log(response);
+            alert("Your application has been submitted successfully!")
+            this.$router.push({ name: 'borrowPage' });
+            })
+            .catch((error) => {
+            console.error('Error posting data:', error);
+            });
         }else {
             const data = {
                 gameID: this.gameID,
