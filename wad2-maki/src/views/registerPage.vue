@@ -94,7 +94,7 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
     background-size: 20% auto;
     background-position: center;
-    position: relative;
+    /* position: relative; */
 }
 
 #register-form {
