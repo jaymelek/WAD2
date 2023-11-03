@@ -14,7 +14,7 @@
                 <h1>Welcome back, {{ person.name }}</h1>
             </div>
             <div class="col-12 order-3 mt-3 ">
-                <div class="info-border">
+                <div class="info-border">                                            
                     <p><strong>Email: </strong> {{ person.email }}</p>
                     <p><strong>Telegram: </strong>{{ person.telegram }} </p>
                     <p v-if="person.membership == '2'"><strong>Membership Status: </strong>Executive Committee</p>
@@ -27,7 +27,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-12 order-5 mt-3">
                 <div class="info-border">
-                    <p v-if="person.currentBorrowing == 'null'"><strong>Current borrowing: - </strong></p>
+                    <p v-if=!person.currentBorrowing><strong>Current borrowing: - </strong></p>
                     <div v-else>
                         <p><strong>Current borrowing: </strong></p>
                         <ul>
@@ -40,16 +40,16 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-12 mt-3 order-4">
                 <div class="info-border">
-                    <p v-if="person.historyGame == 'null'"><strong>History of past games: - </strong></p>
+                    <p v-if=!person.historyGame><strong>History of past games: - </strong></p>
                     <div v-else>
                         <p><strong>History of past games: </strong></p>
                         <ul>
                             <li v-for="(game, index) in person.historyGame" :key="index">{{ game }}</li>
                         </ul>
                     </div>
-                    <p v-if="person.favGame == 'null'"><strong>Favourite Games:- </strong></p>
+                    <p v-if=!person.favGame><strong>Favourite Games: - </strong></p>
                     <div v-else>
-                        <p><strong>Favourite Games: </strong></p>
+                        <p><strong>Favourite Games:  </strong></p>
                         <ul>
                             <li v-for="(game, index) in person.favGame" :key="index">{{ game }}</li>
                         </ul>
