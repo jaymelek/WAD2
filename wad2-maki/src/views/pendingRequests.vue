@@ -82,7 +82,7 @@
                 
                 <div class="container-fluid w-100 p-0">
 
-                    <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
+                    <div class="row rounded reviewBox w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
                         v-for="application in reviewedApplications" :key="application.applicationID"
                         >
                             <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-between">

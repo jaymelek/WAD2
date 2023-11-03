@@ -1,13 +1,13 @@
 <template>
   <div class="footer">
-    <a href="#top" id="scrollToTopButton">
-      <div class="dice-footer" style="text-align: end; ">
-        <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
-        
-      </div>
-    </a>
-
-    <p style="text-decoration: none; color: white; text-align: end; margin-right: 30px;">Bring Me Back Up!</p>
+    <div class="diceToTop w-auto">
+      <a href="#top" id="scrollToTopButton">
+        <div class="dice-footer" style="text-align: end; ">
+          <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
+        </div>
+      </a>
+      <p style="text-decoration: none; color: white; text-align: center; margin-right: 50px;">back to top!</p>
+    </div>
 
     <div class="nav mb-3 justify-content-center">
       <a href="">Home</a>
