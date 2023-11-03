@@ -16,13 +16,13 @@
     </div>
     
     <div class="logos mb-3">
-      <a href="https://www.instagram.com/smu_strategica/?hl=en">
+      <a href="https://www.instagram.com/smu_strategica/" target="_blank">
         <img src="../assets/instagram_logo.png" class="logo img-fluid mx-2" alt="">
       </a>
-      <a href="https://t.me/SMUStrategica">
+      <a href="https://t.me/SMUStrategica" target="_blank">
         <img src="../assets/telegram_logo.png" class="logo img-fluid mx-2" alt="">
       </a>
-      <a href="mailto:strategica@sa.smu.edu.sg">
+      <a href="mailto:strategica@sa.smu.edu.sg" target="_blank">
         <img src="../assets/mail_logo.png" class="logo img-fluid mx-2" alt="">
       </a>
     </div>
