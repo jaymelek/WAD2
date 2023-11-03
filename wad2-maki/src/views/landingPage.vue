@@ -195,10 +195,16 @@ export default {
 
                     </h4>
                 </div>
+                
+            </section>
+
+            <!-- Sixth Section just for animation to work out -->
+            <section class="row effect">
+                <div class="marginBottom"></div>
             </section>
 
 
-
+            <div class="marginBottom"></div>
         </div> <!-- End of Container -->
         
     </div>
@@ -379,5 +385,7 @@ section {
 .collab{
     margin-top: 80px;
 }
+.marginBottom {
+    margin-bottom: 1px;
+}
 </style>
-
