@@ -89,7 +89,7 @@ export default {
         return {
             users: [],
             person: [],
-            loginUser: '',
+            loginUser: Global.loginInfo,
 
         }
     },
@@ -116,7 +116,7 @@ export default {
                                 console.log(this.person)
                                 this.person.loginStatus = true;
 
-                                // Global.loginInfo = this.person.loginStatus;
+                                Global.loginInfo = this.person.loginStatus;
                                 Global.memberStatus = this.person.membership;
                                 // console.log(Global.memberStatus)
                                 // console.log(Global.loginInfo)
