@@ -45,7 +45,6 @@
                                 <p class="my-0">Borrowing Type: For {{ application.borrowingType }}</p>
                                 <p class="my-0">Borrower's Email: {{ application.borrowerEmail }}</p>
                                 <p class="my-0">Borrower's Telegram: {{ application.borrowerTelegram }}</p>
-                                {{ application.applicationID }}
                             </div>
                         </div>
                         

@@ -63,7 +63,9 @@ export default {
                     set(ref(database, 'users/' + user.uid), {
                         email: this.email,
                         name: this.name,
-                        telegram: this.telegram
+                        telegram: this.telegram,
+                        memberStatus: '0',
+                        loginStatus: false,
                     })
 
                     console.log(user)

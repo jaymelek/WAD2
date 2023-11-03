@@ -185,7 +185,7 @@ export default {
             <!-- Fifth Row: Past Events Pictures, Interested in a collab? -->
             <section class="row align-items-center justify-content-center collab effect">
                 <div class="col-auto px-0">
-                    <img src="../assets/games_group.png" class="imgFit">
+                    <img src="../assets/collab.png" class="imgFit">
                 </div>
                 <div class="col-md-6 pl-md-5 text-center">
                     <h1 class="sloganText"><span class="highlighted">Interested in a Collaboration?</span> </h1>
