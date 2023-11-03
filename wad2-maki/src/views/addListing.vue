@@ -19,7 +19,7 @@
 
             <div>
                 <label for="exampleFormControlTextarea1" style="margin-top: 15px;">Number of Players</label>
-                <input type="number" class="form-control" v-model="gamePax">
+                <input type="text" class="form-control" v-model="gamePax">
             </div>
 
             <div>
