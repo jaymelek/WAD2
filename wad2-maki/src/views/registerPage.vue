@@ -1,9 +1,9 @@
 <template>
-    <div class="banner">
+    <div class="banner1">
         <div id='register-form' class='register-page'>
             <div class="form-box">
                 <div class="button-box">
-                    <h3 class="registerheader">Register</h3>
+                    <h3 class="registerheader">Register An Account</h3>
                 </div>
                 <form id="register" class="input-group-register" @submit.prevent="register">
                     <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
@@ -91,11 +91,11 @@ export default {
 
 
 <style>
-.banner {
+.banner1 {
     width: 100%;
     height: 150vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../assets/boardgamecover.jpg);
-    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1),  rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
+    background-size: 20% auto;
     background-position: center;
     position: relative;
 }
@@ -107,9 +107,10 @@ export default {
     position: relative;
     top: 40px;
     margin: auto;
-    background: rgba(0, 0, 0, 0.3);
+    background:#fff;
     padding: 10px;
     overflow: hidden;
+    border-radius: 20px;
 
 }
 
@@ -133,9 +134,13 @@ export default {
     border-left: 0;
     border-top: 0;
     border-right: 0;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid rgba(123, 167, 187, 1);
     outline: none;
     background: transparent;
+}
+
+.input-field::placeholder{
+    color:rgba(123, 167, 187, 1);
 }
 
 .submit-btn {
@@ -144,10 +149,11 @@ export default {
     cursor: pointer;
     display: block;
     margin: 20px auto;
-    background: #F3C693;
+    background: rgba(123, 167, 187, 1);
     border: 0;
     outline: none;
     border-radius: 30px;
+    color: #fff;
 
 }
 
@@ -156,12 +162,12 @@ export default {
 }
 
 #register input {
-    color: white;
+    color: rgba(123, 167, 187, 1);
     font-size: 15;
 }
 
 .registerheader{
-    color: #999;
+    color:rgba(123, 167, 187, 1);
     text-align: center;
 }
 </style>

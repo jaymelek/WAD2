@@ -248,6 +248,33 @@ export default{
   },
 }
 
+// $(document).ready(function() {
+//   // Reference to the scroll trigger element
+//   var scrollHere = $("#scrollHere");
+//   // Reference to the hidden element to appear
+//   var paymentBox = $("#paymentBox");
+
+//   // Function to handle the scroll event
+//   function handleScroll() {
+//     // Calculate the position of the scroll trigger element
+//     var triggerPosition = scrollHere.offset().top;
+//     // Calculate the current scroll position
+//     var scrollTop = $(window).scrollTop();
+
+//     // Check if the scroll position is past the trigger element
+//     if (scrollTop > triggerPosition-380) {
+//       paymentBox.fadeIn(200);
+//     } else {
+//       paymentBox.fadeOut(200);
+//     }
+//   }
+
+//   // Add a scroll event listener
+//   $(window).scroll(handleScroll);
+
+//   // Initial check on page load (in case the trigger point is already passed)
+//   handleScroll();
+// });
 
 
 
