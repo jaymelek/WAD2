@@ -51,6 +51,7 @@
                 </div>
             </div>
         </div>
+        <button type="submit" class="logout" @click="userLogout"> Logout </button>
     </div>
     <!-- <login /> -->
     <div v-if="loginUser == false">
@@ -62,9 +63,16 @@
                         <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
                         <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
                         <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
+                        <router-link :to="{ name: 'registerPage' }" style="text-decoration: none;">
+                            <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Don't
+                                    have
+                                    an account, register now!</span></a>
+                        </router-link>
                     </form>
+
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -74,15 +82,11 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import axios from "axios";
 import Global from "../global";
-// import login from "./loginPage.vue";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/users.json'; // Replace with the path to your data
 
 export default {
-    // components: {
-    //     login
-    // },
     data() {
         return {
             users: [],
@@ -93,7 +97,7 @@ export default {
     },
     created() {
         // console.log(Global.sharedData)
-        // console.log(Global.loginInfo)
+        console.log(Global.loginInfo)
         // console.log(this.loginUser)
         // console.log(Global.personArr)
 
@@ -115,7 +119,8 @@ export default {
                                 this.person.loginStatus = true;
 
                                 Global.loginInfo = this.person.loginStatus;
-                                Global.memberStatus = this.person.membership;
+
+                                // Global.memberStatus = this.person.membership;
                                 // console.log(Global.memberStatus)
                                 // console.log(Global.loginInfo)
                             }
@@ -144,11 +149,15 @@ export default {
                             this.person = this.users[user.uid]
                             // console.log(this.person)
                             Global.sharedData = user.uid;
+
                             Global.loginInfo = true;
                             this.loginUser = true;
+                            Global.memberStatus = this.person.membership;
+
+                            // console.log(Global.memberStatus)
                             // this.$router.push("profilePage")
                             // console.log(Global.sharedData)
-                            // console.log(Global.loginInfo)
+                            console.log(Global.loginInfo)
                         }
                     }
 
@@ -160,6 +169,15 @@ export default {
                     console.log(errorCode)
                     console.log(errorMessage)
                 });
+        },
+        userLogout() {
+            this.loginUser = false;
+            this.email = '';
+            this.password = '';
+            Global.memberStatus = 0;
+            
+            // this.$router.push('profilePage')
+            console.log(this.loginUser)
         }
     }
 }
@@ -171,6 +189,11 @@ export default {
     animation: 2s anim-lineUp ease-out;
     text-align: center;
 }
+
+.logout {
+    margin-top: 30px;
+}
+
 
 @keyframes anim-lineUp {
     0% {

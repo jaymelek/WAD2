@@ -125,6 +125,7 @@ export default {
 
   created() {
     console.log(Global)
+    // console.log(Global.memberStatus)
   }
 }
 </script>

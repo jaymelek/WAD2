@@ -34,9 +34,11 @@
 
 // const app = initializeApp(firebaseConfig);
 // const database = getDatabase(app);
+
 import app from "../firebase/firebase"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, set, ref } from "firebase/database";
+import Global from "../global";
 
 const auth = getAuth();
 const database = getDatabase(app);
@@ -49,15 +51,12 @@ export default {
             password2: '',
             telegram: '',
             name: '',
+            // loginStatus: Global.loginInfo,
+
         }
     },
     methods: {
         register() {
-            console.log(this.email);
-            console.log(this.password);
-            this.$router.push('/loginPage')
-
-
             createUserWithEmailAndPassword(auth, this.email, this.password2)
                 .then((userCredential) => {
                     // Signed up 
@@ -68,6 +67,7 @@ export default {
                         name: this.name,
                         telegram: this.telegram
                     })
+
                     console.log(user)
                     alert('Account Created!')
                     // ...
@@ -81,6 +81,10 @@ export default {
                     alert(errorMessage);
                     // ..
                 });
+            console.log(this.email);
+            console.log(this.password);
+            this.$router.push('/profilePage')
+            Global.loginInfo == false
         }
     }
 
