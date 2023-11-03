@@ -4,6 +4,7 @@
 <template>
     <div class="marginTop"></div>
     
+    
     <!-- Start of Content -->
     <div class="container-fluid colWidth">
         <div class="row align-items-center justify-content-center m-2"> 
@@ -31,6 +32,10 @@
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="container my-5">
+        <div v-if="this.loginInfo == null" class="alert alert-danger" role="alert"> Please login before borrowing a game! </div>
         </div>
 
         <div class="row">
@@ -157,7 +162,7 @@
                 
                         <!-- Confirm Button -->
                         <button type="submit" class="btn btn-outline-light w-100"
-                        @click="postApplication()"
+                        @click="postApplication()" :disabled="loginInfo !== null"
                         >Confirm</button> 
                 </form>
             </div>

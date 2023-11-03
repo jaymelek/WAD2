@@ -84,6 +84,11 @@ export default {
         console.error('Error fetching data:', error);
         });
     },
+    methods:{
+        scrollToTop(){
+            window.scrollTo(0, 0);
+        }
+    },
 
 
 };
@@ -126,7 +131,7 @@ export default {
                     <h4>We hold weekly sessions on <span class="coloured">Friday Evenings: 6.30-9pm</span>, open to all! Watch out for our weekly EDMs over email and our telegram channel.
                         Members are also invited to our annual Strategica Retreat and can loan our board games for free!
                         <br> Interested?
-                        <br> <span class="coloured">Join us today!</span>
+                        <br> <router-link :to="{ name: 'payPage' }" style="text-decoration: none;"><span class="coloured hoverEffect" @click="scrollToTop">Join us today!</span> </router-link> 
                     </h4>
                 </div>
             </div>
@@ -306,5 +311,9 @@ export default {
     }
 }
 
+.hoverEffect:hover{
+    color: white;
+
+}
 </style>
 

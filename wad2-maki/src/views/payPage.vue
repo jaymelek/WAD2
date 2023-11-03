@@ -14,11 +14,37 @@
 
       </div>
 
+      <div class="row justify-content-center">
+            <div class="col-8">
+                <div id="carouselexco" class="carousel slide mt-5" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../assets/exco24.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../assets/santorini.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../assets/exco.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselexco" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselexco" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+              </div>
+        </div>
+
 
       <div class="container-fluid">
 
       <div class="row align-items-center justify-content-center rowInfo">
-          <div class="col-md-3 text-center">
+          <div class="col-md-3 text-center dice-bg" style="height: 200px;">
               <span class="highlighted">Benefits</span>
           </div>
           <div class="col-auto px-0">
@@ -46,25 +72,7 @@
           </ul>
         </div>
       </div>
-
-
-      <!-- <div class="col-lg-6">
-        <div class="row align-items-start justify-content-center" style="text-align: center;">
-        <div>
-          <span class="highlighted">Membership Requirements</span>
-          <ul>
-            <li><h4>$3 per semester</h4></li>
-            <li><h4>$5 per academic year</h4></li>
-            <li><h4>Attendance of 4 sessions</h4></li>
-          </ul>
-        </div>
-      </div>
-
-      </div> -->
-
-
-
-      
+   
   </div>
 
   </div>
@@ -154,6 +162,7 @@ import Global from '../global';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
+
 export default{
   data(){
       return{
@@ -236,7 +245,7 @@ export default{
       }
       return "$0";
     }
-  }
+  },
 }
 
 
@@ -311,4 +320,10 @@ li{
       align-items: center;
 }
 
+.dice-bg {
+    background-image: url(../assets/dice_2_bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;  
+}
 </style>
