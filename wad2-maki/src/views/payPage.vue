@@ -61,8 +61,11 @@
       </div>
 
       <div class="row align-items-start justify-content-center" style="text-align: center;">
-        <div class="col-lg-6 text-center">
-              <span class="highlighted">Membership Requirements</span>
+        <div class="col-lg-6 text-center">  
+          <img src="../assets/dblue_pawn.png" class="tilted-img1">     
+          <span class="highlighted">Membership Requirements</span>
+          <img src="../assets/dblue_pawn.png" class="tilted-img2">
+        </div>
         </div>
         <div class="d-flex justify-content-center">
           <ul>
@@ -71,7 +74,6 @@
             <li><h4>Attendance of 4 sessions</h4></li>
           </ul>
         </div>
-      </div>
    
   </div>
 
@@ -248,33 +250,6 @@ export default{
   },
 }
 
-// $(document).ready(function() {
-//   // Reference to the scroll trigger element
-//   var scrollHere = $("#scrollHere");
-//   // Reference to the hidden element to appear
-//   var paymentBox = $("#paymentBox");
-
-//   // Function to handle the scroll event
-//   function handleScroll() {
-//     // Calculate the position of the scroll trigger element
-//     var triggerPosition = scrollHere.offset().top;
-//     // Calculate the current scroll position
-//     var scrollTop = $(window).scrollTop();
-
-//     // Check if the scroll position is past the trigger element
-//     if (scrollTop > triggerPosition-380) {
-//       paymentBox.fadeIn(200);
-//     } else {
-//       paymentBox.fadeOut(200);
-//     }
-//   }
-
-//   // Add a scroll event listener
-//   $(window).scroll(handleScroll);
-
-//   // Initial check on page load (in case the trigger point is already passed)
-//   handleScroll();
-// });
 
 
 
@@ -352,5 +327,15 @@ li{
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;  
+}
+
+.tilted-img1{
+  transform: rotate(-15deg);
+  width: 10%;
+
+}
+.tilted-img2{
+  transform: rotate(15deg);
+  width: 10%;
 }
 </style>

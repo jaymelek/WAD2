@@ -3,7 +3,7 @@
   <div class="wrapper"> <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
   </svg>
   </div>
-  <div class="container mt-5">
+  <div class="container mt-3">
     <div class="container-fluid text-center">
       <span class="highlighted">Payment Success!</span>
       <h4>Thank you for your payment!</h4>
@@ -57,7 +57,10 @@
     stroke-width: 2;
     stroke: #fff;
     stroke-miterlimit: 10;
-    margin: 10px auto;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    margin-right: auto;
+    margin-left: auto;
     box-shadow: inset 0px 0px 0px #7ac142;
     animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both}
     
