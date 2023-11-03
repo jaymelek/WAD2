@@ -27,33 +27,40 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-12 order-5 mt-3">
                 <div class="info-border">
-                    <p><strong>Current borrowing: </strong></p>
-                    <ul>
-                        <li v-for="(game, index) in person.currentBorrowing" :key="index">{{ game }}</li>
-                    </ul>
+                    <p v-if="person.currentBorrowing == 'null'"><strong>Current borrowing: - </strong></p>
+                    <div v-else>
+                        <p><strong>Current borrowing: </strong></p>
+                        <ul>
+                            <li v-for="(game, index) in person.currentBorrowing" :key="index">{{ game }}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row align-items-center justify-content-center">
             <div class="col-12 mt-3 order-4">
                 <div class="info-border">
-                    <p><strong>History of past games: </strong>
-                    <ul>
-                        <li v-for="(game, index) in person.historyGame" :key="index">{{ game }}</li>
-                    </ul>
-                    </p>
-                    <p><strong>Favourite Games: </strong>
-                    <ul>
-                        <li v-for="(game, index) in person.favGame" :key="index">{{ game }}</li>
-                    </ul>
-                    </p>
+                    <p v-if="person.historyGame == 'null'"><strong>History of past games: - </strong></p>
+                    <div v-else>
+                        <p><strong>History of past games: </strong></p>
+                        <ul>
+                            <li v-for="(game, index) in person.historyGame" :key="index">{{ game }}</li>
+                        </ul>
+                    </div>
+                    <p v-if="person.favGame == 'null'"><strong>Favourite Games:- </strong></p>
+                    <div v-else>
+                        <p><strong>Favourite Games: </strong></p>
+                        <ul>
+                            <li v-for="(game, index) in person.favGame" :key="index">{{ game }}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <button class="btn btn-outline-light w-50 my-4" @click="userLogout">
-          Logout
+            Logout
         </button>
-        </div>
+    </div>
     <!-- <login /> -->
     <div v-if="loginUser == false">
 
@@ -99,7 +106,7 @@ export default {
             users: [],
             person: [],
             loginUser: Global.loginInfo,
-            loginErrorMessage:'',
+            loginErrorMessage: '',
 
         }
     },
@@ -146,7 +153,7 @@ export default {
         userLogin() {
             const auth = getAuth();
 
-        
+
             signInWithEmailAndPassword(auth, this.email, this.password)
                 .then((userCredential) => {
                     // Signed in 
@@ -189,7 +196,7 @@ export default {
             Global.memberStatus = 0;
             Global.sharedData = false;
 
-            
+
             console.log(this.loginUser)
         }
     }
@@ -202,7 +209,7 @@ export default {
     text-align: center;
 }
 
-.register{
+.register {
     font-size: 15px;
     text-align: center;
 }
@@ -270,7 +277,7 @@ export default {
     position: relative;
 }
 
-#login-form{
+#login-form {
     max-width: 400px;
 }
 
