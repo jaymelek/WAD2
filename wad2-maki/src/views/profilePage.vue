@@ -1,8 +1,8 @@
 <template>
-    <div class="marginTop"></div>
 
     <div class="container maxwidth" v-if="loginUser == true">
         <!-- <h1>This is the profile page!</h1> -->
+        <div class="marginTop"></div>
 
         <div class="row mt-3 align-items-center justify-content-center">
             <!-- <div class="col col-12 col-sm-12 col-md-12 col-lg-12 order-1 d-flex align-items-center">
@@ -54,12 +54,10 @@
     </div>
     <!-- <login /> -->
     <div v-if="loginUser == false">
-        <div class="banner">
+        <div class="banner1">
             <div id='login-form' class='login-page'>
                 <div class="form-box">
-                    <div class="button-box">
-                        <h3 class="loginheader">Log In</h3>
-                    </div>
+                    <h3 class="loginheader">Log In</h3>
                     <form id="login" class="input-group-login" @submit.prevent="userLogin">
                         <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
                         <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
@@ -167,11 +165,7 @@ export default {
 }
 </script>
 
-<style>
-.name {
-    font-size: 30px;
-    margin: auto;
-}
+<style scoped>
 
 .lineUp {
     animation: 2s anim-lineUp ease-out;
@@ -229,5 +223,91 @@ export default {
 
 .marginTop {
     height: 80px;
+}
+
+.banner1 {
+    width: 100%;
+    height: 150vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
+    background-size: 20% auto;
+    background-position: center;
+    position: relative;
+}
+
+
+.form-box {
+    width: 380px;
+    height: 400px;
+    position: relative;
+    top: 50px;
+    margin: auto;
+    background: #fff;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 20px;
+
+}
+
+h3 {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+
+}
+
+
+
+.input-group-login {
+    top: 150px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+
+}
+
+
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(123, 167, 187, 1);
+    outline: none;
+    background: transparent;
+}
+
+.input-field::placeholder {
+    color: rgba(123, 167, 187, 1);
+}
+
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 25px auto;
+    background: rgba(123, 167, 187, 1);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+
+}
+
+#login {
+    left: 50px;
+}
+
+#login input {
+    color: rgba(123, 167, 187, 1);
+    font-size: 15;
+}
+
+
+.loginheader {
+    color: rgba(123, 167, 187, 1);
+    text-align: center;
 }
 </style>

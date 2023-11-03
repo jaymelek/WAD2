@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped>
-.bannerLogin {
+.banner {
     width: 100%;
     height: 150vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
@@ -108,7 +108,7 @@ export default {
     width: 380px;
     height: 400px;
     position: relative;
-    top: 20px;
+    top: 50px;
     margin: auto;
     background: #fff;
     padding: 10px;

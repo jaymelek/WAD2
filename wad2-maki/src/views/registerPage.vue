@@ -1,5 +1,5 @@
 <template>
-    <div class="bannerRegister">
+    <div class="banner">
         <div id='register-form' class='register-page'>
             <div class="form-box">
                 <h3 class="registerheader">Register An Account</h3>
@@ -89,7 +89,7 @@ export default {
 
 
 <style>
-.bannerRegister {
+.banner {
     width: 100%;
     height: 150vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);

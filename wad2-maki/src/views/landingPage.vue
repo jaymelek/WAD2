@@ -105,8 +105,7 @@ export default {
         <div class="row">
             <div class="col px-0">
                 <div class="imgbox">
-                    <div id="bannerLanding">
-                    </div>
+                    <div class="banner"></div>
                 </div>
             </div>
         </div>
@@ -196,11 +195,12 @@ export default {
     }
 }
 
-#bannerLanding {
+.banner {
     max-width: 100vw;
     max-height: 50vh;
     margin:auto;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1),  rgba(123, 167, 187, 1)), url(../assets/strategica_header.jpg); /* linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),  */
+    background-size: cover;
 } 
 
 .imgbox {
