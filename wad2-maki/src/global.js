@@ -1,7 +1,8 @@
 export default {
-    sharedData: null,
-    memberStatus: null,
-    loginInfo: null,
-
+    sharedData: false,
+    memberStatus: false,
+    loginInfo: false,
+    personArr: [],
+    
 
 };

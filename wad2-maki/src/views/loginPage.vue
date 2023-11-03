@@ -1,21 +1,20 @@
 <template>
-    <div>
+    <div v-if="loginStatus == false">
         <div class="banner">
             <div id='login-form' class='login-page'>
                 <div class="form-box">
                     <div class="button-box">
                         <h3 class="loginheader">Log In</h3>
                     </div>
-                    <form id="login" class="input-group-login"  @submit.prevent="userLogin">
+                    <form id="login" class="input-group-login" @submit.prevent="userLogin">
                         <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
                         <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
                         <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
                     </form>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
-
 </template>
 
 
@@ -30,13 +29,15 @@ const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast
 const path = '/users.json'; // Replace with the path to your data
 
 export default {
-    
+
     data() {
         return {
             email: '',
             password: '',
             users: [],
             person: [],
+            loginStatus: Global.loginInfo,
+
 
         }
     },
@@ -67,14 +68,18 @@ export default {
 
                     if (user !== null) {
                         // console.log(user.uid)
-                        if (Object.keys(this.users).includes(user.uid)){
-                            // this.person = this.users[user.uid]
+                        if (Object.keys(this.users).includes(user.uid)) {
+                            this.person = this.users[user.uid]
                             // console.log(this.person)
                             Global.sharedData = user.uid;
-                            this.$router.push("profilePage")
-                            console.log(Global.sharedData)
+                            Global.loginInfo = true;
+                            this.loginStatus = true;
+                            // this.$router.push("profilePage")
+                            // console.log(Global.sharedData)
+                            // console.log(Global.loginInfo)
                         }
                     }
+                    
                 })
 
                 .catch((error) => {

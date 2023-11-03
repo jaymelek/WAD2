@@ -60,9 +60,6 @@
 
     </div>
   </nav>
-
-  
-
 </template>
 
 
@@ -73,11 +70,11 @@ import Global from "../global";
 // const windowWidth = ref(window.innerWidth)
 
 window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar'); // Select your navbar element
-    const scrollPosition = window.scrollY; // Get the current scroll position
+  const navbar = document.querySelector('.navbar'); // Select your navbar element
+  const scrollPosition = window.scrollY; // Get the current scroll position
 
-    // Set a threshold scroll position where the class should toggle
-    const thresholdPosition = 200; // Adjust this value as needed
+  // Set a threshold scroll position where the class should toggle
+  const thresholdPosition = 200; // Adjust this value as needed
 
     // Check if the scroll position has passed the threshold
     if (scrollPosition > thresholdPosition) {
@@ -169,7 +166,8 @@ export default {
   transition: all 300ms ease;
   border-radius: 50%;
   padding: 10px;
-  overflow: hidden; /* Add overflow to contain the hover circle */
+  overflow: hidden;
+  /* Add overflow to contain the hover circle */
 }
 
 .profile-hover-effect:after {
@@ -181,34 +179,37 @@ export default {
   transition: all 0.3s ease;
   background-color: #070F5F;
   border-radius: 50%;
-  top: 0; 
+  top: 0;
   left: 0;
-  transform: scale(0); /* Initial size, hidden */
+  transform: scale(0);
+  /* Initial size, hidden */
   transform-origin: center;
   z-index: -1;
 }
 
 .profile-hover-effect:hover::after {
-  transform: scale(1); /* Scale up to full size on hover */
+  transform: scale(1);
+  /* Scale up to full size on hover */
 }
 
 .profile-item-active .profile-hover-effect {
-  background-color: rgba(7,15,95) ;
-  border-radius: 50%; 
+  background-color: rgba(7, 15, 95);
+  border-radius: 50%;
 }
 
 /* For Other Hover and Active Effects */
 
 .hover-effect {
-    margin: 0px;
-    text-decoration: none;
-    color: white;
-    z-index: 1;
-    display: block;
-    position: relative;
-   
-    align-items: center;
-    transition: all 300ms ease; /*cubic-bezier(0.075, 0.82, 0.165, 1);*/
+  margin: 0px;
+  text-decoration: none;
+  color: white;
+  z-index: 1;
+  display: block;
+  position: relative;
+
+  align-items: center;
+  transition: all 300ms ease;
+  /*cubic-bezier(0.075, 0.82, 0.165, 1);*/
 }
 
 .hover-effect:after {
@@ -256,13 +257,11 @@ export default {
 }
 
 
-navbar{
+navbar {
   padding: 0;
 }
 
 .marginTop {
   height: 2px;
 }
-
-
 </style>
