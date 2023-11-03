@@ -1,17 +1,23 @@
 <template>
     <div class="banner">
-        <div id='register-form' class='register-page'>
-            <div class="form-box">
-                <h3 class="registerheader">Register An Account</h3>
-                <form id="register" class="input-group-register" @submit.prevent="register">
-                    <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
-                    <input type="text" v-model="telegram" class="input-field" placeholder="Telegram Username" required>
-                    <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
-                    <input type="password" v-model="password1" class="input-field" placeholder="Enter Password" required>
-                    <input type="password" v-model="password2" class="input-field" placeholder="Confirm Password" required>
-                    <button type="submit" @click="register" class="submit-btn">Register</button>
-                </form>
+        <div id='register-form' class='container-fluid register-page'>
+            <div class="row justify-content-center px-3 pt-5">
+                <div class="col-sm-auto form-box px-5">
+                    <!-- <div class="form-box mx-3"> -->
+                        <h3 class="registerheader">Register An Account</h3>
+                        <form id="register" class="input-group-register mx-auto" @submit.prevent="register">
+                            <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
+                            <input type="text" v-model="telegram" class="input-field" placeholder="Telegram Username" required>
+                            <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
+                            <input type="password" v-model="password1" class="input-field" placeholder="Enter Password" required>
+                            <input type="password" v-model="password2" class="input-field" placeholder="Confirm Password" required>
+                            <p class="error-message">{{ passwordMatchError }}</p>
+                            <button type="submit" @click="register" class="submit-btn">Register</button>
+                        </form> 
+                    <!-- </div> -->
+                </div>
             </div>
+            
 
         </div>
     </div>
@@ -51,12 +57,18 @@ export default {
             password2: '',
             telegram: '',
             name: '',
+            passwordMatchError: '',
             // loginStatus: Global.loginInfo,
 
         }
     },
     methods: {
         register() {
+            if (this.password1 !== this.password2) {
+                this.passwordMatchError = "Passwords do not match.";
+                return; // Exit the method to prevent further execution
+            }
+
             createUserWithEmailAndPassword(auth, this.email, this.password2)
                 .then((userCredential) => {
                     // Signed up 
@@ -102,22 +114,25 @@ export default {
     position: relative;
 }
 
+#register-form {
+    max-width: 400px;
+}
 
 .form-box {
-    width: 380px;
-    height: 480px;
+    width: 100%;
+    /* height: 100%; */
     position: relative;
     top: 40px;
     margin: auto;
     background: #fff;
     padding: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 20px;
 
 }
 
- h3{
-    width: 220px;
+h3 {
+    /* width: 220px; */
     margin: 35px auto;
     position: relative;
 
@@ -125,8 +140,8 @@ export default {
 
 .input-group-register {
     top: 120px;
-    position: absolute;
-    width: 280px;
+    /* position: relative; */
+    /* width: 280px; */
 }
 
 .input-field {
@@ -171,5 +186,9 @@ export default {
 .registerheader {
     color: rgba(123, 167, 187, 1);
     text-align: center;
+}
+
+.error-message{
+    color: red;
 }
 </style>
