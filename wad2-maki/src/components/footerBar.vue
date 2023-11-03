@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer px-0">
     <a href="#top" id="scrollToTopButton">
       <div class="dice-footer" style="text-align: end; ">
         <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
@@ -9,18 +9,21 @@
 
     <p style="text-decoration: none; color: white; text-align: end; margin-right: 50px;">Back to Top!</p>
 
-    <div class="nav mb-3 justify-content-center">
-      <a class="my-1" href="">Home</a>
-      <a class="my-1" href="">About Us</a>
-      <a class="my-1" href="">Contact Us</a>
+    <div class="nav mb-3 mx-0 justify-content-center">
+      <a class="my-1 mx-3" href="">Home</a>
+      <a class="my-1 mx-3" href="">About Us</a>
+      <a class="my-1 mx-3" href="">Contact Us</a>
     </div>
     
     <div class="logos mb-3">
       <a href="https://www.instagram.com/smu_strategica/?hl=en">
-        <img src="../assets/instagram_logo.png" class="logo img-fluid mx-3" alt="">
+        <img src="../assets/instagram_logo.png" class="logo img-fluid mx-2" alt="">
       </a>
       <a href="https://t.me/SMUStrategica">
-        <img src="../assets/telegram_logo.png" class="logo img-fluid-mx-3" alt="">
+        <img src="../assets/telegram_logo.png" class="logo img-fluid mx-2" alt="">
+      </a>
+      <a href="mailto:strategica@sa.smu.edu.sg">
+        <img src="../assets/mail_logo.png" class="logo img-fluid mx-2" alt="">
       </a>
     </div>
     
@@ -100,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .logo {
-    width: 50px;
+    width: 30px;
     height: auto;
 }
 </style>
