@@ -9,7 +9,20 @@ import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage'
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/games.json'; // Replace with the path to your data
 
+$(document).on("scroll", function() {
+  var pageTop = $(document).scrollTop();
+  var pageBottom = pageTop + $(window).height();
+  var tags = $(".effect");
 
+  for (var i = 0; i < tags.length; i++) {
+    var tag = tags[i];
+    if ($(tag).position().top < pageBottom) {
+      $(tag).addClass("visible");
+    } else {
+      $(tag).removeClass("visible");
+    }
+  }
+});
 
 
 // import navBar from '../components/navBar.vue';
@@ -112,7 +125,7 @@ export default {
 
         <div class="container-fluid maxWidth">
             <!-- Second row:  Slogan and Group of Games Image-->
-            <div class="row align-items-center justify-content-center">
+            <section class="row align-items-center justify-content-center effect">
                 <div class="col-md-6 pl-md-5 text-center">
                     <h1 class="sloganText">Never <span class="highlighted">Bored</span> 
                     <br> with <span class="highlighted">Board</span> Games</h1>
@@ -121,10 +134,10 @@ export default {
                 <div class="col-auto px-0">
                     <img src="../assets/games_group.png" class="imgFit">
                 </div>
-            </div>
+            </section>
 
             <!-- Third Row: What we do -->
-            <div class="row align-items-center justify-content-center mb-4">
+            <section class="row align-items-center justify-content-center effect">
                 <div class="col-md-6 px-sm-5 dice-bg text-center">
                     <h1 class="sloganText"><span class="highlighted">What do we do?</span> </h1>
                     <h4>We hold weekly sessions on <span class="coloured">Friday Evenings: 6.30-9pm</span>, open to all! Watch out for our weekly EDMs over email and our telegram channel.
@@ -133,10 +146,10 @@ export default {
                         <br> <router-link :to="{ name: 'payPage' }" style="text-decoration: none;"><span class="coloured hoverEffect" @click="scrollToTop">Join us today!</span> </router-link> 
                     </h4>
                 </div>
-            </div>
+            </section>
 
             <!-- Fourth Row: Autoscrolling EDMs -->
-            <div class="row align-items-center justify-content-center ">
+            <section class="row align-items-center justify-content-center effect">
                 <div class="col px-0">
                     <div class="slider">
                         <div class="slide-track">
@@ -167,10 +180,10 @@ export default {
                         </div>
                     </div>    
                 </div>
-            </div>
+            </section>
 
             <!-- Fifth Row: Past Events Pictures, Interested in a collab? -->
-            <div class="row align-items-center justify-content-center collab">
+            <section class="row align-items-center justify-content-center collab effect">
                 <div class="col-auto px-0">
                     <img src="../assets/games_group.png" class="imgFit">
                 </div>
@@ -182,7 +195,7 @@ export default {
 
                     </h4>
                 </div>
-            </div>
+            </section>
 
 
 
@@ -197,6 +210,43 @@ export default {
 
 <!-- Style -->
 <style scoped>
+
+/* Default styles for the section element */
+section {
+  height: 60vh;
+}
+
+/* Define the animation properties for .effect */
+.effect {
+  opacity: 0;
+  transform: translateY(10vh);
+  transition: all 1s;
+}
+
+/* Add styles for the .effect when it's visible */
+.effect.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media query for smaller screens (adjust breakpoints as needed) */
+@media (max-width: 576px) {
+  section {
+    height: 80vh; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    height: 80vh; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 992px) {
+  section {
+    height: 80vh; /* Adjust the height for smaller screens */
+  }
+}
 
 @keyframes scroll {
     0% {

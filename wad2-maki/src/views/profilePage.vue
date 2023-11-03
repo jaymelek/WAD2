@@ -1,5 +1,4 @@
 <template>
-
     <div class="container maxwidth" v-if="loginUser == true">
         <!-- <h1>This is the profile page!</h1> -->
         <div class="marginTop"></div>
@@ -51,24 +50,32 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="logout" @click="userLogout"> Logout </button>
-    </div>
+        <button class="btn btn-outline-light w-50 my-4" @click="userLogout">
+          Logout
+        </button>
+        </div>
     <!-- <login /> -->
     <div v-if="loginUser == false">
+
         <div class="banner1">
-            <div id='login-form' class='login-page'>
-                <div class="form-box">
-                    <h3 class="loginheader">Log In</h3>
-                    <form id="login" class="input-group-login" @submit.prevent="userLogin">
-                        <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
-                        <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
-                        <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
-                        <router-link :to="{ name: 'registerPage' }" style="text-decoration: none;">
-                            <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Don't
-                                    have
-                                    an account, register now!</span></a>
-                        </router-link>
-                    </form>
+            <div id='login-form' class='container-fluid login-page'>
+                <div class="row justify-content-center px-3 pt-5">
+                    <div class="col-sm-auto form-box px-5">
+                        <h3 class="loginheader">Log In</h3>
+                        <form id="login" class="input-group-login" @submit.prevent="userLogin">
+                            <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
+                            <input type="password" v-model="password" class="input-field" placeholder="Enter Password"
+                                required>
+                            <p class="error-message">{{ loginErrorMessage }}</p>
+                            <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
+                            <router-link :to="{ name: 'registerPage' }" style="text-decoration: none;">
+                                <a class="nav-link register" aria-current="page" :style="fontColor"><span
+                                        class="conHighlighted">Don't
+                                        have
+                                        an account? Register now!</span></a>
+                            </router-link>
+                        </form>
+                    </div>
 
                 </div>
             </div>
@@ -92,6 +99,7 @@ export default {
             users: [],
             person: [],
             loginUser: Global.loginInfo,
+            loginErrorMessage:'',
 
         }
     },
@@ -137,6 +145,8 @@ export default {
     methods: {
         userLogin() {
             const auth = getAuth();
+
+        
             signInWithEmailAndPassword(auth, this.email, this.password)
                 .then((userCredential) => {
                     // Signed in 
@@ -168,15 +178,18 @@ export default {
                     const errorMessage = error.message;
                     console.log(errorCode)
                     console.log(errorMessage)
+                    this.loginErrorMessage = "Invalid Username/Password";
                 });
         },
         userLogout() {
             this.loginUser = false;
+            Global.loginInfo = this.loginUser;
             this.email = '';
             this.password = '';
             Global.memberStatus = 0;
+            Global.sharedData = false;
+
             
-            // this.$router.push('profilePage')
             console.log(this.loginUser)
         }
     }
@@ -184,14 +197,14 @@ export default {
 </script>
 
 <style scoped>
-
 .lineUp {
     animation: 2s anim-lineUp ease-out;
     text-align: center;
 }
 
-.logout {
-    margin-top: 30px;
+.register{
+    font-size: 15px;
+    text-align: center;
 }
 
 
@@ -257,22 +270,26 @@ export default {
     position: relative;
 }
 
+#login-form{
+    max-width: 400px;
+}
+
 
 .form-box {
-    width: 380px;
-    height: 400px;
+    width: 100%;
+    /* height: 400px; */
     position: relative;
-    top: 50px;
+    top: 40px;
     margin: auto;
     background: #fff;
     padding: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 20px;
 
 }
 
 h3 {
-    width: 220px;
+    /* width: 220px; */
     margin: 35px auto;
     position: relative;
 
@@ -282,9 +299,9 @@ h3 {
 
 .input-group-login {
     top: 150px;
-    position: absolute;
-    width: 280px;
-    transition: .5s;
+    /* position:absolute; */
+    /* width: 280px; */
+    /* transition: .5s; */
 
 }
 

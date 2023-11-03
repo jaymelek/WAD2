@@ -21,26 +21,9 @@
 
         </div>
     </div>
-
-    <!-- <loginComponent></loginComponent> -->
 </template>
 
 <script>
-// import { initializeApp } from "firebase/app";
-// import { getDatabase } from "firebase/database";
-// const firebaseConfig = {
-//   apiKey: "AIzaSyByBwnq_ExHDl-TwwIDb4PrSomTDyp0E10",
-//   authDomain: "wad2-proj-642be.firebaseapp.com",
-//   projectId: "wad2-proj-642be",
-//   storageBucket: "wad2-proj-642be.appspot.com",
-//   messagingSenderId: "104140066907",
-//   appId: "1:104140066907:web:9fb31d0e04d1b5cf042f7e",
-//   databaseURL: "https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app"
-// };
-
-// const app = initializeApp(firebaseConfig);
-// const database = getDatabase(app);
-
 import app from "../firebase/firebase"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, set, ref } from "firebase/database";
@@ -111,7 +94,7 @@ export default {
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
     background-size: 20% auto;
     background-position: center;
-    position: relative;
+    /* position: relative; */
 }
 
 #register-form {
