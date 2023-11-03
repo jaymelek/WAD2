@@ -30,3 +30,9 @@ npm run serve
 ```
 Access the project from the localhost link produced
 
+## Username and Passwords
+| Type        | Email           | Password  |
+| ------------- |:-------------:| -----:|
+| Non-Member | jaymelek02@gmail.com      |    imjayme |
+| Member      | danielchoi00@gmail.com | imdaniel |
+| Exco      | beatricegan02@gmail.com      |   imbeatrice |
