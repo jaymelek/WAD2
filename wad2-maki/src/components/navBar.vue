@@ -1,17 +1,31 @@
 <template>
 
-    <nav class="navbar navbar-expand-sm fixed-top" :style="navbarBackgroundColor">
+    <nav class="navbar navbar-expand-md fixed-top navbarBackgroundColor" > <!--:style="navbarBackgroundColor"-->
     <div class="container-fluid">
-      <!-- <div class="marginTop"></div> -->
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list hamburgerIcon" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </button>
+
       <router-link :to="{ name: 'landingPage' }" >
         <a class="navbar-brand" href="#">
           <img src="../assets/logo.png" style="width: 100px; height: auto;">
         </a>
       </router-link>
 
+      <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;" class="order-sm-last">
+        <a  aria-current="page" :style="fontColor" :class="[{ 'profile-item-active': isActive('profilePage') }, 'nav-link', 'profile-hover-effect']"> <!--class="nav-link profile-hover-effect"-->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill profileIcon" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg>
+        </a>
+      </router-link>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect']">
+          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect', 'w-auto']">
             <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Borrow a Game</span></a>
             </router-link>
@@ -38,21 +52,7 @@
             </router-link>
           </li>
         </ul>
-      </div>
-
-      <div>
-        <ul class="profileUl">
-          <li :class="{ 'profile-item-active': isActive('profilePage') }">
-            <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;">
-              <a class="nav-link profile-hover-effect" aria-current="page" :style="fontColor">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill profileIcon" viewBox="0 0 16 16">
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                </svg>
-              </a>
-            </router-link>
-          </li>
-        </ul>
-      </div>
+      </div> <!-- End of Collapsing Items -->
 
     </div>
   </nav>
@@ -76,7 +76,7 @@ window.addEventListener('scroll', function () {
 
     // Check if the scroll position has passed the threshold
     if (scrollPosition > thresholdPosition) {
-        navbar.classList.remove('fixed-top'); // Remove the "fixed-top" class
+        // navbar.classList.remove('fixed-top'); // Remove the "fixed-top" class
     } else {
         navbar.classList.add('fixed-top'); // Add the "fixed-top" class
     }
@@ -90,7 +90,7 @@ export default {
       Global: Global,
     }
   },
-  
+
   methods: {
     logoutUser() {
       Global.sharedData = null;
@@ -101,14 +101,14 @@ export default {
     }
   },
   computed: {
-      navbarBackgroundColor() {
-        const routeMeta = this.$route.meta;
-        return {
-        backgroundColor: routeMeta.backgroundColor || 'transparent',
-        color: routeMeta.color || 'white',
-        paddingTop: routeMeta.padding-top || '0px',
-        }
-      },
+      // navbarBackgroundColor() {
+      //   const routeMeta = this.$route.meta;
+      //   return {
+      //   backgroundColor: routeMeta.backgroundColor || 'transparent',
+      //   color: routeMeta.color || 'white',
+      //   paddingTop: routeMeta.padding-top || '0px',
+      //   }
+      // },
       fontColor(){
         const routeMeta = this.$route.meta;
         return {
@@ -116,10 +116,18 @@ export default {
         }
       }
     },
+
+  created() {
+    console.log(Global)
+  }
 }
 </script>
 
 <style>
+.navbarBackgroundColor{
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(78, 129, 152, 0.7));
+}
+
 .router-link {
   text-decoration: none;
   color: black;
@@ -138,11 +146,6 @@ export default {
   width: 25px;
   height: 25px;
   margin: 5px;
-  
-}
-
-.profileUl {
-  list-style-type: none;
 }
 
 /* For Profile Hover and Active Effects */
@@ -231,6 +234,16 @@ export default {
   text-decoration: underline 2.5px;
   text-decoration-color: #070F5F;
   color: white;
+}
+
+.navbar .navbar-toggler:focus{
+  color: #070F5F;
+}
+
+.hamburgerIcon {
+  color: white;
+  height: 25px;
+  width: 25px;
 }
 
 
