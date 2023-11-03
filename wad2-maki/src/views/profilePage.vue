@@ -1,5 +1,4 @@
 <template>
-
     <div class="container maxwidth" v-if="loginUser == true">
         <!-- <h1>This is the profile page!</h1> -->
         <div class="marginTop"></div>
@@ -51,8 +50,10 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="logout" @click="userLogout"> Logout </button>
-    </div>
+        <button class="btn btn-outline-light w-50 my-4" @click="userLogout">
+          Logout
+        </button>
+        </div>
     <!-- <login /> -->
     <div v-if="loginUser == false">
         <div class="banner1">
@@ -64,9 +65,9 @@
                         <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
                         <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
                         <router-link :to="{ name: 'registerPage' }" style="text-decoration: none;">
-                            <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Don't
+                            <a class="nav-link register" aria-current="page" :style="fontColor"><span class="conHighlighted">Don't
                                     have
-                                    an account, register now!</span></a>
+                                    an account? Register now!</span></a>
                         </router-link>
                     </form>
 
@@ -172,11 +173,13 @@ export default {
         },
         userLogout() {
             this.loginUser = false;
+            Global.loginInfo = this.loginUser;
             this.email = '';
             this.password = '';
             Global.memberStatus = 0;
+            Global.sharedData = false;
+
             
-            // this.$router.push('profilePage')
             console.log(this.loginUser)
         }
     }
@@ -184,14 +187,14 @@ export default {
 </script>
 
 <style scoped>
-
 .lineUp {
     animation: 2s anim-lineUp ease-out;
     text-align: center;
 }
 
-.logout {
-    margin-top: 30px;
+.register{
+    font-size: 15px;
+    text-align: center;
 }
 
 
