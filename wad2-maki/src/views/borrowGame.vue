@@ -199,7 +199,7 @@ export default {
         // currentDate: new Date().toISOString().split('T')[0],
         loanStartDate: this.minDate(),
         selectedEndDate: this.minDate(),
-        borrowingBehalf:"",
+        borrowingBehalf:"Self",
         personName:"",
         telegram:"",
         email:"",
@@ -297,10 +297,10 @@ export default {
         postApplication() {
         // Check if all required fields are filled
         if (this.personName == '' || this.email == '' || this.telegram == '' || this.borrowingBehalf == '' || this.loanStartDate == '' || this.selectedEndDate == ''){
-            alert('Please fill in all required fields.');
+            alert('Please fill in All Personal Details.');
             this.$router.push({ name: 'borrowPage' });
         }else if (this.borrowingBehalf == 'Club' && (this.clubName == '' || this.clubEmail == '' || this.clubContact == '' || this.purpose == '' || this.location == '' || this.whoPlay == '')){
-            alert('Please fill in all required fields.');
+            alert('Please fill in all Club Details.');
             this.$router.push({ name: 'borrowPage' });
         }else if (this.borrowingBehalf == 'Club' && (this.clubName != '' || this.clubEmail != '' || this.clubContact != '' || this.purpose != '' || this.location != '' || this.whoPlay != '')){
             const data = {
@@ -331,7 +331,7 @@ export default {
                 .catch((error) => {
                 console.error('Error posting data:', error);
                 });
-        }else if (this.borrowingBehalf == 'Self'){
+        }else {
             const data = {
                 gameID: this.gameID,
                 gameName: this.listing.name,

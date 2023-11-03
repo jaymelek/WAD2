@@ -9,21 +9,25 @@
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center">
             <div class="col-auto">
                 <img src="../assets/beat.jpg" class="profileImg">
+                <h4>Beatrice</h4>
             </div>
             <div class="col-auto">
                 <img src="../assets/beat.jpg" class="profileImg">
+                <h4>Beatrice</h4>
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center text-center">
             <div class="col-auto">
                 <img src="../assets/beat.jpg" class="profileImg">
+                <h4>Beatrice</h4>
             </div>
             <div class="col-auto">
                 <img src="../assets/beat.jpg" class="profileImg">
+                <h4>Beatrice</h4>
             </div>
         </div>
     </div>
