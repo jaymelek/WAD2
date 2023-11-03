@@ -170,6 +170,19 @@ export default {
             </div>
 
             <!-- Fifth Row: Past Events Pictures, Interested in a collab? -->
+            <div class="row align-items-center justify-content-center collab">
+                <div class="col-auto px-0">
+                    <img src="../assets/games_group.png" class="imgFit">
+                </div>
+                <div class="col-md-6 pl-md-5 text-center">
+                    <h1 class="sloganText"><span class="highlighted">Interested in a Collaboration?</span> </h1>
+                    <h4>You can collaborate with us to loan games for your events or if you require manpower to facilitate your games!
+                        If you would like to collaborate with us, please contact us at 
+                        <a href="mailto:strategica@sa.smu.edu.sg" class="coloured">strategica@sa.smu.edu.sg</a>
+
+                    </h4>
+                </div>
+            </div>
 
 
 
@@ -311,6 +324,10 @@ export default {
 .hoverEffect:hover{
     color: white;
 
+}
+
+.collab{
+    margin-top: 80px;
 }
 </style>
 
