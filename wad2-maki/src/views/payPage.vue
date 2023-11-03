@@ -1,23 +1,23 @@
 <template>
   <div class="marginTop"></div>
-    <div class="memberInfo">
+    
       <h1 class="lineUp">Hey There, Join Us Today!</h1>
       <hr>
       <div class="container-fluid">
         <div class="row justify-content-center">
-          <div class="col-md-10 col-lg-6 text-center">
-          <p>Are you a <span class="highlighted">fan of board games</span> and looking for a community that shares your passion? <br></p>
-          <p>Do you want to be part of a <span class="highlighted">close knit and inclusive community</span> enjoying great company and greater games?<br></p>
+          <div class="col-11 col-sm-8 col-lg-6 text-center">
+            <p>Are you a <span class="highlighted">fan of board games</span> and looking for a community that shares your passion? <br></p>
+            <p>Do you want to be part of a <span class="highlighted">close knit and inclusive community</span> enjoying great company and greater games?<br></p>
 
-          <h5>Join us and create lasting memories, share laughs, and build lifelong friendships through the magic of board games!</h5>
+            <h5>Join us and create lasting memories, share laughs, and build lifelong friendships through the magic of board games!</h5>
 
-          <!-- Ready to roll the dice and make new friends? Don't miss out on the fun, camaraderie, and countless adventures waiting for you. Join us today! -->
+            <!-- Ready to roll the dice and make new friends? Don't miss out on the fun, camaraderie, and countless adventures waiting for you. Join us today! -->
           </div>
         </div>
-      </div>
+      
 
-      <div class="row justify-content-center">
-            <div class="col-8">
+        <div class="row justify-content-center ">
+            <div class="col-md-8 col-11">
                 <div id="carouselexco" class="carousel slide mt-5" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -43,13 +43,18 @@
         </div>
 
 
-      <div class="container-fluid">
-
-      <div class="row align-items-center justify-content-center rowInfo">
-          <div class="col-md-3 text-center dice-bg" style="height: 200px;">
+        <div class="row align-items-center justify-content-center mt-5">
+          <div class="col-auto text-center">
               <span class="highlighted headerText">Benefits</span>
           </div>
+        </div>
+      
+        <div class="row align-items-center justify-content-center">
           <div class="col-auto px-0">
+            <img src="../assets/games_group.png" class="imgFit">
+          </div>
+
+          <div class="col-auto pl-md-5 px-0">
             <ul>
               <li><h4>Free rental of over 100 board games</h4></li>
               <li><h4>CCA Records</h4></li>
@@ -57,36 +62,46 @@
               <li><h4>Community Welfare</h4></li>
               <li><h4>Game Teaching and Learning</h4></li>
               <li><h4>Weekly Game Nights</h4></li>
-              
             </ul>
           </div>
-      </div>
+        </div>
 
-      <div class="row align-items-start justify-content-center" style="text-align: center;">
-        <div class="col-lg-6 text-center">  
-          <img src="../assets/dblue_pawn.png" class="tilted-img1">     
-          <span class="highlighted headerText">Membership Requirements</span>
-          <img src="../assets/dblue_pawn.png" class="tilted-img2">
+        <div class="row align-items-center justify-content-center mt-5">
+          <div class="col-auto px-0">
+              <img src="../assets/dblue_pawn_1.png" class="pawnImg">  
+          </div>
+          <div class="col-auto text-center px-0">
+              <span class="highlighted headerText">&nbsp;Membership&nbsp;</span>
+          </div>  
+          <div class="col-auto text-center px-0 order-last">
+              <span class="highlighted headerText"> &nbsp;Requirements&nbsp; </span>
+          </div>  
+          <div class="col-auto px-0 order-sm-last">
+              <img src="../assets/dblue_pawn_2.png" class="pawnImg">
+          </div>
         </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><h4>$3 per semester</h4></li>
-            <li><h4>$5 per academic year</h4></li>
-            <li><h4>Attendance of 4 sessions</h4></li>
-          </ul>
+
+        <div class="row align-items-start justify-content-center text-center">
+          <div class="d-flex justify-content-center">
+            <ul>
+              <li><h4>$3 per semester</h4></li>
+              <li><h4>$5 per academic year</h4></li>
+              <li><h4>Attendance of 4 sessions</h4></li>
+            </ul>
+          </div>
         </div>
    
-  </div>
+      </div> <!-- end of container-->
 
-  </div>
-  <div id="scrollHere">
-        <h1 style="text-align: center; margin-top: 80px;">Ready to roll the dice?</h1>
-  </div>
-  <hr>
+    
+    <div id="scrollHere">
+          <h1 style="text-align: center; margin-top: 80px; color: #070F5F;">Ready to roll the dice?</h1>
+    </div>
+
+    <hr>
 
   <section id="paymentBox">
-      <h1 style="text-align: center;">Pay for Membership</h1>
+      <h1 style="text-align: center;">Join us Today!</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
       </div>
@@ -106,7 +121,9 @@
           v-model="selectedPaymentOption"
         />
         <label for="yearly">Yearly ($5)</label>
-    </div>
+      </div>
+
+
     <div class="container">
       <form id="payment-form" @submit.prevent="submitPayment">
         <div class="col-lg-8 offset-lg-2">
@@ -152,7 +169,7 @@
               </button>
           </div>
       </form>
-  </div>
+    </div>
 
 </section>
 
@@ -169,7 +186,7 @@ const stripe = Stripe(api_key);
 
 $(document).on("scroll", function() {
   var pageTop = $(document).scrollTop();
-  var pageBottom = pageTop + $(window).height() - 500;
+  var pageBottom = pageTop + $(window).height() - 300;
   var tags = $("#paymentBox");
 
   for (var i = 0; i < tags.length; i++) {
@@ -317,9 +334,6 @@ export default{
   }
 }
 
-.memberInfo{
-  margin: auto;
-}
 
 .highlighted {  
     background: linear-gradient(transparent 40%, #070F5F 40%);
@@ -333,6 +347,7 @@ export default{
 li{
   text-align: left;
 }
+
 .center-container {
       display: flex;
       justify-content: center;
@@ -346,7 +361,7 @@ li{
     background-position: center;  
 }
 
-.tilted-img1{
+/* .tilted-img1{
   transform: rotate(-15deg);
   width: 10%;
 
@@ -354,6 +369,10 @@ li{
 .tilted-img2{
   transform: rotate(15deg);
   width: 10%;
+} */
+
+.pawnImg {
+  max-width: 76px;
 }
 
 .form-control {
@@ -384,5 +403,12 @@ li{
 }
 section{
   height: 50vh;
+}
+
+.imgFit {
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    object-fit: cover;
 }
 </style>
