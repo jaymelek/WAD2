@@ -3,15 +3,17 @@
     <div class="memberInfo">
       <h1 class="lineUp">Hey There, Join Us Today!</h1>
       <hr>
-      <div class="center-container">
-        <div class="memberMsg col-md-10 col-lg-6">
-        <p>Are you a fan of board games and looking to be part of a community that shares your passion? If so, we have an exciting opportunity for you! We are thrilled to invite you to join our SMU Strategica, where we are dedicated to creating an inclusive, close-knit community of board game enthusiasts who enjoy great company and even better games. <br> <br>
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-6 text-center">
+          <p>Are you a <span class="highlighted">fan of board games</span> and looking for a community that shares your passion? <br></p>
+          <p>Do you want to be part of a <span class="highlighted">close knit and inclusive community</span> enjoying great company and greater games?<br></p>
 
-        Join us and be a part of something truly special. Together, we'll create lasting memories, share laughs, and build lifelong friendships through the magic of board games.<br> <br>
+          <h5>Join us and create lasting memories, share laughs, and build lifelong friendships through the magic of board games!</h5>
 
-        Ready to roll the dice and make new friends? Don't miss out on the fun, camaraderie, and countless adventures waiting for you. Join us today!</p>
+          <!-- Ready to roll the dice and make new friends? Don't miss out on the fun, camaraderie, and countless adventures waiting for you. Join us today! -->
+          </div>
         </div>
-
       </div>
 
       <div class="row justify-content-center">
@@ -45,7 +47,7 @@
 
       <div class="row align-items-center justify-content-center rowInfo">
           <div class="col-md-3 text-center dice-bg" style="height: 200px;">
-              <span class="highlighted">Benefits</span>
+              <span class="highlighted headerText">Benefits</span>
           </div>
           <div class="col-auto px-0">
             <ul>
@@ -63,7 +65,7 @@
       <div class="row align-items-start justify-content-center" style="text-align: center;">
         <div class="col-lg-6 text-center">  
           <img src="../assets/dblue_pawn.png" class="tilted-img1">     
-          <span class="highlighted">Membership Requirements</span>
+          <span class="highlighted headerText">Membership Requirements</span>
           <img src="../assets/dblue_pawn.png" class="tilted-img2">
         </div>
         </div>
@@ -279,6 +281,7 @@ export default{
 .lineUp {
   animation: 2s anim-lineUp ease-out;
   text-align: center;
+  color: #070F5F;
 }
 @keyframes anim-lineUp {
   0% {
@@ -304,13 +307,11 @@ export default{
 
 .highlighted {  
     background: linear-gradient(transparent 40%, #070F5F 40%);
-    font-size: 200%;
-    font-weight: bold;
 }
 
-.memberMsg{
-  text-align: left;
-
+.headerText {
+  font-size: 200%;
+  font-weight: bold;
 }
 
 li{
