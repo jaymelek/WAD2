@@ -183,7 +183,6 @@ import axios from 'axios';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import router from '../router/index';
 import Global from '../global';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
@@ -297,29 +296,14 @@ export default {
         },
         postApplication() {
         // Check if all required fields are filled
-        if (
-            this.gameID &&
-            this.listing.name &&
-            this.personName &&
-            this.email &&
-            this.telegram &&
-            this.borrowingBehalf &&
-            this.loanStartDate &&
-            this.selectedEndDate
-        ) {
-            // Check if the borrower is from a club
-            if (this.borrowingBehalf === "Club") {
-            // Check if all club-related fields are filled
-            if (
-                this.clubName &&
-                this.clubEmail &&
-                this.clubContact &&
-                this.purpose &&
-                this.location &&
-                this.whoPlay
-            ) {
-                // All required fields, including club-related fields, are filled
-                const data = {
+        if (this.personName == '' || this.email == '' || this.telegram == '' || this.borrowingBehalf == '' || this.loanStartDate == '' || this.selectedEndDate == ''){
+            alert('Please fill in all required fields.');
+            this.$router.push({ name: 'borrowPage' });
+        }else if (this.borrowingBehalf == 'Club' && (this.clubName == '' || this.clubEmail == '' || this.clubContact == '' || this.purpose == '' || this.location == '' || this.whoPlay == '')){
+            alert('Please fill in all required fields.');
+            this.$router.push({ name: 'borrowPage' });
+        }else if (this.borrowingBehalf == 'Club' && (this.clubName != '' || this.clubEmail != '' || this.clubContact != '' || this.purpose != '' || this.location != '' || this.whoPlay != '')){
+            const data = {
                 gameID: this.gameID,
                 gameName: this.listing.name,
                 borrowerName: this.personName,
@@ -336,24 +320,18 @@ export default {
                 borrowerLocation: this.location,
                 borrowerWhoPlay: this.whoPlay,
                 };
-
                 // Now you can proceed with submitting the data
                 axios
                 .post(firebaseDatabaseURL + borrowApplicationsPath, data)
                 .then((response) => {
                 console.log(response);
                 alert("Your application has been submitted successfully!")
-                router.push({ name: 'borrowPage' });
+                this.$router.push({ name: 'borrowPage' });
                 })
                 .catch((error) => {
                 console.error('Error posting data:', error);
                 });
-            } else {
-                // Not all club-related fields are filled, show an error message or handle the validation as needed
-                alert('Please fill in all club-related fields.');
-            }
-            } else {
-            // The borrower is not from a club, proceed without club-related data
+        }else if (this.borrowingBehalf == 'Self'){
             const data = {
                 gameID: this.gameID,
                 gameName: this.listing.name,
@@ -364,63 +342,20 @@ export default {
                 loanStartDate: this.loanStartDate,
                 loanEndDate: this.selectedEndDate,
                 status: "Pending",
-            };
-
-            // Now you can proceed with submitting the data
-            axios
+                };
+                // Now you can proceed with submitting the data
+                axios
                 .post(firebaseDatabaseURL + borrowApplicationsPath, data)
                 .then((response) => {
                 console.log(response);
                 alert("Your application has been submitted successfully!")
-                router.push({ name: 'borrowPage' });
+                this.$router.push({ name: 'borrowPage' });
                 })
                 .catch((error) => {
                 console.error('Error posting data:', error);
                 });
-            }
-        } else {
-            // Not all required fields are filled, show an error message or handle the validation as needed
-            alert('Please fill in all required fields.');
         }
         },
-
-
-        // postApplication() {
-        // const data = {
-        //     gameID: this.gameID,
-        //     gameName: this.listing.name,
-        //     borrowerName: this.personName,
-        //     borrowerEmail: this.email,
-        //     borrowerTelegram: this.telegram,
-        //     borrowingBehalf: this.borrowingBehalf,
-        //     loanStartDate: this.loanStartDate,
-        //     loanEndDate: this.selectedEndDate,
-        //     status: "Pending",
-        // };
-
-        // if (this.borrowingBehalf == "Club") {
-        //     // Include club-related data only if the user is from a club
-        //     data.borrowerClubName = this.clubName;
-        //     data.borrowerClubEmail = this.clubEmail;
-        //     data.borrowerClubContact = this.clubContact;
-        //     data.borrowerPurpose = this.purpose;
-        //     data.borrowerLocation = this.location;
-        //     data.borrowerWhoPlay = this.whoPlay;
-        // }
-
-        // // Post the form data to the Firebase Realtime Database borrowApplications Node
-        // axios
-        //     .post(firebaseDatabaseURL + borrowApplicationsPath, data)
-        //     .then((response) => {
-        //     console.log(response);
-        //     alert("Your application has been submitted successfully!")
-        //     router.push({ name: 'borrowPage' });
-        //     })
-        //     .catch((error) => {
-        //     console.error('Error posting data:', error);
-        //     });
-        // },
-
 
         pretty_date(ugly_date) {
             var pretty_date = new Date(ugly_date);
