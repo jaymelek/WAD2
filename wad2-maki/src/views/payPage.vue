@@ -141,7 +141,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="col-lg-2 col-md-3 col-6">
             <div class="p-2 mb-2">
               <input type="text" placeholder="MM/YY"
                 class="inputstl form-control" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required
@@ -149,7 +149,7 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="col-lg-2 col-md-3 col-6">
             <div class="p-2 mb-2">
               <input type="text" placeholder="CVC"
                 class="inputstl form-control" required id="CVC" v-model="CVC"> 
