@@ -13,6 +13,7 @@ import loginPage from '../views/loginPage.vue';
 import pendingRequests from '../views/pendingRequests.vue';
 import addListing from '../views/addListing.vue';
 import registerPage from '../views/registerPage.vue';
+import aboutPage from '../views/aboutPage.vue';
 
 const routes = [
     // Other routes
@@ -106,6 +107,12 @@ const routes = [
         name: 'registerPage',
         component: registerPage
     },
+
+    {
+        path: '/aboutPage',
+        name: 'aboutPage',
+        component: aboutPage
+    }
 
 ];
 

@@ -10,9 +10,9 @@
     <p style="text-decoration: none; color: white; text-align: end; margin-right: 50px;">Back to Top!</p>
 
     <div class="nav mb-3 mx-0 justify-content-center">
-      <a class="my-1 mx-3" href="">Home</a>
-      <a class="my-1 mx-3" href="">About Us</a>
-      <a class="my-1 mx-3" href="">Contact Us</a>
+      <a class="my-1 mx-3" href="" @click="gotoLanding()">Home</a>
+      <a class="my-1 mx-3" href="" @click="gotoAbout()">About Us</a>
+      <a class="my-1 mx-3" href="mailto:strategica@sa.smu.edu.sg">Contact Us</a>
     </div>
     
     <div class="logos mb-3">
@@ -47,6 +47,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+export default {
+  name: "footerBar",
+  methods: {
+    gotoLanding() {
+      this.$router.push({ name: "landingPage" });
+    },
+    gotoAbout() {
+      this.$router.push({ name: "aboutPage" });
+    },
+  },
+};
 </script>
 
 
