@@ -35,7 +35,7 @@
         </div>
 
         <div class="container my-5">
-        <div v-if="loginStatus == null" class="alert alert-danger" role="alert"> Please login before borrowing a game! </div>
+        <div v-if="loginStatus == false" class="alert alert-danger" role="alert"> Please login before borrowing a game! </div>
         </div>
 
         <div class="row">
@@ -162,7 +162,7 @@
                 
                         <!-- Confirm Button -->
                         <button type="submit" class="btn btn-outline-light w-100"
-                        @click="postApplication()" :disabled="loginStatus == null"
+                        @click="postApplication()" :disabled="loginStatus == false"
                         >Confirm</button> 
                 </form>
             </div>
