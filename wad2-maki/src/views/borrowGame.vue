@@ -40,7 +40,7 @@
 
         <div class="row">
             <div class="container">
-                <form class="row g-3 justify-content-start align-items-center" id="borrowGameForm">
+                <form class="row g-3 justify-content-start align-items-center" id="borrowGameForm" @submit.prevent="postApplication">
                         <!-- Name -->
                         <div class="col-sm-6">
                             <label for="name1" class="form-label">Matriculated Name:</label>
@@ -161,9 +161,7 @@
                         </div>
                 
                         <!-- Confirm Button -->
-                        <button type="submit" class="btn btn-outline-light w-100"
-                        @click="postApplication()" :disabled="loginStatus == false"
-                        >Confirm</button> 
+                        <button type="submit" class="btn btn-outline-light w-100" :disabled="loginStatus==false">Confirm</button> 
                 </form>
             </div>
         </div>
@@ -184,7 +182,7 @@ import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage'
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Global from '../global';
-
+import router from '../router/index';
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const gamePath = '/games.json'; 
 const borrowApplicationsPath = '/borrowApplications.json';
@@ -216,8 +214,8 @@ export default {
     },
 
     created() {
-        console.log(this.membershipStatus)
-        console.log(this.loginStatus)
+        // console.log(this.membershipStatus)
+        // console.log(this.loginStatus)
         this.getGameData();
     },
 
@@ -294,14 +292,14 @@ export default {
             console.error('Error fetching data:', error);
             });
         },
-        postApplication() {
+        async postApplication() {
         // Check if all required fields are filled
         if (this.personName == '' || this.email == '' || this.telegram == '' || this.borrowingBehalf == '' || this.loanStartDate == '' || this.selectedEndDate == ''){
             alert('Please fill in All Personal Details.');
-            this.$router.push({ name: 'borrowPage' });
+            router.push({ name: 'borrowPage' });
         }else if (this.borrowingBehalf == 'Club' && (this.clubName == '' || this.clubEmail == '' || this.clubContact == '' || this.purpose == '' || this.location == '' || this.whoPlay == '')){
             alert('Please fill in all Club Details.');
-            this.$router.push({ name: 'borrowPage' });
+            router.push({ name: 'borrowPage' });
         }else if (this.borrowingBehalf == 'Club' && (this.clubName != '' || this.clubEmail != '' || this.clubContact != '' || this.purpose != '' || this.location != '' || this.whoPlay != '')){
             const data = {
                 gameID: this.gameID,
@@ -319,20 +317,18 @@ export default {
                 borrowerPurpose: this.purpose,
                 borrowerLocation: this.location,
                 borrowerWhoPlay: this.whoPlay,
-            };
-            // Now you can proceed with submitting the data
-            axios
-            .post(firebaseDatabaseURL + borrowApplicationsPath, data)
-            .then((response) => {
-            this.oldID = response.data.name;
-            this.updateGameID();
-            console.log(response);
-            alert("Your application has been submitted successfully!")
-            this.$router.push({ name: 'borrowPage' });
-            })
-            .catch((error) => {
-            console.error('Error posting data:', error);
-            });
+                };
+                // Now you can proceed with submitting the data
+                axios
+                .post(firebaseDatabaseURL + borrowApplicationsPath, data)
+                .then((response) => {
+                console.log(response);
+                alert("Your application has been submitted successfully!")
+                router.push({ name: 'borrowPage' });
+                })
+                .catch((error) => {
+                console.error('Error posting data:', error);
+                });
         }else {
             const data = {
                 gameID: this.gameID,
@@ -353,7 +349,7 @@ export default {
                 this.updateGameID();
                 console.log(response);
                 alert("Your application has been submitted successfully!")
-                this.$router.push({ name: 'borrowPage' });
+                router.push({ name: 'borrowPage' });
                 })
                 .catch((error) => {
                 console.error('Error posting data:', error);
@@ -371,7 +367,6 @@ export default {
             .then((response) => {
             console.log('Data updated successfully:', response);
             // Reset form fields or perform any other actions as needed
-            alert("Game Added Successfully!")
             this.$router.push({ name: 'borrowPage' });
             })
             .catch((error) => {
@@ -494,4 +489,5 @@ export default {
         filter: invert(1);
     }
 </style>
+
 

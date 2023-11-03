@@ -4,20 +4,22 @@
             <div class="row justify-content-center px-3 pt-5">
                 <div class="col-sm-auto form-box px-5">
                     <!-- <div class="form-box mx-3"> -->
-                        <h3 class="registerheader">Register An Account</h3>
-                        <form id="register" class="input-group-register mx-auto" @submit.prevent="register">
-                            <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
-                            <input type="text" v-model="telegram" class="input-field" placeholder="Telegram Username" required>
-                            <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
-                            <input type="password" v-model="password1" class="input-field" placeholder="Enter Password" required>
-                            <input type="password" v-model="password2" class="input-field" placeholder="Confirm Password" required>
-                            <p class="error-message">{{ passwordMatchError }}</p>
-                            <button type="submit" @click="register" class="submit-btn">Register</button>
-                        </form> 
+                    <h3 class="registerheader">Register An Account</h3>
+                    <form id="register" class="input-group-register mx-auto" @submit.prevent="register">
+                        <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
+                        <input type="text" v-model="telegram" class="input-field" placeholder="Telegram Username" required>
+                        <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
+                        <input type="password" v-model="password1" class="input-field" placeholder="Enter Password"
+                            required>
+                        <input type="password" v-model="password2" class="input-field" placeholder="Confirm Password"
+                            required>
+                        <p class="error-message">{{ passwordMatchError }}</p>
+                        <button type="submit" @click="register" class="submit-btn">Register</button>
+                    </form>
                     <!-- </div> -->
                 </div>
             </div>
-            
+
 
         </div>
     </div>
@@ -31,6 +33,7 @@ import Global from "../global";
 
 const auth = getAuth();
 const database = getDatabase(app);
+
 
 export default {
     data() {
@@ -76,11 +79,16 @@ export default {
                     alert(errorMessage);
                     // ..
                 });
-            console.log(this.email);
-            console.log(this.password);
-            this.$router.push('/profilePage')
-            Global.loginInfo == false
-        }
+            // console.log(this.email);
+            // console.log(this.password);
+            // this.$router.go('/profilePage')
+
+            Global.loginInfo = false
+            this.$router.push('profilePage')
+        },
+        
+
+
     }
 
 }
@@ -171,7 +179,7 @@ h3 {
     text-align: center;
 }
 
-.error-message{
+.error-message {
     color: red;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container maxwidth" v-if="loginUser == true">
+    <div class="container maxwidth text-center" v-if="loginUser == true">
         <!-- <h1>This is the profile page!</h1> -->
         <div class="marginTop"></div>
 
@@ -14,7 +14,7 @@
                 <h1>Welcome back, {{ person.name }}</h1>
             </div>
             <div class="col-12 order-3 mt-3 ">
-                <div class="info-border">
+                <div class="info-border">                                            
                     <p><strong>Email: </strong> {{ person.email }}</p>
                     <p><strong>Telegram: </strong>{{ person.telegram }} </p>
                     <p v-if="person.membership == '2'"><strong>Membership Status: </strong>Executive Committee</p>
@@ -27,7 +27,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-12 order-5 mt-3">
                 <div class="info-border">
-                    <p v-if="person.currentBorrowing == 'null'"><strong>Current borrowing: - </strong></p>
+                    <p v-if=!person.currentBorrowing><strong>Current borrowing: - </strong></p>
                     <div v-else>
                         <p><strong>Current borrowing: </strong></p>
                         <ul>
@@ -40,16 +40,16 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-12 mt-3 order-4">
                 <div class="info-border">
-                    <p v-if="person.historyGame == 'null'"><strong>History of past games: - </strong></p>
+                    <p v-if=!person.historyGame><strong>History of past games: - </strong></p>
                     <div v-else>
                         <p><strong>History of past games: </strong></p>
                         <ul>
                             <li v-for="(game, index) in person.historyGame" :key="index">{{ game }}</li>
                         </ul>
                     </div>
-                    <p v-if="person.favGame == 'null'"><strong>Favourite Games:- </strong></p>
+                    <p v-if=!person.favGame><strong>Favourite Games: - </strong></p>
                     <div v-else>
-                        <p><strong>Favourite Games: </strong></p>
+                        <p><strong>Favourite Games:  </strong></p>
                         <ul>
                             <li v-for="(game, index) in person.favGame" :key="index">{{ game }}</li>
                         </ul>
@@ -75,12 +75,14 @@
                                 required>
                             <p class="error-message">{{ loginErrorMessage }}</p>
                             <button type="submit" class="submit-btn" @click="userLogin">Log In</button>
+
                             <router-link :to="{ name: 'registerPage' }" style="text-decoration: none;">
                                 <a class="nav-link register" aria-current="page" :style="fontColor"><span
                                         class="conHighlighted">Don't
                                         have
                                         an account? Register now!</span></a>
                             </router-link>
+
                         </form>
                     </div>
 
@@ -100,6 +102,8 @@ import Global from "../global";
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/users.json'; // Replace with the path to your data
 
+// let hasReloaded = false;
+
 export default {
     data() {
         return {
@@ -114,7 +118,6 @@ export default {
         // console.log(Global.sharedData)
         console.log(Global.loginInfo)
         // console.log(this.loginUser)
-        // console.log(Global.personArr)
 
         axios
             .get(firebaseDatabaseURL + path)
@@ -175,6 +178,7 @@ export default {
                             // this.$router.push("profilePage")
                             // console.log(Global.sharedData)
                             console.log(Global.loginInfo)
+                            console.log(Global.memberStatus)
                         }
                     }
 
@@ -196,11 +200,17 @@ export default {
             Global.memberStatus = 0;
             Global.sharedData = false;
 
+            this.scrollToTop()
 
             console.log(this.loginUser)
-        }
-    }
+        },
+        scrollToTop() {
+            window.scrollTo(0, 0);
+        },
+    },
 }
+
+
 </script>
 
 <style scoped>
@@ -213,7 +223,6 @@ export default {
     font-size: 15px;
     text-align: center;
 }
-
 
 @keyframes anim-lineUp {
     0% {
