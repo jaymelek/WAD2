@@ -1,6 +1,6 @@
 <template>
     <div v-if="loginStatus == false">
-        <div class="banner">
+        <div class="bannerLogin">
             <div id='login-form' class='login-page'>
                 <div class="form-box">
                     <h3 class="loginheader">Log In</h3>
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style scoped>
-.banner {
+.bannerLogin {
     width: 100%;
     height: 150vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);

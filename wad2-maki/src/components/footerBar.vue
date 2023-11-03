@@ -1,18 +1,18 @@
 <template>
   <div class="footer">
-    <div class="diceToTop w-auto">
-      <a href="#top" id="scrollToTopButton">
-        <div class="dice-footer" style="text-align: end; ">
-          <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
-        </div>
-      </a>
-      <p style="text-decoration: none; color: white; text-align: center; margin-right: 50px;">back to top!</p>
-    </div>
+    <a href="#top" id="scrollToTopButton">
+      <div class="dice-footer" style="text-align: end; ">
+        <img src="../assets/dice_footer.png" style="width: 80px; height: auto; margin-right: 50px;">
+        
+      </div>
+    </a>
+
+    <p style="text-decoration: none; color: white; text-align: end; margin-right: 50px;">Back to Top!</p>
 
     <div class="nav mb-3 justify-content-center">
-      <a href="">Home</a>
-      <a href="">About Us</a>
-      <a href="">Contact Us</a>
+      <a class="my-1" href="">Home</a>
+      <a class="my-1" href="">About Us</a>
+      <a class="my-1" href="">Contact Us</a>
     </div>
     
     <div class="logos mb-3">
@@ -25,7 +25,7 @@
     </div>
     
     <div class="bottom d-inline text-center">
-      <p> &copy; Strategica . 2023</p>
+      <p style="color: white"> &copy; Strategica . 2023</p>
     </div>
   </div>
 
