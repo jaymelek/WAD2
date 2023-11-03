@@ -15,7 +15,7 @@
         </a>
       </router-link>
 
-      <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;" class="order-sm-last">
+      <router-link :to="{ name: 'profilePage' }" style="text-decoration: none;" class="order-md-last">
         <a  aria-current="page" :style="fontColor" :class="[{ 'profile-item-active': isActive('profilePage') }, 'nav-link', 'profile-hover-effect']"> <!--class="nav-link profile-hover-effect"-->
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill profileIcon" viewBox="0 0 16 16">
             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
@@ -25,26 +25,26 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect', 'w-auto']">
+          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect', 'w-25']">
             <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Borrow a Game</span></a>
             </router-link>
           </li>
-          <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect']">
+          <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect', 'w-25']">
             <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Be a Member</span></a>
             </router-link>
           </li>
 
           <!-- Exco Pages -->
-          <li :class="[{'nav-item-active': isActive('addListing')}, 'hover-effect']"
+          <li :class="[{'nav-item-active': isActive('addListing')}, 'hover-effect', 'w-25']"
           v-if="Global.memberStatus == 2"
           >
             <router-link :to="{ name: 'addListing' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Add a Listing</span></a>
             </router-link>
           </li>
-          <li :class="[{'nav-item-active': isActive('pendingRequests')}, 'hover-effect']"
+          <li :class="[{'nav-item-active': isActive('pendingRequests')}, 'hover-effect', 'w-25']"
           v-if="Global.memberStatus == 2"
           >
             <router-link :to="{ name: 'pendingRequests' }" style="text-decoration: none;">
