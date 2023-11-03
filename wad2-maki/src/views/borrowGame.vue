@@ -211,7 +211,7 @@ export default {
         whoPlay:"",
         loginStatus: Global.loginInfo,
         membershipStatus: Global.memberStatus,
-
+        oldID: '',
         }; 
     },
 
@@ -324,6 +324,8 @@ export default {
             axios
             .post(firebaseDatabaseURL + borrowApplicationsPath, data)
             .then((response) => {
+            this.oldID = response.data.name;
+            this.updateGameID();
             console.log(response);
             alert("Your application has been submitted successfully!")
             this.$router.push({ name: 'borrowPage' });
@@ -347,6 +349,8 @@ export default {
                 axios
                 .post(firebaseDatabaseURL + borrowApplicationsPath, data)
                 .then((response) => {
+                this.oldID = response.data.name;
+                this.updateGameID();
                 console.log(response);
                 alert("Your application has been submitted successfully!")
                 this.$router.push({ name: 'borrowPage' });
@@ -355,6 +359,24 @@ export default {
                 console.error('Error posting data:', error);
                 });
         }
+        },
+
+        updateGameID() {
+        // Create an object with the new gameID
+        const updatedData = {
+            applicationID: this.oldID,
+        };
+        // Use the current gameID (this.gameID) to locate the record you want to update
+        axios.patch(`${firebaseDatabaseURL}/borrowApplications/${this.oldID}.json`, updatedData)
+            .then((response) => {
+            console.log('Data updated successfully:', response);
+            // Reset form fields or perform any other actions as needed
+            alert("Game Added Successfully!")
+            this.$router.push({ name: 'borrowPage' });
+            })
+            .catch((error) => {
+            console.error('Error updating data:', error);
+            });
         },
 
         pretty_date(ugly_date) {
