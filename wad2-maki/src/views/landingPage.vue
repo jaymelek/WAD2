@@ -105,8 +105,7 @@ export default {
         <div class="row">
             <div class="col px-0">
                 <div class="imgbox">
-                    <div class="banner">
-                    </div>
+                    <div class="banner"></div>
                 </div>
             </div>
         </div>

@@ -95,7 +95,7 @@ export default {
 // }
 </script>
 
-<style>
+<style scoped>
 .banner {
     width: 100%;
     height: 150vh;
@@ -110,7 +110,7 @@ export default {
     width: 380px;
     height: 480px;
     position: relative;
-    top: 40px;
+    top: 50px;
     margin: auto;
     background: #fff;
     padding: 10px;
