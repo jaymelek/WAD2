@@ -81,11 +81,11 @@
 
   </div>
   <div id="scrollHere">
-        <h1 style="text-align: center; margin: 100px;">Ready to roll the dice?</h1>
+        <h1 style="text-align: center; margin-top: 80px;">Ready to roll the dice?</h1>
   </div>
   <hr>
 
-  <div id="paymentBox">
+  <section id="paymentBox">
       <h1 style="text-align: center;">Pay for Membership</h1>
       <div>
               <h4 style="text-align: center;">You are paying for Strategica Membership</h4>
@@ -110,32 +110,32 @@
     <div class="container">
       <form id="payment-form" @submit.prevent="submitPayment">
         <div class="col-lg-8 offset-lg-2">
-          <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2 mx-auto">
-            <input type="text" placeholder="Card Holder Name" style="border: none; width: 100%;" required id="cardHolderName" v-model="cardHolderName">
+          <div class="p-2 mb-2 mx-auto">
+            <input class="inputstl form-control" type="text" placeholder="Card Holder Name" required id="cardHolderName" v-model="cardHolderName">
           </div>
         </div>
 
 
         <div class="row justify-content-center">
           <div class="col-lg-4 col-md-6">
-            <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2">
+            <div  class="p-2 mb-2">
               <input type="text" maxlength="19"
-                placeholder="Card Number" style="border: none; width: 100%;" required id="cardNumber" v-model="cardNumber">
+                placeholder="Card Number" class="inputstl form-control" required id="cardNumber" v-model="cardNumber">
             </div>
           </div>
 
           <div class="col-lg-2 col-md-3 col-sm-6">
-            <div style="border: 1px solid black; border-radius: 5px; width: 100%;" class="p-2 mb-2">
+            <div class="p-2 mb-2">
               <input type="text" placeholder="MM/YY"
-                style="border: none; width: 100%" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required
+                class="inputstl form-control" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required
                 id="expDate" maxlength="5" expDate="expDate" v-model="expDate">
             </div>
           </div>
 
           <div class="col-lg-2 col-md-3 col-sm-6">
-            <div style="border: 1px solid black; border-radius: 5px;" class="p-2 mb-2">
+            <div class="p-2 mb-2">
               <input type="text" placeholder="CVC"
-                style="border: none; width: 100%;" required id="CVC" v-model="CVC"> 
+                class="inputstl form-control" required id="CVC" v-model="CVC"> 
             </div>
           </div>
         </div>
@@ -147,14 +147,14 @@
               Total: {{ totalAmount }}
           </div>
           <div class="text-center"> <!-- Add text-center class here -->
-              <button class="btn btn-lg mx-auto" id="checkout-button" style="width: 75%; background-color: #070F5F; color: white;">
+              <button class="btn btn-outline-light mx-auto" id="checkout-button">
                   Pay
               </button>
           </div>
       </form>
   </div>
 
-  </div>
+</section>
 
 
 </template>
@@ -162,10 +162,25 @@
 <script>
 import Stripe from 'stripe';
 import Global from '../global';
-
+import $ from 'jquery';
 const api_key = 'sk_test_51NyYaTGYkOKxngERwkOrjmZuFSaREnZRRxfZnI6KfuHWYuvFmw82UeU4P3wPfJhi7SIB7h9tpr8i0UYhlZVAmSFJ00BLexoChF';
 const stripe = Stripe(api_key);
 
+
+$(document).on("scroll", function() {
+  var pageTop = $(document).scrollTop();
+  var pageBottom = pageTop + $(window).height() - 500;
+  var tags = $("#paymentBox");
+
+  for (var i = 0; i < tags.length; i++) {
+    var tag = tags[i];
+    if ($(tag).position().top < pageBottom) {
+      $(tag).addClass("visible");
+    } else {
+      $(tag).removeClass("visible");
+    }
+  }
+});
 
 export default{
   data(){
@@ -181,6 +196,7 @@ export default{
           paymentAmount: 500,
           loginStatus: Global.loginInfo,
           membershipStatus: Global.memberStatus,
+          inViewport: false,
 
       }
   },
@@ -253,9 +269,6 @@ export default{
 }
 
 
-
-
-
 </script>
 
 <style scoped>
@@ -264,15 +277,18 @@ export default{
 }
 
 #paymentBox{
-  border: 1px solid #070F5F;
-  border-radius: 5px;
   width: 70%;
   margin: auto;
-  padding: 20px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2) ;
-  color: #070F5F;
-  background-color: white;
+  opacity: 0;
+  transform: translate(0, 10vh);
+  transition: all 1s;
 }
+
+#paymentBox.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
 
 .marginTop {
   height: 80px;
@@ -338,5 +354,35 @@ li{
 .tilted-img2{
   transform: rotate(15deg);
   width: 10%;
+}
+
+.form-control {
+        border:none;
+        border-bottom: 2px solid white;
+        /* background-color: rgb(255, 255, 255, 0.2);   */
+        background-color: transparent;
+        border-radius: 0px;
+        color: white;
+}
+
+.inputstl {
+        border: none;
+        border-bottom: 2px solid white;
+}
+
+.form-control:focus {
+        border-color: #070F5F;
+        box-shadow: none;
+        background-color: transparent;
+        color: white;
+}
+
+.btn-outline-light {
+    --bs-btn-hover-color: #7ba7bb;
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    width: 70%;
+}
+section{
+  height: 50vh;
 }
 </style>
