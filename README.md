@@ -30,6 +30,3 @@ npm run serve
 ```
 Access the project from the localhost link produced
 
-## Extra Things to Install
-1. npm install vue-router
-2. npm install jquery
