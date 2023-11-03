@@ -179,6 +179,7 @@ import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage'
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import router from '../router/index';
+import Global from '../global';
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const gamePath = '/games.json'; 
@@ -204,11 +205,14 @@ export default {
         purpose:"",
         location:"",
         whoPlay:"",
+        loginStatus: Global.loginInfo,
+        membershipStatus: Global.memberStatus,
+
         }; 
     },
 
     created() {
-        console.log(this.memberStatus)
+        console.log(this.membershipStatus)
         console.log(this.loginStatus)
         this.getGameData();
     },
