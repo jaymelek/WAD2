@@ -3,9 +3,7 @@
         <div class="banner">
             <div id='login-form' class='login-page'>
                 <div class="form-box">
-                    <div class="button-box">
-                        <h3 class="loginheader">Log In</h3>
-                    </div>
+                    <h3 class="loginheader">Log In</h3>
                     <form id="login" class="input-group-login" @submit.prevent="userLogin">
                         <input type="email" v-model="email" class="input-field" placeholder="Email Address" required>
                         <input type="password" v-model="password" class="input-field" placeholder="Enter Password" required>
@@ -95,11 +93,11 @@ export default {
 // }
 </script>
 
-<style>
+<style scoped>
 .banner {
     width: 100%;
     height: 150vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1),  rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
     background-size: 20% auto;
     background-position: center;
     position: relative;
@@ -108,9 +106,9 @@ export default {
 
 .form-box {
     width: 380px;
-    height: 480px;
+    height: 400px;
     position: relative;
-    top: 40px;
+    top: 20px;
     margin: auto;
     background: #fff;
     padding: 10px;
@@ -119,7 +117,7 @@ export default {
 
 }
 
-.button-box {
+h3 {
     width: 220px;
     margin: 35px auto;
     position: relative;
@@ -133,6 +131,7 @@ export default {
     position: absolute;
     width: 280px;
     transition: .5s;
+
 }
 
 
@@ -148,8 +147,8 @@ export default {
     background: transparent;
 }
 
-.input-field::placeholder{
-    color:rgba(123, 167, 187, 1);
+.input-field::placeholder {
+    color: rgba(123, 167, 187, 1);
 }
 
 .submit-btn {
@@ -157,7 +156,7 @@ export default {
     padding: 10px 30px;
     cursor: pointer;
     display: block;
-    margin: auto;
+    margin: 25px auto;
     background: rgba(123, 167, 187, 1);
     border: 0;
     outline: none;
@@ -176,7 +175,7 @@ export default {
 }
 
 
-.loginheader{
+.loginheader {
     color: rgba(123, 167, 187, 1);
     text-align: center;
 }

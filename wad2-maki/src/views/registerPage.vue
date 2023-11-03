@@ -2,9 +2,7 @@
     <div class="banner1">
         <div id='register-form' class='register-page'>
             <div class="form-box">
-                <div class="button-box">
-                    <h3 class="registerheader">Register An Account</h3>
-                </div>
+                <h3 class="registerheader">Register An Account</h3>
                 <form id="register" class="input-group-register" @submit.prevent="register">
                     <input type="text" v-model="name" class="input-field" placeholder="Your Name" required>
                     <input type="text" v-model="telegram" class="input-field" placeholder="Telegram Username" required>
@@ -48,7 +46,7 @@ export default {
         return {
             email: '',
             password1: '',
-            password2:'',
+            password2: '',
             telegram: '',
             name: '',
         }
@@ -94,7 +92,7 @@ export default {
 .banner1 {
     width: 100%;
     height: 150vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1),  rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(123, 167, 187, 0.1), rgba(123, 167, 187, 1)), url(../assets/dice_2_bg.png);
     background-size: 20% auto;
     background-position: center;
     position: relative;
@@ -107,14 +105,14 @@ export default {
     position: relative;
     top: 40px;
     margin: auto;
-    background:#fff;
+    background: #fff;
     padding: 10px;
     overflow: hidden;
     border-radius: 20px;
 
 }
 
-.button-box {
+ h3{
     width: 220px;
     margin: 35px auto;
     position: relative;
@@ -139,8 +137,8 @@ export default {
     background: transparent;
 }
 
-.input-field::placeholder{
-    color:rgba(123, 167, 187, 1);
+.input-field::placeholder {
+    color: rgba(123, 167, 187, 1);
 }
 
 .submit-btn {
@@ -166,8 +164,8 @@ export default {
     font-size: 15;
 }
 
-.registerheader{
-    color:rgba(123, 167, 187, 1);
+.registerheader {
+    color: rgba(123, 167, 187, 1);
     text-align: center;
 }
 </style>
