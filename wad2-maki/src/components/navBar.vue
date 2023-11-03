@@ -23,28 +23,31 @@
         </a>
       </router-link>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect', 'w-25']">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"
+      >
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+
+          <li :class="[{'nav-item-active': isActive('borrowPage')}, 'hover-effect']">
             <router-link :to="{ name: 'borrowPage' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Borrow a Game</span></a>
             </router-link>
           </li>
-          <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect', 'w-25']">
+          <li :class="[{'nav-item-active': isActive('payPage')}, 'hover-effect', 'w-auto']">
             <router-link :to="{ name: 'payPage' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Be a Member</span></a>
             </router-link>
           </li>
 
           <!-- Exco Pages -->
-          <li :class="[{'nav-item-active': isActive('addListing')}, 'hover-effect', 'w-25']"
+          <li :class="[{'nav-item-active': isActive('addListing')}, 'hover-effect', 'w-auto']"
           v-if="Global.memberStatus == 2"
           >
             <router-link :to="{ name: 'addListing' }" style="text-decoration: none;">
               <a class="nav-link" aria-current="page" :style="fontColor"><span class="conHighlighted">Add a Listing</span></a>
             </router-link>
           </li>
-          <li :class="[{'nav-item-active': isActive('pendingRequests')}, 'hover-effect', 'w-25']"
+          <li :class="[{'nav-item-active': isActive('pendingRequests')}, 'hover-effect', 'w-auto']"
           v-if="Global.memberStatus == 2"
           >
             <router-link :to="{ name: 'pendingRequests' }" style="text-decoration: none;">
@@ -52,7 +55,8 @@
             </router-link>
           </li>
         </ul>
-      </div> <!-- End of Collapsing Items -->
+      </div> <!-- End of Collapsing Items for md window screen and above -->
+    </div>
 
     </div>
   </nav>
@@ -65,7 +69,8 @@
 <script>
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Global from "../global";
-
+// import { ref } from 'vue'
+// const windowWidth = ref(window.innerWidth)
 
 window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar'); // Select your navbar element
@@ -109,6 +114,10 @@ export default {
       //   paddingTop: routeMeta.padding-top || '0px',
       //   }
       // },
+
+      // mediumScreen() {
+      //   return windowWidth.value >= 768
+      // },
       fontColor(){
         const routeMeta = this.$route.meta;
         return {
@@ -125,7 +134,7 @@ export default {
 
 <style>
 .navbarBackgroundColor{
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(78, 129, 152, 0.7));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgb(78, 129, 152, 0.6), rgb(78, 129, 152, 0.8));
 }
 
 .router-link {

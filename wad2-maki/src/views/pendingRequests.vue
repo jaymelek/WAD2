@@ -15,12 +15,12 @@
                     <div class="row rounded reviewBox w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
                     v-for="application in applications" :key="application.applicationID"
                     >
-                        <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
-                            <div class="col-9">
+                        <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-between">
+                            <div class="col-auto">
                                 <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-auto">
                                 <!-- Each application is a form  -->
                                 <form class="row g-3 justify-content-end align-items-center" id="approveRequest">
                                     <input type="hidden" :value="application.applicationID">
@@ -78,19 +78,19 @@
         <!-- Reviewed Requests ==================================================================================== --> 
         <div class="row justify-content-center mt-3">
             <div class="col colWidth">
-                <h1 class="text-start">Reviewed Requests</h1>
+                <h1 class="text-start"><span class="highlighted">Reviewed Requests</span></h1>
                 
                 <div class="container-fluid w-100 p-0">
 
                     <div class="row rounded bg-secondary-subtle w-100 py-2 mx-0 my-2 align-items-center justify-content-center"
                         v-for="application in reviewedApplications" :key="application.applicationID"
                         >
-                            <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-center">
-                                <div class="col-9">
+                            <div class="row rounded reviewBox w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-between">
+                                <div class="col-auto">
                                     <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
                                 </div>
 
-                                <div class="col-3">
+                                <div class="col-auto">
                                     <!-- Each application is a form  -->
                                     <div class="bg-success statusBar px-3 ms-auto"
                                     v-if="application.status == 'Approved'"
