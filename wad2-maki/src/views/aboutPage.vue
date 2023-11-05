@@ -9,25 +9,25 @@
             </div>
         </div>
 
-        <div class="row justify-content-center text-center">
+        <div class="row justify-content-center text-center py-2">
             <div class="col-auto">
                 <img src="../assets/beat.jpg" class="profileImg">
-                <h4>Beatrice</h4>
+                <h4>Beatrice Gan</h4>
             </div>
             <div class="col-auto">
                 <img src="../assets/jayme.jpg" class="profileImg">
-                <h4>Jayme</h4>
+                <h4>Jayme Lek</h4>
             </div>
         </div>
 
-        <div class="row justify-content-center text-center">
+        <div class="row justify-content-center text-center py-2">
             <div class="col-auto">
                 <img src="../assets/yuanfeng.jpg" class="profileImg">
                 <h4>Yuan Feng</h4>
             </div>
             <div class="col-auto">
                 <img src="../assets/daniel.jpeg" class="profileImg">
-                <h4>Daniel</h4>
+                <h4>Daniel Choi</h4>
             </div>
         </div>
     </div>
