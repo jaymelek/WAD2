@@ -35,6 +35,9 @@
 
 <script>
 
+export default {
+    name: "aboutPage",
+};
 </script>
 
 <style>
