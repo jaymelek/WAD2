@@ -66,7 +66,7 @@
         </div>
 
         <div class="row align-items-center justify-content-center"
-        v-if="myApplications.length == 0"
+        v-if="!person.borrowApplications"
         >
             <div class="col-12 mt-3 order-4">
                 <div class="info-border text-center">
@@ -78,7 +78,7 @@
         <div class="container-fluid w-100 p-0">
 
             <div class="row info-border w-100 py-2 px-0 mx-0 my-2 align-items-center justify-content-center text-start"
-                v-for="application in myApplications" :key="application.applicationID"
+                v-for="application in person.borrowApplications" :key="application.applicationID"
                 >
                     <div class="row info-border w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-between">
                         <div class="col-auto">
@@ -94,6 +94,11 @@
                             </div>
                             <div class="bg-danger statusBar px-3 ms-auto"
                             v-if="application.status == 'Rejected'"
+                            >
+                                {{ application.status }}
+                            </div>
+                            <div class="bg-warning statusBar px-3 ms-auto"
+                            v-if="application.status == 'Pending'"
                             >
                                 {{ application.status }}
                             </div>
@@ -181,7 +186,7 @@ import Global from "../global";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/users.json'; // Replace with the path to your data
-const applicationsPath = '/borrowApplications.json'
+// const applicationsPath = '/borrowApplications.json'
 
 // let hasReloaded = false;
 
@@ -234,7 +239,7 @@ export default {
                 console.error('Error fetching data:', error);
             });
 
-            this.getApplicationsData()
+            // this.getApplicationsData()
     },
     methods: {
         userLogin() {
@@ -292,27 +297,27 @@ export default {
             window.scrollTo(0, 0);
         },
 
-        getApplicationsData() {
-            axios
-            .get(firebaseDatabaseURL + applicationsPath)
-            .then((response) => {
-                console.log(response.data)
+        // getApplicationsData() {
+        //     axios
+        //     .get(firebaseDatabaseURL + applicationsPath)
+        //     .then((response) => {
+        //         console.log(response.data)
                 
-                // initiate application data 
-                for (let app in response.data) {
-                    console.log(response.data[app].borrowerName)
-                    console.log(this.person)
-                    if (response.data[app].borrowerName == this.person.name) {
+        //         // initiate application data 
+        //         for (let app in response.data) {
+        //             console.log(response.data[app].borrowerName)
+        //             console.log(this.person)
+        //             if (response.data[app].borrowerName == this.person.name) {
                         
-                        this.myApplications.push(response.data[app]);
-                    } 
-                }
+        //                 this.myApplications.push(response.data[app]);
+        //             } 
+        //         }
                 
-            })
-            .catch((error) => {
-            console.error('Error fetching applications data:', error);
-            });
-        },
+        //     })
+        //     .catch((error) => {
+        //     console.error('Error fetching applications data:', error);
+        //     });
+        // },
 
         pretty_date(ugly_date) {
             var pretty_date = new Date(ugly_date);
@@ -322,6 +327,11 @@ export default {
                 month: "long",
                 day: "numeric",
             });
+        },
+
+        gotoEvent(listingid) {
+            this.$router.push('/' + listingid)
+            this.$router.push({ name: 'viewGame', params: { gameID: listingid } })
         },
     },
 }

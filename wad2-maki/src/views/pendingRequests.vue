@@ -155,6 +155,7 @@ import axios from 'axios';
 // import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Global from "../global";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 // const path = '/games.json'; // Replace with the path to your data
@@ -276,6 +277,34 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+
+                axios
+                .get(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications.json", {
+                })
+                .then((response) => {
+                    console.log(response);
+                    for (let app in response.data) {
+                        console.log(app)
+                        if (response.data[app].applicationID == applicationID) {
+                            axios
+                            .patch(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications/" + app + ".json", {
+                                status: "Approved",
+                            })
+                            .then((response) => {
+                                console.log(response);
+                                console.log("updated user application status")
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+
             } else if (status == "reject") {
                 // update the application status to rejected
                 axios
@@ -289,6 +318,33 @@ export default {
                         if (this.applications[app].applicationID == applicationID) {
                             this.reviewedApplications.push(this.applications[app]);
                             this.applications.splice(app, 1);
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+                
+                axios
+                .get(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications.json", {
+                })
+                .then((response) => {
+                    console.log(response);
+                    for (let app in response.data) {
+                        console.log(app)
+                        if (response.data[app].applicationID == applicationID) {
+                            axios
+                            .patch(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications/" + app + ".json", {
+                                status: "Rejected",
+                            })
+                            .then((response) => {
+                                console.log(response);
+                                console.log("updated user application status")
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                         }
                     }
                 })

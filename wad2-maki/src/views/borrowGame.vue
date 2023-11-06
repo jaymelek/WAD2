@@ -347,6 +347,7 @@ export default {
                 .then((response) => {
                 this.oldID = response.data.name;
                 this.updateGameID();
+                this.updateUserInfo();
                 console.log(response);
                 alert("Your application has been submitted successfully!")
                 router.push({ name: 'borrowPage' });
@@ -358,20 +359,44 @@ export default {
         },
 
         updateGameID() {
-        // Create an object with the new gameID
-        const updatedData = {
-            applicationID: this.oldID,
-        };
-        // Use the current gameID (this.gameID) to locate the record you want to update
-        axios.patch(`${firebaseDatabaseURL}/borrowApplications/${this.oldID}.json`, updatedData)
+            // Create an object with the new gameID
+            const updatedData = {
+                applicationID: this.oldID,
+            };
+            // Use the current gameID (this.gameID) to locate the record you want to update
+            axios.patch(`${firebaseDatabaseURL}/borrowApplications/${this.oldID}.json`, updatedData)
+                .then((response) => {
+                console.log('Data updated successfully:', response);
+                // Reset form fields or perform any other actions as needed
+                this.$router.push({ name: 'borrowPage' });
+                })
+                .catch((error) => {
+                console.error('Error updating data:', error);
+                });
+        },
+
+        updateUserInfo() {
+            // get object just created from borrowApplications
+            axios
+            .get(firebaseDatabaseURL + "/borrowApplications/" + this.oldID + ".json")
             .then((response) => {
-            console.log('Data updated successfully:', response);
-            // Reset form fields or perform any other actions as needed
-            this.$router.push({ name: 'borrowPage' });
+                if (typeof response.data === 'object') {
+                    var newApplication = response.data;
+                    newApplication["applicationID"] = this.oldID;
+
+                    axios
+                    .post(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications.json", newApplication)
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        console.error('Error posting data:', error);
+                    });
+                    
+                } else {
+                    console.error('Response data is not an object:', response.data);
+                }
             })
-            .catch((error) => {
-            console.error('Error updating data:', error);
-            });
         },
 
         pretty_date(ugly_date) {
