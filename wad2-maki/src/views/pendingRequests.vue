@@ -194,6 +194,7 @@ export default {
         return{
         applications: [],      
         reviewedApplications: [],  
+        borrowerID: '',
         }
     },
 
@@ -257,10 +258,10 @@ export default {
             });
         },
 
-        updateApplication(applicationID, status) {
+        async updateApplication(applicationID, status) {
             if (status == "approve") {
                 // update the application status to approved
-                axios
+                await axios
                 .patch(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json", {
                     status: "Approved",
                 })
@@ -278,16 +279,25 @@ export default {
                     console.log(error);
                 });
 
-                axios
-                .get(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications.json", {
+                await axios
+                .get(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json" )
+                .then((response) => {
+                    this.borrowerID = response.data.borrowerID;
+                    console.log("borrower ID retrieved")
+                    console.log(this.borrowerID)
+                })
+
+                await axios
+                .get(firebaseDatabaseURL + "/users/" + this.borrowerID + "/borrowApplications.json", {
                 })
                 .then((response) => {
+                    console.log("this user's borrowed applications")
                     console.log(response);
                     for (let app in response.data) {
                         console.log(app)
                         if (response.data[app].applicationID == applicationID) {
                             axios
-                            .patch(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications/" + app + ".json", {
+                            .patch(firebaseDatabaseURL + "/users/" + this.borrowerID + "/borrowApplications/" + app + ".json", {
                                 status: "Approved",
                             })
                             .then((response) => {
@@ -327,7 +337,7 @@ export default {
 
                 
                 axios
-                .get(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications.json", {
+                .get(firebaseDatabaseURL + "/users/" + this.borrowerID + "/borrowApplications.json", {
                 })
                 .then((response) => {
                     console.log(response);
@@ -335,7 +345,7 @@ export default {
                         console.log(app)
                         if (response.data[app].applicationID == applicationID) {
                             axios
-                            .patch(firebaseDatabaseURL + "/users/" + Global.sharedData + "/borrowApplications/" + app + ".json", {
+                            .patch(firebaseDatabaseURL + "/users/" + this.borrowerID + "/borrowApplications/" + app + ".json", {
                                 status: "Rejected",
                             })
                             .then((response) => {

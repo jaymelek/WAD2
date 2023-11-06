@@ -317,6 +317,7 @@ export default {
                 borrowerPurpose: this.purpose,
                 borrowerLocation: this.location,
                 borrowerWhoPlay: this.whoPlay,
+                borrowerID: Global.sharedData,
                 };
                 // Now you can proceed with submitting the data
                 axios
@@ -340,6 +341,7 @@ export default {
                 loanStartDate: this.loanStartDate,
                 loanEndDate: this.selectedEndDate,
                 status: "Pending",
+                borrowerID: Global.sharedData,
                 };
                 // Now you can proceed with submitting the data
                 axios
