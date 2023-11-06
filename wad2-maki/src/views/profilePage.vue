@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-center justify-content-center">
+        <!-- <div class="row align-items-center justify-content-center">
             <div class="col-12 order-5 mt-3">
                 <div class="info-border">
                     <p v-if=!person.currentBorrowing><strong>Current borrowing: - </strong></p>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row align-items-center justify-content-center">
             <div class="col-12 mt-3 order-4">
                 <div class="info-border">
@@ -57,6 +57,86 @@
                 </div>
             </div>
         </div>
+
+        <!-- Borrow Applications -->
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 mt-3 order-4">
+                <h4>Borrow Applications:</h4>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center"
+        v-if="myApplications.length == 0"
+        >
+            <div class="col-12 mt-3 order-4">
+                <div class="info-border text-center">
+                    <p><strong>You have no applications!</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid w-100 p-0">
+
+            <div class="row info-border w-100 py-2 px-0 mx-0 my-2 align-items-center justify-content-center text-start"
+                v-for="application in myApplications" :key="application.applicationID"
+                >
+                    <div class="row info-border w-100 py-2 mx-0 mt-2 mb-0 align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <h4 class="mb-0" @click="gotoEvent(application.gameID)">{{ application.gameName }}</h4>
+                        </div>
+
+                        <div class="col-auto">
+                            <!-- Each application is a form  -->
+                            <div class="bg-success statusBar px-3 ms-auto"
+                            v-if="application.status == 'Approved'"
+                            >
+                                {{ application.status }}
+                            </div>
+                            <div class="bg-danger statusBar px-3 ms-auto"
+                            v-if="application.status == 'Rejected'"
+                            >
+                                {{ application.status }}
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row info-border w-100 py-2 mx-0 mt-0 mb-2 px-1 justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            <p class="my-0">Borrower: {{ application.borrowerName }}</p>
+                            <p class="my-0">Start Date: {{ pretty_date(application.loanStartDate) }}</p>
+                            <p class="my-0">End Date: {{ pretty_date(application.loanEndDate) }}</p>
+                        </div>
+                        
+                        <div class="col-12 col-sm-6">
+                            <p class="my-0">Borrowing Type: For {{ application.borrowingBehalf }}</p>
+                            <p class="my-0">Borrower's Email: {{ application.borrowerEmail }}</p>
+                            <p class="my-0">Borrower's Telegram: {{ application.borrowerTelegram }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- if club borrowing -->
+                    <div class="row rounded reviewBox w-100 py-2 mx-0 mt-0 mb-2 justify-content-center"
+                    v-if="application.borrowingBehalf == 'Club'"
+                    >
+                        <hr>
+                        <div class="col-6">
+                            <p class="my-0">Club Contact: {{ application.borrowerClubContact }}</p>
+                            <p class="my-0">Location: {{ application.borrowerLocation }}</p>
+                            <p class="my-0">Purpose: {{ application.borrowerPurpose }}</p>
+                        </div>
+                        
+                        <div class="col-6">
+                            <p class="my-0">Type of Players: For {{ application.borrowerWhoPlay }}</p>
+                            <p class="my-0">Club Email: {{ application.borrowerClubEmail }}</p>
+                        </div>
+                    </div>
+                </div> 
+                <!--End of v-for loop-->
+
+        </div>
+
+
+        <!-- Logout Button -->
         <button class="btn btn-outline-light w-50 my-4" @click="userLogout">
             Logout
         </button>
@@ -101,6 +181,7 @@ import Global from "../global";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 const path = '/users.json'; // Replace with the path to your data
+const applicationsPath = '/borrowApplications.json'
 
 // let hasReloaded = false;
 
@@ -111,6 +192,7 @@ export default {
             person: [],
             loginUser: Global.loginInfo,
             loginErrorMessage: '',
+            myApplications: [],
 
         }
     },
@@ -118,7 +200,7 @@ export default {
         // console.log(Global.sharedData)
         console.log(Global.loginInfo)
         // console.log(this.loginUser)
-
+        
         axios
             .get(firebaseDatabaseURL + path)
             .then((response) => {
@@ -151,6 +233,8 @@ export default {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
+
+            this.getApplicationsData()
     },
     methods: {
         userLogin() {
@@ -206,6 +290,38 @@ export default {
         },
         scrollToTop() {
             window.scrollTo(0, 0);
+        },
+
+        getApplicationsData() {
+            axios
+            .get(firebaseDatabaseURL + applicationsPath)
+            .then((response) => {
+                console.log(response.data)
+                
+                // initiate application data 
+                for (let app in response.data) {
+                    console.log(response.data[app].borrowerName)
+                    console.log(this.person)
+                    if (response.data[app].borrowerName == this.person.name) {
+                        
+                        this.myApplications.push(response.data[app]);
+                    } 
+                }
+                
+            })
+            .catch((error) => {
+            console.error('Error fetching applications data:', error);
+            });
+        },
+
+        pretty_date(ugly_date) {
+            var pretty_date = new Date(ugly_date);
+            return pretty_date.toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            });
         },
     },
 }
@@ -366,4 +482,9 @@ h3 {
     color: rgba(123, 167, 187, 1);
     text-align: center;
 }
+
+.reviewBox {
+        color: #7ba7bb;
+        background-color: #d8e5eb;
+    }
 </style>
