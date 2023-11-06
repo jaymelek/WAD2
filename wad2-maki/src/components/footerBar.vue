@@ -11,7 +11,8 @@
 
     <div class="nav mb-3 mx-0 justify-content-center">
       <a class="my-1 mx-3" href="" @click="gotoLanding()">Home</a>
-      <a class="my-1 mx-3" href="" @click="gotoAbout()">About Us</a>
+      <router-link :to="{ name: 'aboutPage' }" class="my-1 mx-3">About Us</router-link>
+      <!-- <a class="my-1 mx-3" href="" @click="gotoAbout()">About Us</a> -->
       <a class="my-1 mx-3" href="mailto:strategica@sa.smu.edu.sg">Contact Us</a>
     </div>
     
@@ -54,9 +55,9 @@ export default {
     gotoLanding() {
       this.$router.push({ name: "landingPage" });
     },
-    gotoAbout() {
-      this.$router.push({ name: "aboutPage" });
-    },
+    // gotoAbout() {
+    //   this.$router.push({ name: "aboutPage" });
+    // },
   },
 };
 </script>
