@@ -343,6 +343,7 @@ export default {
 .lineUp {
     animation: 2s anim-lineUp ease-out;
     text-align: center;
+    color: #070F5F;
 }
 
 .register {
