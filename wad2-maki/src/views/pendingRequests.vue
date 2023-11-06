@@ -316,8 +316,8 @@ export default {
 
 
             } else if (status == "reject") {
-                // update the application status to rejected
-                axios
+                // update the application status to approved
+                await axios
                 .patch(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json", {
                     status: "Rejected",
                 })
@@ -335,11 +335,19 @@ export default {
                     console.log(error);
                 });
 
-                
-                axios
+                await axios
+                .get(firebaseDatabaseURL + "/borrowApplications/" + applicationID + ".json" )
+                .then((response) => {
+                    this.borrowerID = response.data.borrowerID;
+                    console.log("borrower ID retrieved")
+                    console.log(this.borrowerID)
+                })
+
+                await axios
                 .get(firebaseDatabaseURL + "/users/" + this.borrowerID + "/borrowApplications.json", {
                 })
                 .then((response) => {
+                    console.log("this user's borrowed applications")
                     console.log(response);
                     for (let app in response.data) {
                         console.log(app)
