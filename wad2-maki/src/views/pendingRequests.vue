@@ -155,7 +155,7 @@ import axios from 'axios';
 // import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Global from "../global";
+// import Global from "../global";
 
 const firebaseDatabaseURL = 'https://wad2-proj-642be-default-rtdb.asia-southeast1.firebasedatabase.app/';
 // const path = '/games.json'; // Replace with the path to your data
